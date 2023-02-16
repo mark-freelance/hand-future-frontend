@@ -1,15 +1,13 @@
 import type { NextPage } from 'next'
 import NavBar from '../ui/NavBar'
 import Header from '../ui/Header'
+import RootLayout from '../ui/layouts/root'
 
 const Home: NextPage = () => {
   return (
-    <div>
-      <Header/>
-
-      <NavBar/>
-
-    </div>
+    <RootLayout>
+      home page
+    </RootLayout>
   )
 }
 

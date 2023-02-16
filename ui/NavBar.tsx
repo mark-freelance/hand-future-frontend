@@ -7,7 +7,7 @@ export const menus: IMenuItem[] = [
     children: [
       {
         name: '列表',
-        path: '/heroes/list'
+        path: '/heroes/gallery'
       },
       // todo: /heroes/[hero_id]
       {
