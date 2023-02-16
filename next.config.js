@@ -2,6 +2,38 @@
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
+
+  // use images, o.w. would cause: hostname "mmbiz.qpic.cn" is not configured under images in your `next.config.js`
+  images: {
+    remotePatterns: [
+      // wechat article
+      {
+        protocol: 'http',
+        hostname: 'mmbiz.qpic.cn'
+      },
+      {
+        protocol: 'https',
+        hostname: 'mmbiz.qpic.cn'
+      },
+
+      // pinterest
+      {
+        protocol: "https",
+        hostname: "i.pinimg.com"
+      },
+
+      // notion
+      {
+        protocol: "https",
+        hostname: "gkleifeng.notion.site"
+      },
+      {
+        protocol: "https",
+        hostname: "s3-us-west-2.amazonaws.com"
+      }
+    ]
+  }
+
 }
 
 module.exports = nextConfig
