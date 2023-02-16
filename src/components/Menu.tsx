@@ -41,10 +41,18 @@ export interface MenuProps {
   icon: string
 }
 
+/**
+ * z-index 是最大的，保证导航栏不被覆盖
+ *
+ * @param {ISubMenuItem | IMainMenuItem} item
+ * @param {string} icon
+ * @returns {JSX.Element}
+ * @constructor
+ */
 export const MenuItem = ({ item, icon }: MenuProps) => {
   return !isMainMenuItem(item)
-    ? <li><a href={item.path}>{item.name}</a></li>
-    : <li tabIndex={0}>
+    ? <li className={'z-50'}><a href={item.path}>{item.name}</a></li>
+    : <li tabIndex={0} className={'z-50'}>
       <a className="justify-between">
         {item.name}
         <svg className="fill-current" xmlns="http://www.w3.org/2000/svg" width="24" height="24"

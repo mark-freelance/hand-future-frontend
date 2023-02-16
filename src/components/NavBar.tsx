@@ -1,5 +1,6 @@
 import { MenuItem } from './Menu'
 import { IMenuItem } from '../ds/menu'
+import Image from 'next/image'
 
 export const menus: IMenuItem[] = [
   {
@@ -68,9 +69,44 @@ export const NavBar = () => {
         </ul>
       </div>
 
+
+      {/* 尾部 */}
       <div className="navbar-end">
 
-        <a className="btn">开始携手</a>
+        <div className="inline-flex items-center flex-none gap-2 mr-4">
+          <div className="form-control">
+            <input type="text" placeholder="Search" className="input input-bordered"/>
+          </div>
+
+          <div className="dropdown dropdown-end">
+            {/* avatar with image */}
+            {/*            <div className="avatar online">*/}
+            {/*  <div className="w-24 rounded-full">*/}
+            {/*    <img src="/images/stock/photo-1534528741775-53994a69daeb.jpg" />*/}
+            {/*  </div>*/}
+            {/*</div>*/}
+
+            {/* avatar with text */}
+            <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+              <div className="avatar placeholder">
+                <div className="bg-neutral-focus text-neutral-content rounded-full w-12">
+                  <span className="text-sm">注册</span>
+                </div>
+              </div>
+            </label>
+            <ul tabIndex={0}
+                className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52">
+              <li>
+                <a className="justify-between">
+                  Profile
+                  <span className="badge">New</span>
+                </a>
+              </li>
+              <li><a>Settings</a></li>
+              <li><a>Logout</a></li>
+            </ul>
+          </div>
+        </div>
       </div>
     </div>
   )
