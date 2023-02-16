@@ -4,9 +4,6 @@ module.exports = {
     "./app/**/*.{js,ts,jsx,tsx}",
     "./pages/**/*.{js,ts,jsx,tsx}",
     "./components/**/*.{js,ts,jsx,tsx}",
-
-    // Or if using `src` directory:
-    "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
     extend: {},
@@ -24,14 +21,15 @@ module.exports = {
     darkTheme: "dark",
 
     // ref: https://daisyui.com/docs/themes/
-    themes: [
-      {
-        light: {
-          ...require("daisyui/src/colors/themes")["[data-theme=light]"],
-          primary: "blue",
-          "primary-focus": "mediumblue",
-        },
-      }
-    ],
+    themes: true,
+    // themes: [
+    //   {
+    //     light: {
+    //       ...require("daisyui/src/colors/themes")["[data-theme=light]"],
+    //       primary: "blue",
+    //       "primary-focus": "mediumblue",
+    //     },
+    //   }
+    // ],
   },
 }
