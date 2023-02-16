@@ -1,6 +1,9 @@
 import { MenuItem } from './Menu'
 import { IMenuItem } from '../ds/menu'
 import Image from 'next/image'
+import { useState } from 'react'
+import RegisterDialog from './RegisterDialog'
+import ProfileDropdown from './ProfileDropdown'
 
 export const menus: IMenuItem[] = [
   {
@@ -28,6 +31,8 @@ export const SVG_PATH_ARROW_DOWN = 'M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6
 
 
 export const NavBar = () => {
+  const [logined, setLogined] = useState(false)
+
   return (
     <div className="navbar bg-base-100 border-b-2">
 
@@ -77,35 +82,10 @@ export const NavBar = () => {
           <div className="form-control">
             <input type="text" placeholder="Search" className="input input-bordered"/>
           </div>
+          {
+            logined ? <ProfileDropdown/> : <RegisterDialog/>
+          }
 
-          <div className="dropdown dropdown-end">
-            {/* avatar with image */}
-            {/*            <div className="avatar online">*/}
-            {/*  <div className="w-24 rounded-full">*/}
-            {/*    <img src="/images/stock/photo-1534528741775-53994a69daeb.jpg" />*/}
-            {/*  </div>*/}
-            {/*</div>*/}
-
-            {/* avatar with text */}
-            <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-              <div className="avatar placeholder">
-                <div className="bg-neutral-focus text-neutral-content rounded-full w-12">
-                  <span className="text-sm">注册</span>
-                </div>
-              </div>
-            </label>
-            <ul tabIndex={0}
-                className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52">
-              <li>
-                <a className="justify-between">
-                  Profile
-                  <span className="badge">New</span>
-                </a>
-              </li>
-              <li><a>Settings</a></li>
-              <li><a>Logout</a></li>
-            </ul>
-          </div>
         </div>
       </div>
     </div>
