@@ -17,7 +17,7 @@ export const HeroesGallery = ({ data }: HeroesGalleryProps) => {
   // console.log({ data })
   return (
     <RootLayout>
-      <div className={'grid grid-cols-3 justify-items-center gap-4'}>
+      <div className={'w-full grid sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-4 justify-items-center gap-4'}>
               {
         data.map((item) => (
           <HeroCard data={item} key={item.id}/>

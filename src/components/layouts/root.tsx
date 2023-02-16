@@ -7,10 +7,10 @@ import { ReactNode } from 'react'
  */
 export const RootLayout = ({ children }: { children: ReactNode }) => {
   return (
-    <div className={'w-screen'}>
+    <div className={'w-screen min-h-screen flex flex-col'}>
       <Header/>
       <NavBar/>
-      <div className={'p-4 flex justify-center items-center'}>
+      <div className={'p-4 flex-grow flex justify-center items-center'}>
         {children}
       </div>
     </div>

@@ -6,7 +6,7 @@ import RootLayout from '../components/layouts/root'
 const Home: NextPage = () => {
   return (
     <RootLayout>
-      home page
+      todo: home page
     </RootLayout>
   )
 }
