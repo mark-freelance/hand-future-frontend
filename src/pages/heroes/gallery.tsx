@@ -1,34 +1,29 @@
 import RootLayout from '../../components/layouts/root'
 import { backendAPI } from '../../utils/api'
+import { IHero } from '../../ds/hero'
+import HeroCard from '../../components/HeroCard'
 
 export interface IResArr {
   size: number
   list: any[]
 }
 
-export interface IHero {
-  id: string
-  name: string
-  title: string
-  cities: string
-  avatar: string
-}
 
 export interface HeroesGalleryProps {
   data: IHero[]
 }
 
 export const HeroesGallery = ({ data }: HeroesGalleryProps) => {
-  console.log({data})
+  // console.log({ data })
   return (
     <RootLayout>
-      {
+      <div className={'grid grid-cols-3 justify-items-center gap-4'}>
+              {
         data.map((item) => (
-          <div key={item.id}>
-            {item.name}
-          </div>
+          <HeroCard data={item} key={item.id}/>
         ))
       }
+      </div>
     </RootLayout>
   )
 }
