@@ -5,9 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1b5f6d38-ea6f-4efe-877e-afeba09ca3ef" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/components/NominateDialog.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/deployment.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/deployment.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Menu.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Menu.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/NavBar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/NavBar.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/HeroCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/HeroCard.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/layouts/root.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/layouts/root.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/about.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/about.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/heroes/gallery.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/heroes/gallery.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/heroes/upload.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/heroes/upload.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,8 +28,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="TypeScript JSX File" />
         <option value="TypeScript File" />
+        <option value="TypeScript JSX File" />
         <option value="CSS File" />
       </list>
     </option>
@@ -67,11 +78,11 @@
       <recent name="$PROJECT_DIR$/src/app" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/src" />
+      <recent name="$PROJECT_DIR$/src/components" />
+      <recent name="$PROJECT_DIR$/src/components/Dialog" />
+      <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/bak/src/pages" />
-      <recent name="$PROJECT_DIR$/src/pages/api/hero" />
-      <recent name="$PROJECT_DIR$/src/pages" />
     </key>
     <key name="es6.move.members.recent.items">
       <recent name="$PROJECT_DIR$/ds/menu.ts" />

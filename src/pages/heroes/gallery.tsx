@@ -1,7 +1,8 @@
-import RootLayout from '../../components/layouts/root'
+import RootLayout from '../../layouts/root'
 import { backendAPI } from '../../utils/api'
 import { IHero } from '../../ds/hero'
 import HeroCard from '../../components/HeroCard'
+import Dialog from '../../components/NominateDialog'
 
 export interface IResArr {
   size: number

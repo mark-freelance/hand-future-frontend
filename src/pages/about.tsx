@@ -1,4 +1,4 @@
-import RootLayout from '../components/layouts/root'
+import RootLayout from '../layouts/root'
 
 export const About = () => {
   return (
