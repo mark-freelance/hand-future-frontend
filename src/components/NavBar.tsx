@@ -4,6 +4,8 @@ import Image from 'next/image'
 import { useState } from 'react'
 import RegisterDialog from './RegisterDialog'
 import RegisteredDropdown from './RegisteredDropdown'
+import { useDispatch, useSelector } from 'react-redux'
+import { selectAuthState } from '../store/authSlice'
 
 export const menus: IMenuItem[] = [
   {
@@ -31,7 +33,7 @@ export const SVG_PATH_ARROW_DOWN = 'M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6
 
 
 export const NavBar = () => {
-  const [logined, setLogined] = useState(false)
+  const authState = useSelector(selectAuthState)
 
   return (
     <div className="navbar bg-base-100 border-b-2">
@@ -83,7 +85,7 @@ export const NavBar = () => {
             <input type="text" placeholder="Search" className="input input-bordered"/>
           </div>
           {
-            logined ? <RegisteredDropdown/> : <RegisterDialog/>
+            authState ? <RegisteredDropdown/> : <RegisterDialog/>
           }
 
         </div>

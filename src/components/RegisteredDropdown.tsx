@@ -1,24 +1,31 @@
+import { useDispatch } from 'react-redux'
+import { setAuthState } from '../store/authSlice'
+import { Avatar } from './Avatar'
+
 export const RegisteredDropdown = () => {
+
+  const dispatch = useDispatch()
+
   // avatar with image
   return (
     <div className="dropdown dropdown-end">
 
-      <div className="avatar online">
-        <div className="w-24 rounded-full">
-          <img src="/images/stock/photo-1534528741775-53994a69daeb.jpg"/>
-        </div>
-      </div>
+      <label tabIndex={0} className="m-1">
+        <Avatar/>
+      </label>
 
       <ul tabIndex={0}
-          className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52">
+          className="w-24 mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box">
         <li>
           <a className="justify-between">
             Profile
-            <span className="badge">New</span>
           </a>
         </li>
-        <li><a>Settings</a></li>
-        <li><a>Logout</a></li>
+
+        {/*todo: */}
+        {false && <li><a>Following</a></li>}
+
+        <li><a onClick={() => {dispatch(setAuthState(false))}}>Logout</a></li>
       </ul>
     </div>
   )

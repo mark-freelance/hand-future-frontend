@@ -6,6 +6,8 @@ import { AxiosError } from 'axios'
 import { INIT_USER_LOGIN, TokenData } from '../ds/user'
 
 import { toast, ToastContainer } from 'react-toastify'
+import { useDispatch } from 'react-redux'
+import { setAuthState } from '../store/authSlice'
 
 
 export interface RegisterProps {
@@ -25,6 +27,7 @@ function RegisterCore(props: RegisterProps) {
   const [user, setUser] = useState(INIT_USER_LOGIN)
   const [code, setCode] = useState('') // activation code
   const [isRegistering, setRegistering] = useState(false)
+  const dispatch = useDispatch()
 
   const SwitchLoginAndRegister = ({ text, desc }: { text: string, desc: string }) => <div
     className="text-center mt-4 ">{desc}
@@ -57,6 +60,7 @@ function RegisterCore(props: RegisterProps) {
         localStorage.setItem('token', tokenData.access_token)
         toast('登录成功！')
         dispatchClose()
+        dispatch(setAuthState(true))
       }
       // 注册 step 1. 发送邮件
       else if (!isRegistering) {
