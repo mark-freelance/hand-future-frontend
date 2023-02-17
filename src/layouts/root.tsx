@@ -2,11 +2,13 @@ import Header from '../components/Header'
 import NavBar from '../components/NavBar'
 import { ReactNode } from 'react'
 import { toast, ToastContainer } from 'react-toastify'
+import backendAPI from '../utils/api'
 
 /**
  * 关于如何定义props，ref: /app-playground/app/layouts/layout.tsx
  */
 export const RootLayout = ({ children }: { children: ReactNode }) => {
+
   return (
     <div className={'w-screen min-h-screen flex flex-col'}>
       <Header/>

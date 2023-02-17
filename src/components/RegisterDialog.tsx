@@ -5,9 +5,9 @@ import RegisterCore from './RegisterCore'
 
 
 const RegisterDialog = () => {
+  const [open, setOpen] = useState(false)
   // 默认已经注册了！
   const [isRegistered, setRegistered] = useState(true)
-  const [open, setOpen] = useState(false)
 
   return (
     <Dialog.Root open={open} onOpenChange={setOpen}>

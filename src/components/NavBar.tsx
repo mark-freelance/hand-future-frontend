@@ -1,32 +1,9 @@
 import { MenuItem } from './Menu'
-import { IMenuItem } from '../ds/menu'
-import Image from 'next/image'
-import { useState } from 'react'
 import RegisterDialog from './RegisterDialog'
 import RegisteredDropdown from './RegisteredDropdown'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { selectUser } from '../store/userSlice'
-
-export const menus: IMenuItem[] = [
-  {
-    name: '嘉宾',
-    children: [
-      {
-        name: '列表',
-        path: '/heroes/gallery'
-      },
-      // todo: /heroes/[hero_id]
-      {
-        name: '上传（内部）',
-        path: '/heroes/upload'
-      }
-    ]
-  },
-  {
-    name: '关于我们',
-    path: '/about'
-  }
-]
+import { menus } from '../config/menus'
 
 export const SVG_PATH_ARROW_RIGHT = 'M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z'
 export const SVG_PATH_ARROW_DOWN = 'M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z'

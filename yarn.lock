@@ -457,7 +457,7 @@
 
 "@tabler/icons-react@^2.4.0":
   version "2.4.0"
-  resolved "https://registry.npmmirror.com/@tabler/icons-react/-/icons-react-2.4.0.tgz#07d51950b6b6aa326d1dee107018f151e509ef69"
+  resolved "https://registry.npmmirror.com/@tabler/icons-react/-/icons-react-2.4.0.tgz"
   integrity sha512-U04bSknpXPdZP8soAnMPiz4g6PXPfWHfMoe2qhDoRlnS8UJ8JHHE/k4Lx4rw2Tfy9a2QJeoPV5HQIeKXrNPHGA==
   dependencies:
     "@tabler/icons" "2.4.0"
@@ -465,7 +465,7 @@
 
 "@tabler/icons@2.4.0":
   version "2.4.0"
-  resolved "https://registry.npmmirror.com/@tabler/icons/-/icons-2.4.0.tgz#34b1b0d818dc00926b956c3424bff48b89a5b439"
+  resolved "https://registry.npmmirror.com/@tabler/icons/-/icons-2.4.0.tgz"
   integrity sha512-JZY9Kk3UsQoqp7Rw/BuWw1PrkRwv5h0psjJBbj+Cn9UVyhdzr5vztg2mywXBAJ+jFBUL/pjnVcIvOzKFw4CXng==
 
 "@types/hoist-non-react-statics@^3.3.1":
@@ -832,7 +832,7 @@ client-only@0.0.1:
 
 clsx@^1.1.1, clsx@^1.2.1:
   version "1.2.1"
-  resolved "https://registry.npmmirror.com/clsx/-/clsx-1.2.1.tgz#0ddc4a20a549b59c93a4116bb26f5294ca17dc12"
+  resolved "https://registry.npmmirror.com/clsx/-/clsx-1.2.1.tgz"
   integrity sha512-EcR6r5a8bj6pu3ycsa/E/cKVGuTgZJZdsyUYHOksG/UHIiKfjxzRxYJpyVBwYaQeOvghal9fcc4PidlgzugAQg==
 
 color-convert@^2.0.1:
@@ -2673,10 +2673,15 @@ synckit@^0.8.4:
     "@pkgr/utils" "^2.3.1"
     tslib "^2.5.0"
 
-tailwindcss@^3, tailwindcss@^3.2.6:
-  version "3.2.6"
-  resolved "https://registry.npmmirror.com/tailwindcss/-/tailwindcss-3.2.6.tgz"
-  integrity sha512-BfgQWZrtqowOQMC2bwaSNe7xcIjdDEgixWGYOd6AL0CbKHJlvhfdbINeAW76l1sO+1ov/MJ93ODJ9yluRituIw==
+tailwind-merge@^1.9.1:
+  version "1.9.1"
+  resolved "https://registry.npmmirror.com/tailwind-merge/-/tailwind-merge-1.9.1.tgz#b43e517aff0df33d3ca2b2e7d23acf0ea2f3714f"
+  integrity sha512-ED9MkiUHlmfh58EC1xHRqXcH1IQyRtmDP0AmXlugYkP2tvfu7ejtjFEHJLJt93mQ7ZJkcqSIgm9M394bq5vOJg==
+
+tailwindcss@^3, tailwindcss@^3.2.7:
+  version "3.2.7"
+  resolved "https://registry.npmmirror.com/tailwindcss/-/tailwindcss-3.2.7.tgz"
+  integrity sha512-B6DLqJzc21x7wntlH/GsZwEXTBttVSl1FtCzC8WP4oBc/NKef7kaax5jeihkkCEWc831/5NDJ9gRNDK6NEioQQ==
   dependencies:
     arg "^5.0.2"
     chokidar "^3.5.3"

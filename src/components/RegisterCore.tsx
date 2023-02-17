@@ -1,7 +1,7 @@
 import { FormEvent, useState } from 'react'
 import Link from 'next/link'
 import InputText from './InputText'
-import backendAPI from '../utils/api'
+import backendAPI, { TOKEN_KEY, updateToken } from '../utils/api'
 import { AxiosError } from 'axios'
 import { INIT_USER_REGISTER, TokenData } from '../ds/user'
 
@@ -58,11 +58,18 @@ function RegisterCore(props: RegisterProps) {
         const resToken = await backendAPI.post('/user/token', registerForm)
         const tokenData: TokenData = resToken.data
         console.log({ tokenData })
-        localStorage.setItem('token', tokenData.access_token)
+        localStorage.setItem(TOKEN_KEY, 'Bearer ' + tokenData.access_token)
+        updateToken()
+
         toast('登录成功！')
+
+        // 获取用户信息，并刷新本地
+        const resReadUser = await backendAPI.get('/user/me')
+        console.log({ resReadUser })
+
         dispatchClose()
         dispatch(setAuthState(true))
-        dispatch(setUserInfo(user))
+        dispatch(setUserInfo(resReadUser.data))
       }
       // 注册 step 1. 发送邮件
       else if (!isRegistering) {
