@@ -1,6 +1,7 @@
 import Header from '../components/Header'
 import NavBar from '../components/NavBar'
 import { ReactNode } from 'react'
+import { ToastContainer } from 'react-toastify'
 
 /**
  * 关于如何定义props，ref: /app-playground/app/layouts/layout.tsx
@@ -14,6 +15,9 @@ export const RootLayout = ({ children }: { children: ReactNode }) => {
       <div className={'p-4 flex-grow flex justify-center items-center'}>
         {children}
       </div>
+
+      <ToastContainer autoClose={3000}/>
+
     </div>
   )
 }

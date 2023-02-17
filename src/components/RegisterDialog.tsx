@@ -7,9 +7,10 @@ import RegisterCore from './RegisterCore'
 const RegisterDialog = () => {
   // 默认已经注册了！
   const [isRegistered, setRegistered] = useState(true)
+  const [open, setOpen] = useState(false)
 
   return (
-    <Dialog.Root>
+    <Dialog.Root open={open} onOpenChange={setOpen}>
       <Dialog.Trigger asChild>
         <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
           <div className="avatar placeholder w-10">
@@ -28,7 +29,11 @@ const RegisterDialog = () => {
             注册/登录
           </Dialog.Title>
 
-          <RegisterCore isRegistered={isRegistered} dispatchSetRegister={() => setRegistered(!isRegistered)}/>
+          <RegisterCore
+            isRegistered={isRegistered}
+            dispatchSetRegister={() => setRegistered(!isRegistered)}
+            dispatchClose={() => setOpen(false)}
+          />
 
           <Dialog.Close asChild>
             <button

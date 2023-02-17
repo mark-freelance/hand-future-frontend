@@ -3,12 +3,23 @@ import Link from 'next/link'
 import InputText from './InputText'
 import backendAPI from '../utils/api'
 import { AxiosError } from 'axios'
-import { INIT_USER_LOGIN, RegisterProps, TokenData } from '../ds/user'
+import { INIT_USER_LOGIN, TokenData } from '../ds/user'
 
 import { toast, ToastContainer } from 'react-toastify'
 
 
-function RegisterCore({ isRegistered, dispatchSetRegister }: RegisterProps) {
+
+export interface RegisterProps {
+  isRegistered: boolean
+  dispatchSetRegister: Function
+  dispatchClose: Function
+}
+function RegisterCore(props: RegisterProps) {
+  const {
+    isRegistered,
+    dispatchSetRegister,
+    dispatchClose
+  } = props
 
   const [loading, setLoading] = useState(false)
   const [user, setUser] = useState(INIT_USER_LOGIN)
@@ -43,6 +54,8 @@ function RegisterCore({ isRegistered, dispatchSetRegister }: RegisterProps) {
         const tokenData: TokenData = resToken.data
         console.log({ tokenData })
         localStorage.setItem('token', tokenData.access_token)
+        toast('登录成功！')
+        dispatchClose()
       }
       // 注册 step 1. 发送邮件
       else if (!isRegistering) {
@@ -118,7 +131,6 @@ function RegisterCore({ isRegistered, dispatchSetRegister }: RegisterProps) {
 
       </form>
 
-      <ToastContainer autoClose={3000}/>
     </div>
 
   )

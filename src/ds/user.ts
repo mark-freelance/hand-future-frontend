@@ -15,11 +15,6 @@ export const INIT_USER_LOGIN: UserRegister = {
   nickname: ''
 }
 
-export interface RegisterProps {
-  isRegistered: boolean
-  dispatchSetRegister: Function
-}
-
 export interface TokenData {
   access_token: string // aka. ey...
   token_type: string // aka. bearer
