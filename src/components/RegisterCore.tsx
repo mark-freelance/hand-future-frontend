@@ -8,12 +8,12 @@ import { INIT_USER_LOGIN, TokenData } from '../ds/user'
 import { toast, ToastContainer } from 'react-toastify'
 
 
-
 export interface RegisterProps {
   isRegistered: boolean
   dispatchSetRegister: Function
   dispatchClose: Function
 }
+
 function RegisterCore(props: RegisterProps) {
   const {
     isRegistered,
@@ -45,11 +45,12 @@ function RegisterCore(props: RegisterProps) {
     let registerForm = new FormData()
     registerForm.append('username', user.username)
     registerForm.append('password', user.password)
-    registerForm.append('email', user.email)
     registerForm.append('nickname', user.nickname)
+    registerForm.append('email', user.email)
     try {
       // 登录
       if (isRegistered) {
+        console.log('【登录】申请token……')
         const resToken = await backendAPI.post('/user/token', registerForm)
         const tokenData: TokenData = resToken.data
         console.log({ tokenData })
@@ -59,11 +60,14 @@ function RegisterCore(props: RegisterProps) {
       }
       // 注册 step 1. 发送邮件
       else if (!isRegistering) {
+        console.log('【注册】基本信息入表……')
         await backendAPI.post('/user/register', registerForm)
         setRegistering(true)
+        toast(`已发送验证码到邮箱：${user.email}，有效期10分钟！`)
       }
       // 注册 step 2. 验证注册
       else {
+        console.log('【注册】激活邮件验证码')
         if (isRegistering && code.trim() === '') return toast.error('Activation Code is required!')
         let activationForm = new FormData()
         activationForm.append('username', user.username)
