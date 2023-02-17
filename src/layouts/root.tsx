@@ -1,7 +1,7 @@
 import Header from '../components/Header'
 import NavBar from '../components/NavBar'
 import { ReactNode } from 'react'
-import { ToastContainer } from 'react-toastify'
+import { toast, ToastContainer } from 'react-toastify'
 
 /**
  * 关于如何定义props，ref: /app-playground/app/layouts/layout.tsx
@@ -16,7 +16,7 @@ export const RootLayout = ({ children }: { children: ReactNode }) => {
         {children}
       </div>
 
-      <ToastContainer autoClose={3000}/>
+      <ToastContainer autoClose={3000} position={toast.POSITION.BOTTOM_RIGHT}/>
 
     </div>
   )

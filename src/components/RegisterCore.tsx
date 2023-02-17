@@ -7,8 +7,7 @@ import { INIT_USER_REGISTER, TokenData } from '../ds/user'
 
 import { toast, ToastContainer } from 'react-toastify'
 import { useDispatch } from 'react-redux'
-import { setAuthState } from '../store/userSlice'
-import _ from 'lodash'
+import { setAuthState, setUserInfo } from '../store/userSlice'
 import { Avatar } from './Avatar'
 
 
@@ -63,6 +62,7 @@ function RegisterCore(props: RegisterProps) {
         toast('登录成功！')
         dispatchClose()
         dispatch(setAuthState(true))
+        dispatch(setUserInfo(user))
       }
       // 注册 step 1. 发送邮件
       else if (!isRegistering) {
