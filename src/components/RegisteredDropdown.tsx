@@ -1,4 +1,4 @@
-export const ProfileDropdown = () => {
+export const RegisteredDropdown = () => {
   // avatar with image
   return (
     <div className="dropdown dropdown-end">
@@ -24,4 +24,4 @@ export const ProfileDropdown = () => {
   )
 }
 
-export default ProfileDropdown
+export default RegisteredDropdown

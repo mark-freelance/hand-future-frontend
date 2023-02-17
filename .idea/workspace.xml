@@ -5,9 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1b5f6d38-ea6f-4efe-877e-afeba09ca3ef" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/components/Toast.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/ds/message.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/ds/user.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Register.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Register.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ErrorText.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/NotificationText.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/NavBar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/NavBar.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ProfileDropdown.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/RegisteredDropdown.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Register.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/RegisterCore.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/RegisterDialog.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/RegisterDialog.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tailwind.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/tailwind.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -74,9 +84,11 @@
       <recent name="$PROJECT_DIR$/bak/src/pages" />
     </key>
     <key name="es6.move.members.recent.items">
+      <recent name="$PROJECT_DIR$/src/ds/user.ts" />
+      <recent name="$PROJECT_DIR$/src/ds/message.ts" />
+      <recent name="$PROJECT_DIR$/src/ds/IMessage.ts" />
       <recent name="$PROJECT_DIR$/ds/menu.ts" />
       <recent name="$PROJECT_DIR$/ui/Menu.tsx" />
-      <recent name="$PROJECT_DIR$/src/dashboard/navbar/myMenuItem.ts" />
     </key>
   </component>
   <component name="RunManager" selected="npm.dev">

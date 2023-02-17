@@ -1,11 +1,12 @@
 import React, { useState } from 'react'
 import * as Dialog from '@radix-ui/react-dialog'
 import { Cross2Icon } from '@radix-ui/react-icons'
-import Register from './Register'
+import RegisterCore from './RegisterCore'
 
 
 const RegisterDialog = () => {
-  const [isRegister, setRegister] = useState(false)
+  // 默认已经注册了！
+  const [isRegistered, setRegistered] = useState(true)
 
   return (
     <Dialog.Root>
@@ -13,7 +14,7 @@ const RegisterDialog = () => {
         <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
           <div className="avatar placeholder w-10">
             <div className="bg-neutral-focus text-neutral-content rounded-full ">
-              <span className="text-sm">注册</span>
+              <span className="text-sm">M</span>
             </div>
           </div>
         </label>
@@ -28,7 +29,7 @@ const RegisterDialog = () => {
             注册/登录
           </Dialog.Title>
 
-          <Register isRegister={isRegister} dispatchSetRegister={() => setRegister(!isRegister)}/>
+          <RegisterCore isRegistered={isRegistered} dispatchSetRegister={() => setRegistered(!isRegistered)}/>
 
           <Dialog.Close asChild>
             <button

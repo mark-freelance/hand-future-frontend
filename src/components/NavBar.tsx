@@ -3,7 +3,7 @@ import { IMenuItem } from '../ds/menu'
 import Image from 'next/image'
 import { useState } from 'react'
 import RegisterDialog from './RegisterDialog'
-import ProfileDropdown from './ProfileDropdown'
+import RegisteredDropdown from './RegisteredDropdown'
 
 export const menus: IMenuItem[] = [
   {
@@ -83,7 +83,7 @@ export const NavBar = () => {
             <input type="text" placeholder="Search" className="input input-bordered"/>
           </div>
           {
-            logined ? <ProfileDropdown/> : <RegisterDialog/>
+            logined ? <RegisteredDropdown/> : <RegisterDialog/>
           }
 
         </div>
