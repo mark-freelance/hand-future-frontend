@@ -6,7 +6,9 @@ import RootLayout from '../layouts/root'
 const Home: NextPage = () => {
   return (
     <RootLayout>
-      todo: home page
+      <div className={'text-6xl'}>
+        todo: home page
+      </div>
     </RootLayout>
   )
 }

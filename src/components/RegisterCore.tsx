@@ -1,21 +1,19 @@
 import { FormEvent, useState } from 'react'
 import Link from 'next/link'
 import InputText from './InputText'
-import NotificationText from './NotificationText'
 import backendAPI from '../utils/api'
 import { AxiosError } from 'axios'
-import { INIT_MESSAGE } from '../ds/message'
 import { INIT_USER_LOGIN, RegisterProps, TokenData } from '../ds/user'
+
+import { toast, ToastContainer } from 'react-toastify'
+
 
 function RegisterCore({ isRegistered, dispatchSetRegister }: RegisterProps) {
 
   const [loading, setLoading] = useState(false)
-  const [message, setMessage] = useState(INIT_MESSAGE)
   const [user, setUser] = useState(INIT_USER_LOGIN)
   const [code, setCode] = useState('') // activation code
   const [isRegistering, setRegistering] = useState(false)
-
-  // console.log({isRegistered, isRegistering})
 
   const SwitchLoginAndRegister = ({ text, desc }: { text: string, desc: string }) => <div
     className="text-center mt-4 ">{desc}
@@ -26,14 +24,10 @@ function RegisterCore({ isRegistered, dispatchSetRegister }: RegisterProps) {
 
   const submitForm = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    setMessage(INIT_MESSAGE)
-    if (user.username.trim() === '') return setMessage({ type: 'error', text: 'Username is required!' })
-    if (user.password.trim() === '') return setMessage({ type: 'error', text: 'Password is required!' })
-    if (!isRegistered && user.nickname.trim() === '') return setMessage({
-      type: 'error',
-      text: 'Nickname is required!'
-    })
-    if (!isRegistered && user.email.trim() === '') return setMessage({ type: 'error', text: 'Email is required!' })
+    if (user.username.trim() === '') return toast.error('Username is required!')
+    if (user.password.trim() === '') return toast.error('Password is required!')
+    if (!isRegistered && user.nickname.trim() === '') return toast.error('Nickname is required!')
+    if (!isRegistered && user.email.trim() === '') return toast.error('Email is required!')
     setLoading(true)
     console.log('registering ...')
 
@@ -57,17 +51,14 @@ function RegisterCore({ isRegistered, dispatchSetRegister }: RegisterProps) {
       }
       // 注册 step 2. 验证注册
       else {
-        if (isRegistering && code.trim() === '') return setMessage({
-          type: 'error',
-          text: 'Activation Code is required!'
-        })
+        if (isRegistering && code.trim() === '') return toast.error('Activation Code is required!')
         let activationForm = new FormData()
         activationForm.append('username', user.username)
         activationForm.append('code', code)
         await backendAPI.put('/user/activate', activationForm)
         setRegistering(false)
         dispatchSetRegister()
-        setMessage({ type: 'success', text: '注册成功，快登录吧！' })
+        toast.success('注册成功，快登陆吧！')
         /**
          * todo: close popup window; intercept token into axios header; load avatar
          */
@@ -75,7 +66,7 @@ function RegisterCore({ isRegistered, dispatchSetRegister }: RegisterProps) {
     } catch (e) {
       console.error(e)
       if (e instanceof AxiosError) {
-        setMessage({type: 'error', text: e.response?.data.detail})
+        toast.error(e.response?.data.detail)
       }
     } finally {
       setLoading(false)
@@ -83,7 +74,6 @@ function RegisterCore({ isRegistered, dispatchSetRegister }: RegisterProps) {
   }
 
   const update = ({ type, value }: { type: string, value: string }) => {
-    setMessage(INIT_MESSAGE)
     setUser({ ...user, [type]: value })
     if (type === 'code') setCode(value)
   }
@@ -116,7 +106,6 @@ function RegisterCore({ isRegistered, dispatchSetRegister }: RegisterProps) {
           className="text-sm  inline-block  hover:text-primary hover:underline hover:cursor-pointer transition duration-200">Forgot Password?</span></Link>
         </div>}
 
-        <NotificationText type={message.type}>{message.text}</NotificationText>
         <button type="submit" className={'btn mt-2 w-full btn-primary' + (loading ? ' loading' : '')}>
           {isRegistered ? '登录' : '注册'}
         </button>
@@ -128,6 +117,8 @@ function RegisterCore({ isRegistered, dispatchSetRegister }: RegisterProps) {
         }
 
       </form>
+
+      <ToastContainer autoClose={3000}/>
     </div>
 
   )

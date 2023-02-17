@@ -10,7 +10,6 @@ export const RootLayout = ({ children }: { children: ReactNode }) => {
     <div className={'w-screen min-h-screen flex flex-col'}>
       <Header/>
 
-
       <NavBar/>
       <div className={'p-4 flex-grow flex justify-center items-center'}>
         {children}
