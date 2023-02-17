@@ -1,6 +1,6 @@
 import RootLayout from '../../layouts/root'
-import { backendAPI } from '../../utils/api'
-import { IHero } from '../../ds/hero'
+import { backendAPI } from '../../../supports/utils/api'
+import { IHero } from '../../../supports/ds/hero'
 import HeroCard from '../../components/HeroCard'
 import Dialog from '../../components/NominateDialog'
 

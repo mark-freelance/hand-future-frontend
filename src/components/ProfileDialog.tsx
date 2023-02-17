@@ -1,7 +1,7 @@
 import * as Dialog from '@radix-ui/react-dialog'
 import React from 'react'
 import { useSelector } from 'react-redux'
-import { selectUser } from '../store/userSlice'
+import { selectUser } from '../../supports/store/userSlice'
 import { Avatar } from './Avatar'
 
 export const ProfileDialog = () => {

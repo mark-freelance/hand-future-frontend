@@ -25,9 +25,11 @@ export const resetToken = () => {
   if (isBrowser()) localStorage.removeItem(TOKEN_KEY)
 }
 
-export const updateToken = () => {
-  if (isBrowser())
+export const updateToken = async () => {
+  if (isBrowser()) {
     backendAPI.defaults.headers.common.Authorization = localStorage.getItem('Authorization')
+
+  }
 }
 
 export const frontendAPI = axios.create({

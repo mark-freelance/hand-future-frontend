@@ -1,13 +1,13 @@
 import { FormEvent, useState } from 'react'
 import Link from 'next/link'
 import InputText from './InputText'
-import backendAPI, { TOKEN_KEY, updateToken } from '../utils/api'
+import backendAPI, { TOKEN_KEY, updateToken } from '../../supports/utils/api'
 import { AxiosError } from 'axios'
-import { INIT_USER_REGISTER, TokenData } from '../ds/user'
+import { INIT_USER_REGISTER, TokenData } from '../../supports/ds/user'
 
 import { toast, ToastContainer } from 'react-toastify'
 import { useDispatch } from 'react-redux'
-import { setAuthState, setUserInfo } from '../store/userSlice'
+import { setAuthState, setUserInfo } from '../../supports/store/userSlice'
 import { Avatar } from './Avatar'
 
 

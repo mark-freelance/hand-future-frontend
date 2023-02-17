@@ -1,8 +1,8 @@
 import { useDispatch, useSelector } from 'react-redux'
-import { selectUser, setAuthState } from '../store/userSlice'
+import { selectUser, setAuthState } from '../../supports/store/userSlice'
 import { Avatar } from './Avatar'
 import ProfileDialog from './ProfileDialog'
-import { resetToken } from '../utils/api'
+import { resetToken } from '../../supports/utils/api'
 
 export const RegisteredDropdown = () => {
   const userState = useSelector(selectUser)

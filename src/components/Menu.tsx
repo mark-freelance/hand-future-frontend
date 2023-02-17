@@ -1,4 +1,4 @@
-import { IMenuItem, isMainMenuItem } from '../ds/menu'
+import { IMenuItem, isMainMenuItem } from '../../supports/ds/menu'
 import { it } from 'node:test'
 
 /**

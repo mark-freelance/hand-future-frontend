@@ -1,4 +1,4 @@
-import { IHero } from '../ds/hero'
+import { IHero } from '../../supports/ds/hero'
 import Dialog from './NominateDialog'
 
 /**
