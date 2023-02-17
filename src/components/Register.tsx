@@ -20,16 +20,19 @@ export const INIT_USER_LOGIN: UserRegister = {
   nickname: ''
 }
 
-function Register() {
+export interface RegisterProps {
+  isRegister: boolean
+  dispatchSetRegister: Function
+}
+function Register({isRegister, dispatchSetRegister}: RegisterProps) {
 
   const [loading, setLoading] = useState(false)
   const [errorMessage, setErrorMessage] = useState('')
   const [user, setUser] = useState(INIT_USER_LOGIN)
-  const [isRegister, setRegister] = useState(false)
 
   const SwitchLoginAndRegister = ({ text, desc }: { text: string, desc: string }) => <div
     className="text-center mt-4 ">{desc}
-    <button onClick={() => setRegister(!isRegister)}
+    <button onClick={() => dispatchSetRegister()}
             className="badge badge-secondary  hover:text-primary hover:cursor-pointer transition duration-200">{text}
     </button>
   </div>

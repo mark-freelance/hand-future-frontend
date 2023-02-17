@@ -5,14 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1b5f6d38-ea6f-4efe-877e-afeba09ca3ef" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/ErrorText.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/InputText.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/ProfileDropdown.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Register.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/RegisterDialog.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/NavBar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/NavBar.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/heroes/gallery.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/heroes/gallery.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Register.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Register.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/RegisterDialog.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/RegisterDialog.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
