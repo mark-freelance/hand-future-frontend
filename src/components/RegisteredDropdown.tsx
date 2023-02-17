@@ -1,9 +1,9 @@
-import { useDispatch } from 'react-redux'
-import { setAuthState } from '../store/authSlice'
+import { useDispatch, useSelector } from 'react-redux'
+import { selectUser, setAuthState } from '../store/userSlice'
 import { Avatar } from './Avatar'
 
 export const RegisteredDropdown = () => {
-
+  const userState = useSelector(selectUser)
   const dispatch = useDispatch()
 
   // avatar with image
@@ -11,7 +11,7 @@ export const RegisteredDropdown = () => {
     <div className="dropdown dropdown-end">
 
       <label tabIndex={0} className="m-1">
-        <Avatar/>
+        <Avatar name={userState.nickname} url={userState.avatar}/>
       </label>
 
       <ul tabIndex={0}

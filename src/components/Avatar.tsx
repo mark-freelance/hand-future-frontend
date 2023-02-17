@@ -14,21 +14,20 @@ export const Avatar = (props: AvatarProps) => {
   const { name, url, size = 24 } = props
 
   return (
-    url
-      ? <div className="avatar">
-        <div className={clsx('w-' + size, 'rounded-full ring ring-primary ring-offset-base-100 ring-offset-2')}>
-          <img src={url}/>
-        </div>
-      </div>
-      : <div className="avatar">
-        {
+    <div className="avatar">
+      {
+        url
+          ? <div className={clsx('w-' + size, 'rounded-full ring ring-primary ring-offset-base-100 ring-offset-2')}>
+            <img src={url}/>
+          </div>
+          :
           name
             ? <div className={clsx('w-' + size, 'rounded-full bg-neutral-focus text-neutral-content')}>
               <span className="text-3xl">{name[0]}</span>
             </div>
             : <IconUser/>
-        }
-      </div>
+      }
+    </div>
   )
 }
 

@@ -3,11 +3,13 @@ import Link from 'next/link'
 import InputText from './InputText'
 import backendAPI from '../utils/api'
 import { AxiosError } from 'axios'
-import { INIT_USER_LOGIN, TokenData } from '../ds/user'
+import { INIT_USER_REGISTER, TokenData } from '../ds/user'
 
 import { toast, ToastContainer } from 'react-toastify'
 import { useDispatch } from 'react-redux'
-import { setAuthState } from '../store/authSlice'
+import { setAuthState } from '../store/userSlice'
+import _ from 'lodash'
+import { Avatar } from './Avatar'
 
 
 export interface RegisterProps {
@@ -24,7 +26,7 @@ function RegisterCore(props: RegisterProps) {
   } = props
 
   const [loading, setLoading] = useState(false)
-  const [user, setUser] = useState(INIT_USER_LOGIN)
+  const [user, setUser] = useState(INIT_USER_REGISTER)
   const [code, setCode] = useState('') // activation code
   const [isRegistering, setRegistering] = useState(false)
   const dispatch = useDispatch()
@@ -112,31 +114,46 @@ function RegisterCore(props: RegisterProps) {
 
           {/* register extra */}
           {!isRegistered && <>
+            {/* 昵称 */}
             <InputText type="nickname" defaultValue={user.nickname} update={update}/>
+
+            {/* 头像 */}
+            <div className={`form-control w-full mt-4`}>
+              <label className="label">
+                <span className={'label-text text-base-content '}>Avatar</span>
+              </label>
+
+              <div className={' flex justify-between items-center gap-2'}>
+                <Avatar/>
+              </div>
+            </div>
+
+            {/* 邮箱 */}
             <InputText type="email" defaultValue={user.email} update={update}/>
+
             {
               isRegistering &&
               <InputText type="code" defaultValue={code} update={update}/>
             }
           </>}
 
+
+          {/* todo: forget-password */}
+          {false && <div className="text-right text-primary"><Link href="/forgot-password"><span
+            className="text-sm  inline-block  hover:text-primary hover:underline hover:cursor-pointer transition duration-200">Forgot Password?</span></Link>
+          </div>}
+
+          <button type="submit" className={'btn mt-2 w-full btn-primary' + (loading ? ' loading' : '')}>
+            {isRegistered ? '登录' : '注册'}
+          </button>
+
+          {
+            isRegistered
+              ? <SwitchLoginAndRegister desc={'还没有账号？ '} text={'注册'}/>
+              : <SwitchLoginAndRegister desc={'已经有账号了？'} text={'登录'}/>
+          }
+
         </div>
-
-        {/* todo: forget-password */}
-        {false && <div className="text-right text-primary"><Link href="/forgot-password"><span
-          className="text-sm  inline-block  hover:text-primary hover:underline hover:cursor-pointer transition duration-200">Forgot Password?</span></Link>
-        </div>}
-
-        <button type="submit" className={'btn mt-2 w-full btn-primary' + (loading ? ' loading' : '')}>
-          {isRegistered ? '登录' : '注册'}
-        </button>
-
-        {
-          isRegistered
-            ? <SwitchLoginAndRegister desc={'还没有账号？ '} text={'注册'}/>
-            : <SwitchLoginAndRegister desc={'已经有账号了？'} text={'登录'}/>
-        }
-
       </form>
 
     </div>

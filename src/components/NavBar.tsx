@@ -5,7 +5,7 @@ import { useState } from 'react'
 import RegisterDialog from './RegisterDialog'
 import RegisteredDropdown from './RegisteredDropdown'
 import { useDispatch, useSelector } from 'react-redux'
-import { selectAuthState } from '../store/authSlice'
+import { selectUser } from '../store/userSlice'
 
 export const menus: IMenuItem[] = [
   {
@@ -33,7 +33,7 @@ export const SVG_PATH_ARROW_DOWN = 'M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6
 
 
 export const NavBar = () => {
-  const authState = useSelector(selectAuthState)
+  const authState = useSelector(selectUser)
 
   return (
     <div className="navbar bg-base-100 border-b-2">
