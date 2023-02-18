@@ -1,7 +1,8 @@
 import { MAvatar } from '../base_components/MAvatar'
 import React from 'react'
 import { useSelector } from 'react-redux'
-import { selectUser } from '../../supports/features/auth/authSlice'
+import { selectUser } from '../../supports/features/user/userSlice'
+import BilibiliVideo from '../base_components/BilibiliVideo'
 
 export const SocialCell = (props: { text: string, cnt: number }) => (
   <div className={'mr-4'}>
@@ -12,38 +13,61 @@ export const SocialCell = (props: { text: string, cnt: number }) => (
 
 export const ProfileCore = () => {
   const user = useSelector(selectUser)
-  if (!user) {
+  if (!user.basic) {
     console.error('BUG: user not init after profile')
     return <></>
   }
 
   return (
-    <div>
-      <div id={'row_avatar-name-id'} className={'flex items-center '}>
-        <MAvatar id={'col_avatar'} name={user.nickname} url={user.avatar} size={'md'}/>
+    <div className={'overflow-y-auto max-h-[70vh] pb-8'}>
+      <div className={'flex flex-wrap justify-between'}>
+        <div id={'row_avatar-name-id'} className={'flex items-center mb-4'}>
+          <div className={'flex'}>
+            <MAvatar id={'col_avatar'} name={user.basic.nickname} url={user.basic.avatar} size={'md'}/>
 
-        <div id={'col_name-id'} className={'ml-4'}>
-          <div className={'text-2xl'}>{user.nickname}</div>
-          <div className={'text-gray-500'}>id: {user.username}</div>
+            <div id={'col_name-id'} className={'ml-4'}>
+              <div className={'text-2xl'}>{user.basic.nickname}</div>
+              <div className={'text-gray-500'}>id: {user.basic.username}</div>
+            </div>
+          </div>
+        </div>
+
+        <div className={'flex'}>
+          <div id={'row_social-opers'} className={'flex items-center flex-grow ml-4'}>
+            <SocialCell text={'Following'} cnt={user.basic.social.following}/>
+            <SocialCell text={'Followed'} cnt={user.basic.social.followed}/>
+            <SocialCell text={'Likes'} cnt={user.basic.social.likes}/>
+            {/* 控制最后一个element轴向的位置，没有flex，需要用margin */}
+            {/*<div id={'edit-profile'} className={'badge p-4 badge-outline badge-secondary text-white ml-auto mr-4'}>Edit*/}
+            {/*  Profile*/}
+            {/*</div>*/}
+          </div>
         </div>
       </div>
 
-      <div id={'row_profile'} className={'text-gray-500'}>
+      <div id={'row_profile'} className={'text-gray-500 m-2'}>
         {
-          user.desc || 'Click here to fill in the profile'
+          user.basic.desc || 'Click here to fill in the profile'
         }
       </div>
 
-      <div id={'row_social-opers'} className={'flex items-center justify-between'}>
-        <SocialCell text={'Following'} cnt={user.social.following}/>
-        <SocialCell text={'Followed'} cnt={user.social.followed}/>
-        <SocialCell text={'Likes'} cnt={user.social.likes}/>
-        <div id={'edit-profile'} className={'badge p-4 badge-outline badge-primary text-white'}>Edit Profile</div>
+
+      <div className={'divider'}/>
+
+      <div className={'flex flex wrap justify-around'}>
+        {
+          // todo: add work id
+          user.works.map((work, index) => (
+            <div key={index} className={'w-2/5'}>
+              <h3>{work.title}</h3>
+              {
+                work.type === 'bilibiliVideo' && <BilibiliVideo bvid={work.content} enableDanmu={0}/>
+              }
+            </div>
+          ))
+        }
       </div>
 
-      <div id={'collections'}>
-
-      </div>
 
     </div>
   )

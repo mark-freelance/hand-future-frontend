@@ -7,6 +7,7 @@ export enum UserWorkType {
 }
 
 export interface UserWork {
+  title: string
   type: UserWorkType,
   content: string
 }

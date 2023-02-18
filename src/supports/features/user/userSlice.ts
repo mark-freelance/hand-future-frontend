@@ -4,28 +4,29 @@ import { AppState } from '../../store'
 import backendAPI from '../../utils/api'
 import { UserWork } from '../../ds/userWork'
 
-export interface AuthState {
+export interface UserState {
   token: string | null
-  user: UserProfile | null
+  basic: UserProfile | null
   works: UserWork[]
 }
 
-export const initialState: AuthState = {
+export const initialState: UserState = {
   token: null,
-  user: null,
+  basic: null,
   works: []
 }
 
 /**
  * pass query, async thunk: ref: https://stackoverflow.com/a/60325032/9422455
  */
-export const authSlice = createSlice({
-  name: 'auth',
+export const userSlice = createSlice({
+  name: 'user',
   initialState,
   reducers: {
     resetAuth: (state) => {
       state.token = null
-      state.user = null
+      state.basic = null
+      state.works = []
       backendAPI.defaults.headers.common.Authorization = undefined
     },
     setToken: (state, action: PayloadAction<string>) => {
@@ -35,7 +36,7 @@ export const authSlice = createSlice({
       backendAPI.defaults.headers.common.Authorization = 'Bearer ' + token
     },
     setUser: (state, action: PayloadAction<UserProfile>) => {
-      state.user = action.payload
+      state.basic = action.payload
       // todo: bind async getWork to after setUser
     },
     setWorks: (state, action: PayloadAction<UserWork[]>) => {
@@ -44,8 +45,8 @@ export const authSlice = createSlice({
   },
 })
 
-export const { setToken, resetAuth, setUser, setWorks } = authSlice.actions
+export const { setToken, resetAuth, setUser, setWorks } = userSlice.actions
 
-export const authReducer = authSlice.reducer
+export const userReducer = userSlice.reducer
 
-export const selectUser = (state: AppState) => state.auth.user
+export const selectUser = (state: AppState) => state.user

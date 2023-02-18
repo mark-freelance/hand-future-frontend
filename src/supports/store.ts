@@ -6,12 +6,12 @@ import counterReducer from './features/counter/counterSlice'
 import storage from 'redux-persist/lib/storage'
 import { persistReducer } from 'redux-persist'
 import thunk from 'redux-thunk'
-import { authReducer } from './features/auth/authSlice'
+import { userReducer } from './features/user/userSlice'
 
 
 const reducers = combineReducers({
   counter: counterReducer,
-  auth: authReducer,
+  user: userReducer,
 })
 
 const persistConfig = {

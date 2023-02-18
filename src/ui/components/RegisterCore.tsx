@@ -8,7 +8,7 @@ import { INIT_USER, TokenData, UserProfile } from '../../supports/ds/user'
 import { toast } from 'react-toastify'
 import { useDispatch } from 'react-redux'
 import { MAvatar } from '../base_components/MAvatar'
-import { setToken, setUser, setWorks } from '../../supports/features/auth/authSlice'
+import { setToken, setUser, setWorks } from '../../supports/features/user/userSlice'
 
 
 export interface RegisterProps {
