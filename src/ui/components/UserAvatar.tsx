@@ -1,17 +1,17 @@
 /**
  * icon ref: https://tabler-icons.io/
  */
-import { ChangeEvent, HTMLProps, useRef } from 'react'
+import { ChangeEvent, useRef } from 'react'
 import backendAPI from '../../supports/utils/api'
 import { useDispatch, useSelector } from 'react-redux'
-import { selectUser, setUser } from '../../supports/features/user/userSlice'
+import { selectAvatar, setUser } from '../../supports/features/user/userSlice'
 import { BaseAvatar } from '../base_components/BaseAvatar'
 
 export const UserAvatar = () => {
   const refAvatar = useRef<HTMLInputElement>(null)
-  const user = useSelector(selectUser)
+  const avatar = useSelector(selectAvatar)
   const dispatch = useDispatch()
-  if (!user.basic) return <></>
+  if (!avatar) return <></>
 
   const onFileInputChange = async (e: ChangeEvent<HTMLInputElement>) => {
     console.log('file input changed: ', e.target.files)
@@ -43,7 +43,7 @@ export const UserAvatar = () => {
       className={'hidden'}
       onChange={onFileInputChange}
     />
-    <BaseAvatar size={'md'} url={user.basic.avatar} name={user.basic.nickname}/>
+    <BaseAvatar size={'md'} url={avatar}/>
   </div>
 }
 

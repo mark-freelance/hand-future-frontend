@@ -1,4 +1,4 @@
-import { FormEvent, useState } from 'react'
+import { ChangeEvent, FormEvent, useRef, useState } from 'react'
 import Link from 'next/link'
 import InputText from './InputText'
 import backendAPI from '../../supports/utils/api'
@@ -6,9 +6,9 @@ import { AxiosError } from 'axios'
 import { INIT_USER, TokenData, UserProfile } from '../../supports/ds/user'
 
 import { toast } from 'react-toastify'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { BaseAvatar } from '../base_components/BaseAvatar'
-import { setToken, setUser, setWorks } from '../../supports/features/user/userSlice'
+import { selectAvatar, setAvatar, setToken, setUser, setWorks } from '../../supports/features/user/userSlice'
 
 
 export interface RegisterProps {
@@ -27,7 +27,10 @@ function RegisterCore(props: RegisterProps) {
   const [curUser, setCurUser] = useState(INIT_USER)
   const [code, setCode] = useState('') // activation code
   const [isRegistering, setRegistering] = useState(false)
+
+  const avatar = useSelector(selectAvatar)
   const dispatch = useDispatch()
+  const refInputAvatar = useRef<HTMLInputElement>(null)
 
   const SwitchLoginAndRegister = ({ text, desc }: { text: string, desc: string }) => <div
     className="text-center mt-4 ">{desc}
@@ -42,14 +45,14 @@ function RegisterCore(props: RegisterProps) {
     if (curUser.password.trim() === '') return toast.error('Password is required!')
     if (!isRegistered && curUser.nickname.trim() === '') return toast.error('Nickname is required!')
     if (!isRegistered && curUser.email.trim() === '') return toast.error('Email is required!')
+    if (!isRegistered && avatar === undefined) return toast.error('Avatar is required!')
     setLoading(true)
     console.log('registering ...')
 
     let registerForm = new FormData()
     registerForm.append('username', curUser.username)
     registerForm.append('password', curUser.password)
-    registerForm.append('nickname', curUser.nickname)
-    registerForm.append('email', curUser.email)
+
     try {
       // 登录
       if (isRegistered) {
@@ -77,6 +80,11 @@ function RegisterCore(props: RegisterProps) {
       // 注册 step 1. 发送邮件
       else if (!isRegistering) {
         console.log('【注册】基本信息入表……')
+        registerForm.append('nickname', curUser.nickname)
+        registerForm.append('email', curUser.email)
+        // todo: 弄清楚这里为什么 type hint 无效
+        registerForm.append('avatar', avatar!)
+
         await backendAPI.post('/user/register', registerForm)
         setRegistering(true)
         toast(`已发送验证码到邮箱：${curUser.email}，有效期10分钟！`)
@@ -111,6 +119,15 @@ function RegisterCore(props: RegisterProps) {
     if (type === 'code') setCode(value)
   }
 
+  const onAvatarChange = async (e: ChangeEvent<HTMLInputElement>) => {
+    if (!e.target.files || !e.target.files.length) return
+    const formData = new FormData()
+    formData.append('file', e.target.files[0])
+    const resUploadAvatar = await backendAPI.post('/files/upload', formData)
+    console.log({ resUploadAvatar })
+    dispatch(setAvatar(resUploadAvatar.data.data))
+  }
+
   return (
 
     <div className="bg-base-200 p-10">
@@ -124,27 +141,37 @@ function RegisterCore(props: RegisterProps) {
 
           {/* register extra */}
           {!isRegistered && <>
-            {/* 昵称 */}
-            <InputText type="nickname" defaultValue={curUser.nickname} update={update}/>
 
-            {/* 头像 */}
-            <div className={`form-control w-full mt-4`}>
-              <label className="label">
-                <span className={'label-text text-base-content '}>Avatar</span>
-              </label>
+            <div className={'flex justify-between items-center'}>
+              <div className={'flex-grow flex-1'}>
+                {/* 昵称 */}
+                <InputText type="nickname" defaultValue={curUser.nickname} update={update}/>
 
-              <div className={' flex justify-between items-center gap-2'}>
-                <BaseAvatar/>
+
+                {/* 邮箱 */}
+                <InputText type="email" defaultValue={curUser.email} update={update}/>
+
+                {
+                  isRegistering &&
+                  <InputText type="code" defaultValue={code} update={update}/>
+                }
+              </div>
+
+              {/* 头像 */}
+              <div className={`form-control m-4 flex flex-col items-center`}>
+                <label className="label">
+                  <span className={'label-text text-base-content '}>Avatar</span>
+                </label>
+
+                <div className={' flex justify-between items-center gap-2'}
+                     onClick={() => refInputAvatar.current?.click()}>
+                  <BaseAvatar size={'lg'} url={avatar}/>
+                  <input type={'file'} accept={'image/*'} className={'hidden'} ref={refInputAvatar}
+                         onChange={onAvatarChange}/>
+                </div>
               </div>
             </div>
 
-            {/* 邮箱 */}
-            <InputText type="email" defaultValue={curUser.email} update={update}/>
-
-            {
-              isRegistering &&
-              <InputText type="code" defaultValue={code} update={update}/>
-            }
           </>}
 
 

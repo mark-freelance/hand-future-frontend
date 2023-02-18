@@ -1,12 +1,13 @@
 import { useDispatch, useSelector } from 'react-redux'
 import { BaseAvatar } from '../base_components/BaseAvatar'
-import { resetAuth, selectUser } from '../../supports/features/user/userSlice'
+import { resetAuth, selectAvatar, selectUser } from '../../supports/features/user/userSlice'
 import React from 'react'
 import ProfileDialog from './ProfileDialog'
 
 export const RegisteredDropdown = () => {
   const dispatch = useDispatch()
   const user = useSelector(selectUser)
+  const avatar = useSelector(selectAvatar)
 
   if (!user.basic) {
     console.error('BUG: user should be inited in RegisteredDropdown')
@@ -17,7 +18,7 @@ export const RegisteredDropdown = () => {
     // avatar with image
     <div className="dropdown dropdown-end">
       <label tabIndex={0} className="m-1">
-        <BaseAvatar name={user.basic.nickname} url={user.basic.avatar}/>
+        <BaseAvatar name={user.basic.nickname} url={avatar}/>
       </label>
 
       <ul tabIndex={0}

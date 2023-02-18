@@ -5,15 +5,17 @@ import backendAPI from '../../utils/api'
 import { UserWork } from '../../ds/userWork'
 
 export interface UserState {
-  token: string | null
-  basic: UserProfile | null
+  token?: string
+  basic?: UserProfile
   works: UserWork[]
+  avatar?: string
 }
 
 export const initialState: UserState = {
-  token: null,
-  basic: null,
-  works: []
+  token: undefined,
+  basic: undefined,
+  works: [],
+  avatar: undefined
 }
 
 /**
@@ -24,8 +26,8 @@ export const userSlice = createSlice({
   initialState,
   reducers: {
     resetAuth: (state) => {
-      state.token = null
-      state.basic = null
+      state.token = undefined
+      state.basic = undefined
       state.works = []
       backendAPI.defaults.headers.common.Authorization = undefined
     },
@@ -40,12 +42,16 @@ export const userSlice = createSlice({
     },
     setWorks: (state, action: PayloadAction<UserWork[]>) => {
       state.works = action.payload
+    },
+    setAvatar: (state, action: PayloadAction<string>) => {
+      state.avatar = action.payload
     }
   },
 })
 
-export const { setToken, resetAuth, setUser, setWorks } = userSlice.actions
+export const { setToken, resetAuth, setUser, setWorks, setAvatar } = userSlice.actions
 
 export const userReducer = userSlice.reducer
 
 export const selectUser = (state: AppState) => state.user
+export const selectAvatar = (state: AppState) => state.user.avatar
