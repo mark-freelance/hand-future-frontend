@@ -17,7 +17,7 @@ export const RegisteredDropdown = () => {
     // avatar with image
     <div className="dropdown dropdown-end">
       <label tabIndex={0} className="m-1">
-        <MAvatar name={user.basic.nickname} url={user.basic.avatar}/>
+        <MAvatar name={user.basic.nickname} url={user.basic.avatar} allowUpload={false}/>
       </label>
 
       <ul tabIndex={0}
