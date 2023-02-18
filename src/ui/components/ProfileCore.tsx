@@ -1,8 +1,8 @@
-import { MAvatar } from '../base_components/MAvatar'
 import React from 'react'
 import { useSelector } from 'react-redux'
 import { selectUser } from '../../supports/features/user/userSlice'
 import BilibiliVideo from '../base_components/BilibiliVideo'
+import UserAvatar from './UserAvatar'
 
 export const SocialCell = (props: { text: string, cnt: number }) => (
   <div className={'mr-4'}>
@@ -24,9 +24,7 @@ export const ProfileCore = () => {
         <div id={'row_avatar-name-id'} className={'flex items-center mb-4'}>
           <div className={'flex'}>
 
-            <MAvatar id={'col_avatar'} name={user.basic.nickname} url={user.basic.avatar} size={'md'}
-                     allowUpload={true}/>
-
+            <UserAvatar/>
 
             <div id={'col_name-id'} className={'ml-4'}>
               <div className={'text-2xl'}>{user.basic.nickname}</div>

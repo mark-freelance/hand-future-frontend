@@ -32,8 +32,7 @@ export const userSlice = createSlice({
     setToken: (state, action: PayloadAction<string>) => {
       const token = action.payload
       state.token = token
-      // inject token into headers
-      backendAPI.defaults.headers.common.Authorization = 'Bearer ' + token
+      backendAPI.defaults.headers.common.Authorization = 'Bearer ' + token // inject token into headers
     },
     setUser: (state, action: PayloadAction<UserProfile>) => {
       state.basic = action.payload

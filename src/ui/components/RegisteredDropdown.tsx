@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux'
-import { MAvatar } from '../base_components/MAvatar'
+import { BaseAvatar } from '../base_components/BaseAvatar'
 import { resetAuth, selectUser } from '../../supports/features/user/userSlice'
 import React from 'react'
 import ProfileDialog from './ProfileDialog'
@@ -17,7 +17,7 @@ export const RegisteredDropdown = () => {
     // avatar with image
     <div className="dropdown dropdown-end">
       <label tabIndex={0} className="m-1">
-        <MAvatar name={user.basic.nickname} url={user.basic.avatar} allowUpload={false}/>
+        <BaseAvatar name={user.basic.nickname} url={user.basic.avatar}/>
       </label>
 
       <ul tabIndex={0}

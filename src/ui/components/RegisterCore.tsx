@@ -7,7 +7,7 @@ import { INIT_USER, TokenData, UserProfile } from '../../supports/ds/user'
 
 import { toast } from 'react-toastify'
 import { useDispatch } from 'react-redux'
-import { MAvatar } from '../base_components/MAvatar'
+import { BaseAvatar } from '../base_components/BaseAvatar'
 import { setToken, setUser, setWorks } from '../../supports/features/user/userSlice'
 
 
@@ -21,7 +21,6 @@ function RegisterCore(props: RegisterProps) {
   const {
     isRegistered,
     dispatchSetRegister,
-    dispatchClose
   } = props
 
   const [loading, setLoading] = useState(false)
@@ -89,7 +88,7 @@ function RegisterCore(props: RegisterProps) {
         let activationForm = new FormData()
         activationForm.append('username', curUser.username)
         activationForm.append('code', code)
-        await backendAPI.put('/user/activate', activationForm)
+        await backendAPI.post('/user/activate', activationForm)
         setRegistering(false)
         dispatchSetRegister()
         toast.success('注册成功，快登陆吧！')
@@ -135,7 +134,7 @@ function RegisterCore(props: RegisterProps) {
               </label>
 
               <div className={' flex justify-between items-center gap-2'}>
-                <MAvatar/>
+                <BaseAvatar/>
               </div>
             </div>
 
