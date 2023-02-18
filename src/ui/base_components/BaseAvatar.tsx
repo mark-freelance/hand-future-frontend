@@ -3,7 +3,7 @@
  */
 import { IconUser } from '@tabler/icons-react'
 import clsx from 'clsx'
-import { SIZE_TYPE, tSizeMap, wSizeMap } from '../../supports/ds/visual'
+import { avatarSizeMap, hSizeMap, SIZE_TYPE, tSizeMap, wSizeMap } from '../../supports/ds/visual'
 
 
 export interface AvatarProps {
@@ -26,7 +26,9 @@ export const BaseAvatar = (props: AvatarProps) => {
 
     <div className={clsx(
       'rounded-full',
-      wSizeMap[size],
+      size === 'sm' ? 'w-12 h-12' : size == 'md' ? 'w-16 h-16' : 'w-20 h-20',
+      // wSizeMap[size],
+      // hSizeMap[size],
       url ? 'ring ring-primary ring-offset-base-100 ring-offset-2'
         : 'bg-neutral-focus text-neutral-content'
     )}>

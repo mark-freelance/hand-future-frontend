@@ -165,7 +165,7 @@ function RegisterCore(props: RegisterProps) {
 
                 <div className={' flex justify-between items-center gap-2'}
                      onClick={() => refInputAvatar.current?.click()}>
-                  <BaseAvatar size={'lg'} url={avatar}/>
+                  <BaseAvatar size={'sm'} url={avatar}/>
                   <input type={'file'} accept={'image/*'} className={'hidden'} ref={refInputAvatar}
                          onChange={onAvatarChange}/>
                 </div>

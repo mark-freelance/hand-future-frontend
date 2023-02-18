@@ -1,10 +1,9 @@
 import axios, { AxiosRequestConfig } from 'axios'
 import _ from 'lodash'
-import { isBrowser } from './ssr'
 
 export const USER_AGENT = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36'
 
-export const HOST = 'localhost'
+export const HOST = 'gkleifeng.com'
 export const BACKEND_PORT = 3001
 export const FRONTEND_PORT = 3000
 

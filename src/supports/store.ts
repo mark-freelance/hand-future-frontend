@@ -2,7 +2,6 @@
  * configureStore with redux-persist: https://stackoverflow.com/a/63818121/9422455
  */
 import { combineReducers, configureStore } from '@reduxjs/toolkit'
-import counterReducer from './features/counter/counterSlice'
 import storage from 'redux-persist/lib/storage'
 import { persistReducer } from 'redux-persist'
 import thunk from 'redux-thunk'
@@ -10,7 +9,6 @@ import { userReducer } from './features/user/userSlice'
 
 
 const reducers = combineReducers({
-  counter: counterReducer,
   user: userReducer,
 })
 
