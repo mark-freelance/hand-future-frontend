@@ -23,7 +23,10 @@ export const ProfileCore = () => {
       <div className={'flex flex-wrap justify-between'}>
         <div id={'row_avatar-name-id'} className={'flex items-center mb-4'}>
           <div className={'flex'}>
-            <MAvatar id={'col_avatar'} name={user.basic.nickname} url={user.basic.avatar} size={'md'}/>
+
+            <MAvatar id={'col_avatar'} name={user.basic.nickname} url={user.basic.avatar} size={'md'}
+                     allowUpload={true}/>
+
 
             <div id={'col_name-id'} className={'ml-4'}>
               <div className={'text-2xl'}>{user.basic.nickname}</div>
