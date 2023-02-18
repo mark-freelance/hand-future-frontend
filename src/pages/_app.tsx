@@ -10,13 +10,12 @@ import { toast, ToastContainer } from 'react-toastify'
 
 
 function MyApp({ Component, pageProps }: AppProps) {
-  console.log('store: ', store)
+  console.log('App refreshed')
   return (
     <Provider store={store}>
       <PersistGate persistor={persistStore(store)} loading={null}>
         <Component {...pageProps} />
         <ToastContainer autoClose={3000} position={toast.POSITION.BOTTOM_RIGHT}/>
-
       </PersistGate>
     </Provider>
   )

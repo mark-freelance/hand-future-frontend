@@ -9,9 +9,8 @@ import InputTextArea from '../../ui/components/InputTextArea'
 import backendAPI from '../../supports/utils/api'
 import clsx from 'clsx'
 import { COLOR_PRIMARY } from '../../supports/config/theme'
-import { toPng } from 'html-to-image'
-import { toast } from 'react-toastify'
 import RootLayout from '../../ui/layouts/root'
+import * as htmlToImage from 'html-to-image'
 
 
 export interface IShareCard extends IHero {
@@ -68,25 +67,15 @@ export const Card = () => {
     setData({ ...data, avatar })
   }
 
-  const onGenCard = () => {
-    toast.warning('下载功能仍有暂无法解决的问题，请先尝试截图保存！', { position: toast.POSITION.BOTTOM_RIGHT })
-    // toPng(refCanvas.current!, { cacheBust: true, })
-    //   .then((dataUrl) => {
-    //     const link = document.createElement('a')
-    //     link.download = 'my-image-name.png'
-    //     link.href = dataUrl
-    //     link.click()
-    //   })
-    //   .catch((err) => {
-    //     console.log(err)
-    //   })
+  const onGenCard = async () => {
+    // toast.warning('下载功能仍有暂无法解决的问题，请先尝试截图保存！')
 
-    // const dataUrl = await htmlToImage.toPng(refCanvas.current!)
-    // console.log({ dataUrl })
-    // let a = document.createElement('a') //Create <a>
-    // a.href = dataUrl //Image Base64 Goes here
-    // a.download = `美丽中国·携手未来·${data.name}.png` //File name Here
-    // a.click() //Downloaded file
+    const dataUrl = await htmlToImage.toPng(refCanvas.current!)
+    console.log({ dataUrl })
+    let a = document.createElement('a')
+    a.href = dataUrl //Image Base64 Goes here
+    a.download = `美丽中国·携手未来·${data.name}.png`
+    a.click() //Downloaded file
   }
 
   return (
