@@ -104,7 +104,7 @@ export const Card = () => {
           <InputText type={'name'} maxLen={4} placeholder={data.name} update={update}/>
           <InputTextArea cols={10} rows={2} maxLength={30} type={'title'} placeholder={data.title} update={update}/>
           <InputText type={'topicTitle'} placeholder={data.topicTitle} update={update}/>
-          <InputTextArea type={'topicContent'} placeholder={data.topicContent} update={update}/>
+          <InputTextArea rows={10} type={'topicContent'} placeholder={data.topicContent} update={update}/>
 
           <div className={'divider'}/>
 
