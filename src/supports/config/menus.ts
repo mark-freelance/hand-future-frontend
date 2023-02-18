@@ -11,7 +11,7 @@ export const menus: IMenuItem[] = [
   },
   {
     name: '嘉宾卡片',
-    path: '/heroes/shareCard'
+    path: '/heroes/card'
   },
   {
     name: '嘉宾上传',

@@ -43,7 +43,7 @@ const SAMPLE_DATA: IShareCard = {
   topicContent: lorem.generateParagraphs(3)
 }
 
-export const ShareCard = () => {
+export const Card = () => {
   const W = 360
 
   const [data, setData] = useState<IShareCard>(SAMPLE_DATA)
@@ -101,8 +101,8 @@ export const ShareCard = () => {
             <BaseAvatar customClasses={'ml-5'} url={data.avatar} size={'md'}/>
           </label>
 
-          <InputText type={'name'} placeholder={data.name} update={update}/>
-          <InputText type={'title'} placeholder={data.title} update={update}/>
+          <InputText type={'name'} maxLen={4} placeholder={data.name} update={update}/>
+          <InputTextArea cols={10} rows={2} maxLength={30} type={'title'} placeholder={data.title} update={update}/>
           <InputText type={'topicTitle'} placeholder={data.topicTitle} update={update}/>
           <InputTextArea type={'topicContent'} placeholder={data.topicContent} update={update}/>
 
@@ -145,8 +145,10 @@ export const ShareCard = () => {
                     <p>{data.name}</p>
                   </div>
 
-                  <div className={'text-black'}>
-                    {data.title}
+                  <div className={'text-black text-xs'}>
+                    {data.title.split('\n').map((s, index) => (
+                      <p key={index}>{s}</p>
+                    ))}
                   </div>
                 </div>
               </div>
@@ -222,7 +224,7 @@ export const ShareCard = () => {
   )
 }
 
-export default ShareCard
+export default Card
 
 
 // export const getServerSideProps = async () => {
