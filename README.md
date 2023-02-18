@@ -1,10 +1,11 @@
-
 ## todo
+
+- [ ] render html to image with svg
 - [ ] auto upload package.json
 - [ ] sort out the best practice between global and page layout
 - [x] use layout in app/layout.js
-  - 参考：https://beta.nextjs.org/docs/rendering/server-and-client-components#third-party-packages
-  - 由于第三方包（例如我的MUI）对 SSR 的兼容还不到位，因此需要用 `"use client"` 
+    - 参考：https://beta.nextjs.org/docs/rendering/server-and-client-components#third-party-packages
+    - 由于第三方包（例如我的MUI）对 SSR 的兼容还不到位，因此需要用 `"use client"`
 
 ## next.js relative
 
@@ -50,5 +51,6 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 
 参见：https://stackoverflow.com/a/74294741/9422455
 
-同样，另一个插件「迅雷下载支持」触发了另一个 warning：`Uncaught (in promise) TypeError: Cannot read properties of null (reading '2')`
+同样，另一个插件「迅雷下载支持」触发了另一个
+warning：`Uncaught (in promise) TypeError: Cannot read properties of null (reading '2')`
 

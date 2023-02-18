@@ -1,5 +1,6 @@
 const {violet, blackA, mauve, green} = require('@radix-ui/colors');
 
+const primary = '#109B7B'
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
@@ -16,7 +17,7 @@ module.exports = {
 
         // 千万不能卸载theme里，不然就等于限制只能用这一种颜色了
         // primary, ref:https://tailwindcss.com/docs/customizing-colors#naming-your-colors
-        primary: '#109B7B',
+        primary,
         ...mauve,
         ...violet,
         ...green,
@@ -54,15 +55,22 @@ module.exports = {
     darkTheme: "dark",
 
     // ref: https://daisyui.com/docs/themes/
-    themes: true,
-    // themes: [
-    //   {
-    //     light: {
-    //       ...require("daisyui/src/colors/themes")["[data-theme=light]"],
-    //       primary: "blue",
-    //       "primary-focus": "mediumblue",
-    //     },
-    //   }
-    // ],
+    // themes: true,
+    themes: [
+      {
+        light: {
+          ...require("daisyui/src/colors/themes")["[data-theme=light]"],
+          primary,
+          "primary-focus": "mediumblue",
+        },
+      },
+      {
+        dark: {
+          ...require("daisyui/src/colors/themes")["[data-theme=dark]"],
+          primary,
+          "primary-focus": "mediumblue",
+        },
+      },
+    ],
   },
 }

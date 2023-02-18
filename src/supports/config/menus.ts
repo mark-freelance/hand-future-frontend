@@ -10,6 +10,10 @@ export const menus: IMenuItem[] = [
     path: '/heroes/gallery'
   },
   {
+    name: '嘉宾卡片',
+    path: '/heroes/shareCard'
+  },
+  {
     name: '嘉宾上传',
     path: '/heroes/upload'
   },

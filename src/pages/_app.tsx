@@ -6,6 +6,7 @@ import { Provider } from 'react-redux'
 import { store } from '../supports/store'
 import { PersistGate } from 'redux-persist/integration/react'
 import { persistStore } from 'redux-persist'
+import { toast, ToastContainer } from 'react-toastify'
 
 
 function MyApp({ Component, pageProps }: AppProps) {
@@ -14,6 +15,8 @@ function MyApp({ Component, pageProps }: AppProps) {
     <Provider store={store}>
       <PersistGate persistor={persistStore(store)} loading={null}>
         <Component {...pageProps} />
+        <ToastContainer autoClose={3000} position={toast.POSITION.BOTTOM_RIGHT}/>
+
       </PersistGate>
     </Provider>
   )
