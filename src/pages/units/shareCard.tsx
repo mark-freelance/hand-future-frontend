@@ -1,6 +1,8 @@
 import { IHero } from '../../supports/ds/hero'
 import BaseAvatar from '../../ui/base_components/BaseAvatar'
 import { LoremIpsum, loremIpsum } from 'lorem-ipsum'
+import { QRCodeSVG } from 'qrcode.react'
+import Image from 'next/image'
 
 export interface IShareCard {
   hero: IHero
@@ -46,47 +48,76 @@ export const ShareCard = () => {
   }
   console.log(data)
 
+  const W = 360
+  const BOTTOM = 800
+
   return (
-    <div className={'m-auto w-[360px] bg-primary p-4'}>
+    <div className={'flex justify-center '}>
+      <div className={'mt-20 mr-2'}>
+        <button className={'btn btn-primary'}>
+          下载
+        </button>
+      </div>
 
-      <div className={'rounded-3xl bg-white p-4'}>
+      {/* main*/}
+      <div className={` w-[${W}px] p-4 relative bg-gradient-to-b from-primary via-red-300 to-primary `}>
 
-        {/* avatar | name - title */}
-        <div className={'flex justify-around items-center'}>
-          {/*  avatar */}
-          <BaseAvatar
-            customClasses={'m-4'}
-            url={hero.avatar} name={hero.name} size={'lg'}/>
+        <div className={'rounded-3xl bg-white p-4'}>
 
-          {/*  name - title*/}
-          <div className={'flex-1 flex flex-col justify-center items-center'}>
-            <div className={'text-black text-3xl font-black'}>
-              {hero.name}
+          {/* avatar | name - title */}
+          <div className={'flex justify-around items-center'}>
+            {/*  avatar */}
+            <BaseAvatar
+              customClasses={'m-4'}
+              url={hero.avatar} name={hero.name} size={'lg'}/>
+
+            {/*  name - title*/}
+            <div className={'flex-1 flex flex-col justify-center items-baseline'}>
+              <div className={'text-black text-3xl font-black flex items-center'}>
+                {/*2.10 小手图形-03.svg*/}
+                <Image priority src={'/card/2.10 小手图形-03.svg'} alt={'small_hand_03.svg'} width={40} height={40}
+                       className={'-translate-y-1'}/>
+                <p>{hero.name}</p>
+              </div>
+
+              <div className={'text-black'}>
+                {hero.title}
+              </div>
             </div>
+          </div>
 
-            <div className={'text-black'}>
-              {hero.title}
-            </div>
+          {/*  topic title */}
+          {/*<div className={'text-black text-2xl flex justify-center text-center'}>{data.topic.title}</div>*/}
+
+          {/*  topic content */}
+          <article className="prose">
+            <h2 className={'text-center'}>{data.topic.title}</h2>
+
+            {data.topic.contents.map((content, index) => (
+              <p key={index}>{content}</p>
+            ))}
+          </article>
+
+          <Image src={'/card/资源 5.svg'} alt={'大手'} width={300} height={240}
+                 className={`absolute left-0 bottom-44 w-full`}/>
+
+          <div className={'h-[150px]'}/>
+
+          {/*  携手的未来 */}
+          <div className={'text-2xl text-primary text-center m-2 font-black'}>携手的未来</div>
+
+
+          <QRCodeSVG value="https://gkleifeng.notion.site/da7ad92cb3414e6891c80e52541a6678"
+                     className={'mx-auto my-2'}
+                     width={'64px'} height={'64px'}/>
+
+          <div className={'text-black text-center text-sm text-gray-500'}>
+            <p>扫码查看活动介绍</p>
+            <p>欢迎您们的加入</p>
           </div>
         </div>
 
-        {/*  topic title */}
-        {/*<div className={'text-black text-2xl flex justify-center text-center'}>{data.topic.title}</div>*/}
-
-        {/*  topic content */}
-        <article className="prose">
-          <h2 className={'text-center'}>{data.topic.title}</h2>
-
-          {data.topic.contents.map((content, index) => (
-            <p key={index}>{content}</p>
-          ))}
-        </article>
-
-        {/*  携手的未来 */}
-        <div className={'text-2xl text-primary text-center m-4 font-black'}>携手的未来</div>
-
       </div>
-
     </div>
   )
 }

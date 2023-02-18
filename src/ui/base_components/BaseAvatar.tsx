@@ -19,7 +19,8 @@ export const BaseAvatar = (props: AvatarProps) => {
 
   return <div id={props.id}
               className={clsx(
-                'avatar rounded-full border-2 border-base-500',
+                'avatar rounded-full',
+                // 'border-2 border-base-500',
                 !url && 'placeholder',
                 'cursor-pointer',
                 props.customClasses
@@ -31,7 +32,7 @@ export const BaseAvatar = (props: AvatarProps) => {
       size === 'sm' ? 'w-12 h-12' : size == 'md' ? 'w-16 h-16' : 'w-20 h-20',
       // wSizeMap[size],
       // hSizeMap[size],
-      url ? 'ring ring-primary ring-offset-base-100 ring-offset-2'
+      url ? ''// 'ring ring-primary ring-offset-base-100 ring-offset-2'
         : 'bg-neutral-focus text-neutral-content'
     )}>
       {
