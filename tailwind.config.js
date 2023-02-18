@@ -33,7 +33,9 @@ module.exports = {
       },
     }
   },
-  plugins: [require("daisyui")],
+  plugins: [
+    require("daisyui"),
+  ],
 
   // daisyUI config (optional), ref: https://daisyui.com/docs/config/
   daisyui: {

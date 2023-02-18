@@ -39,4 +39,3 @@ export const { setToken, resetAuth, setUser } = counterSlice.actions
 export const authReducer = counterSlice.reducer
 
 export const selectUser = (state: AppState) => state.auth.user
-export const selectAuth = (state: AppState) => state.auth

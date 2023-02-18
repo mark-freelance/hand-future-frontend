@@ -1,39 +1,39 @@
 import { useDispatch, useSelector } from 'react-redux'
 import { Avatar } from './Avatar'
-import ProfileDialog from './ProfileDialog'
 import { resetAuth, selectUser } from '../../supports/features/auth/authSlice'
+import React from 'react'
+import ProfileDialog from './ProfileDialog'
 
 export const RegisteredDropdown = () => {
-  const user = useSelector(selectUser)
   const dispatch = useDispatch()
-  console.log({ userState: user })
+  const user = useSelector(selectUser)
 
-  // avatar with image
+  if (!user) {
+    console.error('BUG: user should be inited in RegisteredDropdown')
+    return <></>
+  }
+
   return (
+    // avatar with image
     <div className="dropdown dropdown-end">
-
-      {
-        user ? <label tabIndex={0} className="m-1">
-            <Avatar name={user.nickname} url={user.avatar}/>
-          </label>
-          : 'BUG: NOT_INIT'
-      }
+      <label tabIndex={0} className="m-1">
+        <Avatar name={user.nickname} url={user.avatar}/>
+      </label>
 
       <ul tabIndex={0}
           className="w-24 mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box">
+
         <li>
-          {/*<a className="justify-between">*/}
-          {/*  Profile*/}
-          {/*</a>*/}
           <ProfileDialog/>
         </li>
 
-        {/*todo: */}
+        {/*todo: following */}
         {false && <li><a>Following</a></li>}
 
-        <li><a onClick={() => {
-          dispatch(resetAuth())
-        }}>Logout</a></li>
+        <li>
+          <a onClick={() => {dispatch(resetAuth())}}>Logout</a>
+        </li>
+
       </ul>
     </div>
   )

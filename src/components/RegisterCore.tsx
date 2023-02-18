@@ -14,7 +14,7 @@ import { setToken, setUser } from '../../supports/features/auth/authSlice'
 export interface RegisterProps {
   isRegistered: boolean
   dispatchSetRegister: Function
-  dispatchClose: Function
+  dispatchClose?: Function
 }
 
 function RegisterCore(props: RegisterProps) {
@@ -65,7 +65,7 @@ function RegisterCore(props: RegisterProps) {
         const resReadUser = await backendAPI.get('/user/me')
         console.log({ resReadUser })
 
-        dispatchClose()
+        // dispatchClose()
         dispatch(setUser(resReadUser.data))
       }
       // 注册 step 1. 发送邮件
