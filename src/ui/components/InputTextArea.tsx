@@ -17,6 +17,8 @@ export interface InputTextProps {
   placeholder?: string
   update: (props: InputAction) => void
   addonRight?: React.ReactNode
+  minLines?: number
+  maxLines?: number
 }
 
 function InputText({
@@ -25,6 +27,7 @@ function InputText({
                      type,
                      label,
                      placeholder,
+                     minLines, maxLines
                    }: InputTextProps) {
   const updateInputValue = (value: string) => {
     update({ type, value })
@@ -33,8 +36,8 @@ function InputText({
   return <div className={'form-control mt-4 w-full'}>
     <label className="input-group">
       <span className={'w-28'}>{label ?? genPascalWithSpace(type)}</span>
-      <input type={type || 'text'} placeholder={placeholder} className="input input-bordered flex-1"
-             onChange={(e) => updateInputValue(e.target.value)}/>
+      <textarea placeholder={placeholder} className="textarea bordered flex-1"
+                onChange={(e) => updateInputValue(e.target.value)}/>
     </label>
   </div>
 
