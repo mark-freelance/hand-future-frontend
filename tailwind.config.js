@@ -8,9 +8,15 @@ module.exports = {
     "./src/ui/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
+
+
     extend: {
       // radix
       colors: {
+
+        // 千万不能卸载theme里，不然就等于限制只能用这一种颜色了
+        // primary, ref:https://tailwindcss.com/docs/customizing-colors#naming-your-colors
+        primary: '#109B7B',
         ...mauve,
         ...violet,
         ...green,
@@ -33,6 +39,7 @@ module.exports = {
     }
   },
   plugins: [
+    require("@tailwindcss/typography"),
     require("daisyui"),
   ],
 

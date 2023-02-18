@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import RegisterCore from './RegisterCore'
+import { RegisterCore } from './RegisterCore'
 import MDialog from '../base_components/MDialog'
 
 

@@ -39,16 +39,6 @@ const DialogDemo = (props: NominateDialogProps) => (
 
 
         <fieldset className="mb-[15px] flex items-center gap-5">
-          <label className=" w-[90px] text-right text-[15px]" htmlFor="name">
-            提名者姓名：
-          </label>
-          <input
-            className=" shadow-violet7 focus:shadow-violet8 inline-flex h-[35px] w-full flex-1 items-center justify-center rounded-[4px] px-[10px] text-[15px] leading-none shadow-[0_0_0_1px] outline-none focus:shadow-[0_0_0_2px]"
-            id="name"
-            defaultValue="Pedro Duarte"
-          />
-        </fieldset>
-        <fieldset className="mb-[15px] flex items-center gap-5">
           <label className=" w-[90px] text-right text-[15px]" htmlFor="username">
             提名者留言：
           </label>
@@ -58,6 +48,7 @@ const DialogDemo = (props: NominateDialogProps) => (
             defaultValue="@peduarte"
           />
         </fieldset>
+        
         <div className="mt-[25px] flex justify-end">
           <Dialog.Close asChild>
             <button
@@ -66,6 +57,7 @@ const DialogDemo = (props: NominateDialogProps) => (
             </button>
           </Dialog.Close>
         </div>
+
         <Dialog.Close asChild>
           <button
             className=" hover:bg-violet4 focus:shadow-violet7 absolute top-[10px] right-[10px] inline-flex h-[25px] w-[25px] appearance-none items-center justify-center rounded-full focus:shadow-[0_0_0_2px] focus:outline-none"
@@ -74,6 +66,7 @@ const DialogDemo = (props: NominateDialogProps) => (
             <Cross2Icon/>
           </button>
         </Dialog.Close>
+
       </Dialog.Content>
     </Dialog.Portal>
   </Dialog.Root>

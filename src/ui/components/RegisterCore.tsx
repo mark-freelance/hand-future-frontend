@@ -17,7 +17,7 @@ export interface RegisterProps {
   dispatchClose?: Function
 }
 
-function RegisterCore(props: RegisterProps) {
+export const RegisterCore = (props: RegisterProps) => {
   const {
     isRegistered,
     dispatchSetRegister,

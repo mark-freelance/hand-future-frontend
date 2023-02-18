@@ -11,6 +11,7 @@ export interface AvatarProps {
   url?: string
   name?: string
   size?: SIZE_TYPE
+  customClasses?: string
 }
 
 export const BaseAvatar = (props: AvatarProps) => {
@@ -20,7 +21,8 @@ export const BaseAvatar = (props: AvatarProps) => {
               className={clsx(
                 'avatar rounded-full border-2 border-base-500',
                 !url && 'placeholder',
-                'cursor-pointer'
+                'cursor-pointer',
+                props.customClasses
               )}
   >
 
