@@ -1,14 +1,14 @@
 import { FormEvent, useState } from 'react'
 import Link from 'next/link'
 import InputText from './InputText'
-import backendAPI, { TOKEN_KEY, updateToken } from '../../supports/utils/api'
+import backendAPI  from '../../supports/utils/api'
 import { AxiosError } from 'axios'
-import { INIT_USER_REGISTER, TokenData } from '../../supports/ds/user'
+import { INIT_USER, TokenData } from '../../supports/ds/user'
 
-import { toast, ToastContainer } from 'react-toastify'
+import { toast } from 'react-toastify'
 import { useDispatch } from 'react-redux'
-import { setAuthState, setUserInfo } from '../../supports/store/userSlice'
 import { Avatar } from './Avatar'
+import { setToken, setUser } from '../../supports/features/auth/authSlice'
 
 
 export interface RegisterProps {
@@ -25,7 +25,7 @@ function RegisterCore(props: RegisterProps) {
   } = props
 
   const [loading, setLoading] = useState(false)
-  const [user, setUser] = useState(INIT_USER_REGISTER)
+  const [curUser, setCurUser] = useState(INIT_USER)
   const [code, setCode] = useState('') // activation code
   const [isRegistering, setRegistering] = useState(false)
   const dispatch = useDispatch()
@@ -39,28 +39,26 @@ function RegisterCore(props: RegisterProps) {
 
   const submitForm = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    if (user.username.trim() === '') return toast.error('Username is required!')
-    if (user.password.trim() === '') return toast.error('Password is required!')
-    if (!isRegistered && user.nickname.trim() === '') return toast.error('Nickname is required!')
-    if (!isRegistered && user.email.trim() === '') return toast.error('Email is required!')
+    if (curUser.username.trim() === '') return toast.error('Username is required!')
+    if (curUser.password.trim() === '') return toast.error('Password is required!')
+    if (!isRegistered && curUser.nickname.trim() === '') return toast.error('Nickname is required!')
+    if (!isRegistered && curUser.email.trim() === '') return toast.error('Email is required!')
     setLoading(true)
     console.log('registering ...')
 
     let registerForm = new FormData()
-    registerForm.append('username', user.username)
-    registerForm.append('password', user.password)
-    registerForm.append('nickname', user.nickname)
-    registerForm.append('email', user.email)
+    registerForm.append('username', curUser.username)
+    registerForm.append('password', curUser.password)
+    registerForm.append('nickname', curUser.nickname)
+    registerForm.append('email', curUser.email)
     try {
       // 登录
       if (isRegistered) {
         console.log('【登录】申请token……')
         const resToken = await backendAPI.post('/user/token', registerForm)
-        const tokenData: TokenData = resToken.data
-        console.log({ tokenData })
-        localStorage.setItem(TOKEN_KEY, 'Bearer ' + tokenData.access_token)
-        updateToken()
-
+        const token = (resToken.data as TokenData).access_token
+        // 更新token
+        dispatch(setToken(token))
         toast('登录成功！')
 
         // 获取用户信息，并刷新本地
@@ -68,22 +66,21 @@ function RegisterCore(props: RegisterProps) {
         console.log({ resReadUser })
 
         dispatchClose()
-        dispatch(setAuthState(true))
-        dispatch(setUserInfo(resReadUser.data))
+        dispatch(setUser(resReadUser.data))
       }
       // 注册 step 1. 发送邮件
       else if (!isRegistering) {
         console.log('【注册】基本信息入表……')
         await backendAPI.post('/user/register', registerForm)
         setRegistering(true)
-        toast(`已发送验证码到邮箱：${user.email}，有效期10分钟！`)
+        toast(`已发送验证码到邮箱：${curUser.email}，有效期10分钟！`)
       }
       // 注册 step 2. 验证注册
       else {
         console.log('【注册】激活邮件验证码')
         if (isRegistering && code.trim() === '') return toast.error('Activation Code is required!')
         let activationForm = new FormData()
-        activationForm.append('username', user.username)
+        activationForm.append('username', curUser.username)
         activationForm.append('code', code)
         await backendAPI.put('/user/activate', activationForm)
         setRegistering(false)
@@ -104,7 +101,7 @@ function RegisterCore(props: RegisterProps) {
   }
 
   const update = ({ type, value }: { type: string, value: string }) => {
-    setUser({ ...user, [type]: value })
+    setCurUser({ ...curUser, [type]: value })
     if (type === 'code') setCode(value)
   }
 
@@ -116,13 +113,13 @@ function RegisterCore(props: RegisterProps) {
         <div className="mb-4">
 
           {/* login */}
-          <InputText type="username" defaultValue={user.username} update={update}/>
-          <InputText type="password" defaultValue={user.password} update={update}/>
+          <InputText type="username" defaultValue={curUser.username} update={update}/>
+          <InputText type="password" defaultValue={curUser.password} update={update}/>
 
           {/* register extra */}
           {!isRegistered && <>
             {/* 昵称 */}
-            <InputText type="nickname" defaultValue={user.nickname} update={update}/>
+            <InputText type="nickname" defaultValue={curUser.nickname} update={update}/>
 
             {/* 头像 */}
             <div className={`form-control w-full mt-4`}>
@@ -136,7 +133,7 @@ function RegisterCore(props: RegisterProps) {
             </div>
 
             {/* 邮箱 */}
-            <InputText type="email" defaultValue={user.email} update={update}/>
+            <InputText type="email" defaultValue={curUser.email} update={update}/>
 
             {
               isRegistering &&

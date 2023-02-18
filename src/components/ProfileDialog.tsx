@@ -1,12 +1,12 @@
 import * as Dialog from '@radix-ui/react-dialog'
 import React from 'react'
 import { useSelector } from 'react-redux'
-import { selectUser } from '../../supports/store/userSlice'
 import { Avatar } from './Avatar'
+import { selectUser } from '../../supports/features/auth/authSlice'
 
 export const ProfileDialog = () => {
 
-  const userState = useSelector(selectUser)
+  const user = useSelector(selectUser)
 
   return (
     <Dialog.Root>
@@ -28,13 +28,20 @@ export const ProfileDialog = () => {
 
           <Dialog.Description/>
 
-          <div>
-            {userState.nickname}
+          {
+            user ?
+              <div>
+                {user.nickname}
 
-            <div className={'avatar rounded-full'}>
-              <Avatar name={userState.nickname} url={userState.avatar}/>
-            </div>
-          </div>
+                <div className={'avatar rounded-full'}>
+                  <Avatar name={user.nickname} url={user.avatar}/>
+                </div>
+              </div>
+              :
+              <div>
+                [BUG]: Not Init !
+              </div>
+          }
 
           <Dialog.Close/>
 

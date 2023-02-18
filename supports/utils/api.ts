@@ -20,18 +20,6 @@ export const AXIOS_INIT_CONFIG: AxiosRequestConfig = {
 }
 export const backendAPI = axios.create({})
 
-export const resetToken = () => {
-  backendAPI.defaults.headers.common.Authorization = undefined
-  if (isBrowser()) localStorage.removeItem(TOKEN_KEY)
-}
-
-export const updateToken = async () => {
-  if (isBrowser()) {
-    backendAPI.defaults.headers.common.Authorization = localStorage.getItem('Authorization')
-
-  }
-}
-
 export const frontendAPI = axios.create({
   baseURL: `http://${HOST}:${FRONTEND_PORT}`,
 })

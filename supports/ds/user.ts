@@ -9,7 +9,9 @@ export interface UserRegister extends UserLogin {
   avatar: string
 }
 
-export const INIT_USER_REGISTER: UserRegister = {
+export type UserProfile = UserRegister
+
+export const INIT_USER: UserRegister = {
   username: '',
   password: '',
   email: '',
