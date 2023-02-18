@@ -18,15 +18,20 @@ export const MyDialog = (props: DialogProps) => {
         {props.trigger}
       </Dialog.Trigger>
 
+
       <Dialog.Portal>
         {/* 继承下来的bg是透明的，因此需要用bg-base，否则padding会泄露下方的元素； dark mode 可以考虑使用 bg-gray-800  */}
         <Dialog.Content
           className="z-50 bg-base-100 p-[25px] data-[state=open]:animate-contentShow fixed top-[15%] left-[50%] max-h-[85vh] w-[90vw] max-w-[450px] translate-x-[-50%] rounded-[6px] shadow-[hsl(206_22%_7%_/_35%)_0px_10px_38px_-10px,_hsl(206_22%_7%_/_20%)_0px_10px_20px_-15px] focus:outline-none"
         >
           <Dialog.Title className=" m-0 text-[17px] font-medium">
+
             {props.title}
+
           </Dialog.Title>
 
+          <div className={'divider'}/>
+          
           {props.content}
 
           <Dialog.Close asChild>

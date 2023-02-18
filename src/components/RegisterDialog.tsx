@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import RegisterCore from './RegisterCore'
-import MyDialog from '../BaseComponents/MyDialog'
+import MyDialog from '../base_components/MyDialog'
 
 
 const RegisterDialog = () => {

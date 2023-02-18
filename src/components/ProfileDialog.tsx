@@ -1,4 +1,4 @@
-import MyDialog from '../BaseComponents/MyDialog'
+import MyDialog from '../base_components/MyDialog'
 import ProfileCore from './ProfileCore'
 import React from 'react'
 
