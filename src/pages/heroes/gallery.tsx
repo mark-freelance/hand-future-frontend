@@ -1,8 +1,8 @@
-import RootLayout from '../../layouts/root'
-import { backendAPI } from '../../../supports/utils/api'
-import { IHero } from '../../../supports/ds/hero'
-import HeroCard from '../../components/HeroCard'
-import Dialog from '../../components/NominateDialog'
+import RootLayout from '../../ui/layouts/root'
+import { backendAPI } from '../../supports/utils/api'
+import { IHero } from '../../supports/ds/hero'
+import HeroCard from '../../ui/components/HeroCard'
+import Dialog from '../../ui/components/NominateDialog'
 
 export interface IResArr {
   size: number
@@ -19,11 +19,11 @@ export const HeroesGallery = ({ data }: HeroesGalleryProps) => {
   return (
     <RootLayout>
       <div className={'w-full flex flex-wrap justify-around justify-items-center gap-4'}>
-              {
-        data.map((item) => (
-          <HeroCard data={item} key={item.id}/>
-        ))
-      }
+        {
+          data.map((item) => (
+            <HeroCard data={item} key={item.id}/>
+          ))
+        }
       </div>
     </RootLayout>
   )

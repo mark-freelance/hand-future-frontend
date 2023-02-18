@@ -1,14 +1,14 @@
 import { FormEvent, useState } from 'react'
 import Link from 'next/link'
 import InputText from './InputText'
-import backendAPI  from '../../supports/utils/api'
+import backendAPI from '../../supports/utils/api'
 import { AxiosError } from 'axios'
-import { INIT_USER, TokenData } from '../../supports/ds/user'
+import { INIT_USER, TokenData, UserProfile } from '../../supports/ds/user'
 
 import { toast } from 'react-toastify'
 import { useDispatch } from 'react-redux'
-import { Avatar } from './Avatar'
-import { setToken, setUser } from '../../supports/features/auth/authSlice'
+import { MAvatar } from '../base_components/MAvatar'
+import { setToken, setUser, setWorks } from '../../supports/features/auth/authSlice'
 
 
 export interface RegisterProps {
@@ -55,18 +55,25 @@ function RegisterCore(props: RegisterProps) {
       // 登录
       if (isRegistered) {
         console.log('【登录】申请token……')
-        const resToken = await backendAPI.post('/user/token', registerForm)
-        const token = (resToken.data as TokenData).access_token
+
         // 更新token
+        const resToken = await backendAPI.post('/user/token', registerForm)
+        console.log({ resToken })
+        const token = (resToken.data as TokenData).access_token
         dispatch(setToken(token))
         toast('登录成功！')
 
-        // 获取用户信息，并刷新本地
+        // 获取用户信息，并刷新 AppState.auth.user
         const resReadUser = await backendAPI.get('/user/me')
+        const { username } = (resReadUser.data as UserProfile)
         console.log({ resReadUser })
-
-        // dispatchClose()
         dispatch(setUser(resReadUser.data))
+
+        // 获取作品信息，并刷新 并刷新 AppState.auth.works
+        const resGetWorks = await backendAPI.get('/works', { params: { username } })
+        console.log({ resGetWorks })
+        dispatch(setWorks(resGetWorks.data.data.data)) // {data: {status, data: {size, data}}}
+
       }
       // 注册 step 1. 发送邮件
       else if (!isRegistering) {
@@ -128,7 +135,7 @@ function RegisterCore(props: RegisterProps) {
               </label>
 
               <div className={' flex justify-between items-center gap-2'}>
-                <Avatar/>
+                <MAvatar/>
               </div>
             </div>
 

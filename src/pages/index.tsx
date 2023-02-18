@@ -1,7 +1,7 @@
 import type { NextPage } from 'next'
-import NavBar from '../components/NavBar'
-import Header from '../components/Header'
-import RootLayout from '../layouts/root'
+import NavBar from '../ui/components/NavBar'
+import Header from '../ui/components/Header'
+import RootLayout from '../ui/layouts/root'
 
 const Home: NextPage = () => {
   return (

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import RegisterCore from './RegisterCore'
-import MyDialog from '../base_components/MyDialog'
+import MDialog from '../base_components/MDialog'
 
 
 const RegisterDialog = () => {
@@ -21,7 +21,7 @@ const RegisterDialog = () => {
   />
 
   return (
-    <MyDialog trigger={trigger} title={'注册/登录'} content={content}/>
+    <MDialog trigger={trigger} title={'注册/登录'} content={content}/>
   )
 }
 

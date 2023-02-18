@@ -9,7 +9,18 @@ export interface UserRegister extends UserLogin {
   avatar: string
 }
 
-export type UserProfile = UserRegister
+export interface UserSocial {
+  following: number
+  followed: number
+  likes: number
+}
+
+export interface UserProfile extends UserRegister {
+  desc?: string
+  sex?: string
+  city?: string
+  social: UserSocial // todo: potential error since not init
+}
 
 export const INIT_USER: UserRegister = {
   username: '',

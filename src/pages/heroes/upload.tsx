@@ -1,4 +1,4 @@
-import RootLayout from '../../layouts/root'
+import RootLayout from '../../ui/layouts/root'
 
 export const HeroesUpload = () => {
   return (

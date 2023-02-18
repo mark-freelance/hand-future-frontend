@@ -10,7 +10,7 @@ export interface DialogProps {
   open?: boolean
 }
 
-export const MyDialog = (props: DialogProps) => {
+export const MDialog = (props: DialogProps) => {
 
   return (
     <Dialog.Root>
@@ -31,7 +31,7 @@ export const MyDialog = (props: DialogProps) => {
           </Dialog.Title>
 
           <div className={'divider'}/>
-          
+
           {props.content}
 
           <Dialog.Close asChild>
@@ -49,5 +49,5 @@ export const MyDialog = (props: DialogProps) => {
   )
 }
 
-export default MyDialog
+export default MDialog
 
