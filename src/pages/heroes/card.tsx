@@ -84,11 +84,10 @@ export const Card = () => {
   return (
     <RootLayout>
       {/* 使用横向布局 */}
-      <div className={'flex flex-wrap justify-around max-w-[1600px] p-8 gap-8'}>
+      <div className={'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 max-w-[1600px] p-8 gap-8'}>
 
         {/* 控制输入区域 */}
-        <div className={'mt-20 mr-2'}>
-
+        <div>
           {/* todo: 添加一个搜索框，可以检索数据库中的人物
           但需要先将notion里的图都本地持久化才可以，否则html2image会无法使用 */}
 
@@ -111,8 +110,7 @@ export const Card = () => {
           <InputText label={'QR Code'} defaultValue={qrCodeUrl} update={({ value }) => {setQrCodeUrl(value)}}/>
         </div>
 
-        <div className={'mt-20 mr-2'}>
-
+        <div>
           {/* 控制主题色、过渡色 */}
           <InputText label={'Theme Color'} type={'color'} defaultValue={themeColor}
                      update={({ value }) => {setThemeColor(value)}}

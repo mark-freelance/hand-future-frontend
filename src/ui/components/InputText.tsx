@@ -31,9 +31,11 @@ function InputText(props: InputTextProps) {
   return <div className={'form-control mt-4 w-full'}>
     <label className="input-group">
       <span className={'w-28'}>{props.label ?? genPascalWithSpace(type)}</span>
+
+      {/* min-w-0 is important, since the input has minimum width */}
       <input maxLength={props.maxLen} type={props.type} defaultValue={props.defaultValue}
              placeholder={props.placeholder}
-             className={clsx('input input-bordered flex-1', props.textClasses)}
+             className={clsx('input input-bordered', 'min-w-0 flex-1', props.textClasses)}
              onChange={(e) => updateInputValue(e.target.value)}/>
     </label>
   </div>
