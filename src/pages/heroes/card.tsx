@@ -84,7 +84,7 @@ export const Card = () => {
   return (
     <RootLayout>
       {/* 使用横向布局 */}
-      <div className={'flex flex-wrap justify-center p-8'}>
+      <div className={'flex flex-wrap justify-around max-w-[1600px] p-8 gap-8'}>
 
         {/* 控制输入区域 */}
         <div className={'mt-20 mr-2'}>
@@ -110,8 +110,6 @@ export const Card = () => {
           {/* 二维码 */}
           <InputText label={'QR Code'} defaultValue={qrCodeUrl} update={({ value }) => {setQrCodeUrl(value)}}/>
         </div>
-
-        <div className={'divider divider-horizontal'}/>
 
         <div className={'mt-20 mr-2'}>
 
@@ -161,8 +159,6 @@ export const Card = () => {
           {/* 生成卡片 */}
           <button className={'btn btn-primary my-4'} onClick={onGenCard}>确认生成卡片</button>
         </div>
-
-        <div className={'divider divider-horizontal'}/>
 
         {/* main wrapper */}
         <div>
