@@ -52,8 +52,9 @@ export const Card = (props: CardProps) => {
   const [themeColor, setThemeColor] = useState(COLOR_PRIMARY)
   const refCanvas = useRef<HTMLDivElement>(null)
   const [fontIndex, setFontIndex] = useState(1) // 0: default, 1: ali
+  const [fontWeightName, setFontWeightName] = useState<FONT_WEIGHT>(FONT_WEIGHTS[6])
   const [fontWeightTitle, setFontWeightTitle] = useState<FONT_WEIGHT>(FONT_WEIGHTS[8])
-  const [fontWeightContent, setFontWeightContent] = useState<FONT_WEIGHT>(FONT_WEIGHTS[4])
+  const [fontWeightContent, setFontWeightContent] = useState<FONT_WEIGHT>(FONT_WEIGHTS[3])
   const [qrCodeUrl, setQrCodeUrl] = useState('https://gkleifeng.notion.site/da7ad92cb3414e6891c80e52541a6678')
 
 
@@ -155,6 +156,7 @@ export const Card = (props: CardProps) => {
           />
 
           {/* 控制字体 */}
+
           <div className="form-control mt-4 w-full">
             <label className={'input-group'}>
               <span className={'w-28'}>{'Font'}</span>
@@ -166,6 +168,18 @@ export const Card = (props: CardProps) => {
               </select>
             </label>
           </div>
+
+          <div className="form-control mt-4 w-full">
+            <label className={'input-group'}>
+              <span className={'w-28'}>{'Name Weight'}</span>
+              <select className="select select-bordered flex-grow"
+                      defaultValue={fontWeightName}
+                      onChange={(e) => setFontWeightName(e.target.value as unknown as FONT_WEIGHT)}>
+                {FONT_WEIGHTS.map((weight) => (<option key={weight} value={weight}>{weight}</option>))}
+              </select>
+            </label>
+          </div>
+
 
           <div className="form-control mt-4 w-full">
             <label className={'input-group'}>
@@ -204,6 +218,7 @@ export const Card = (props: CardProps) => {
             themeColor={themeColor}
             midColor={midColor}
             fontClass={Fonts[fontIndex].font?.className}
+            fontWeightName={fontWeightName}
             fontWeightTitle={fontWeightTitle}
             fontWeightContent={fontWeightContent}
             qrCodeUrl={qrCodeUrl}

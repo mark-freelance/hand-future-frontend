@@ -12,6 +12,7 @@ export interface RenderShareCardProps {
   midColor: string
   data: IShareCard
   fontClass?: string
+  fontWeightName?: string
   fontWeightTitle?: string
   fontWeightContent?: string
   qrCodeUrl: string
@@ -20,8 +21,9 @@ export interface RenderShareCardProps {
 export const RenderShareCard = (props: RenderShareCardProps) => {
   const {
     refCanvas, themeColor, midColor, data, fontClass,
-    fontWeightTitle = 900,
-    fontWeightContent = 400,
+    fontWeightName,
+    fontWeightTitle,
+    fontWeightContent,
     qrCodeUrl
   } = props
   return (
@@ -43,57 +45,71 @@ export const RenderShareCard = (props: RenderShareCardProps) => {
             <div className={'text-black text-3xl font-black flex items-center'}>
               {/*2.10 小手图形-03.svg*/}
               <Image priority src={'/card/small_hand.svg'} alt={'small_hand.svg'} width={40} height={40}
-                     className={'-translate-y-1'}/>
-              <p>{data.name}</p>
+                     className={'-translate-y-2.5 -translate-x-1'}/>
+              {/* name */}
+              <p className={clsx('-translate-y-2', fontWeightName)}>{data.name}</p>
             </div>
 
-            <div className={'text-black text-xs'}>
+            {/* title */}
+            <div className={clsx('text-sm')}>
               {data.title.split('\n').map((s, index) => (
                 <p key={index}>{s}</p>
               ))}
             </div>
           </div>
         </div>
-
+        
         {/*  article */}
         <article className="prose">
-          <h2 className={clsx('text-center mb-2', fontWeightTitle)}>{data.articleTitle}</h2>
+          <h2 className={clsx('text-black text-center mt-1 mb-3', fontWeightTitle)}>{data.articleTitle}</h2>
 
           {data.articleContent.split('\n').map((paragraph, index) => (
-            <p key={index} className={clsx(fontWeightContent)}>{paragraph}</p>
+            <p key={index} className={clsx(
+              fontWeightContent,
+              'text-black text-[14px] my-[7px] leading-normal text-justify'
+            )}>{paragraph}</p>
           ))}
         </article>
 
-        {/* raw color: #11a278 */}
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1264.52 501.36" width={300} height={240}
-             className={`absolute left-0 bottom-32 w-full`}>
-          <defs>
-            <style>{
-              `.cls-1,.cls-2{fill:none;}
-                  .cls-1{stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:17px;}
-                  .cls-2{stroke:${themeColor};stroke-miterlimit:10;stroke-width:16px;}`
-            }</style>
-          </defs>
-          <title>资源 5</title>
-          <g id="图层_2" data-name="图层 2">
-            <g id="图层_3" data-name="图层 3">
-              <path className="cls-1 "
-                    d="M707.74,317.16c-5.74-7.43-5.81-8-7.65-11.85-8.73-18.11-7.78-57-9.69-76.54-.76-7.8,0-15.71-2.23-23.42-3.69-13-17.19-17.69-27.57-9.52-9.2,7.24-13.54,16.32-14.6,28.16-1.58,17.73-.56,58.34,1.66,75.65,1.57,12.15-1,23.93.09,35.94,1.25,13.55-1.24,27.31,2.36,40.82,6.13,23,22,35.64,43.93,41.43,26.82,7.08,54.22,7.35,81.84,7.72,24.71.33,93.51,7,103.1,8.07,26.61,3.08,53.17,6.58,79.77,9.77,2.39.28,262.63,44.22,295.53,49.47"/>
-              <path className="cls-1 "
-                    d="M1256,321.06c-17.47,1.14-419.8.1-448.2-2.19-13.53-1.09-21.82-7.67-25.73-19.4-14-41.87-28.77-83.6-36.42-127.24A268.72,268.72,0,0,1,742,117.81c.53-17.75-.09-71-.74-88.76-.37-10.4-10.19-20.33-19.86-20.54-13.16-.29-23.32,6.73-26.36,18.56-.49,1.9-.9,3.82-1.34,5.72"/>
-              <path className="cls-1 "
-                    d="M667.75,190.51c-.54-1.65-1.78-3.42-1.52-4.93,6-35-3-82.61,1-117.66,1.32-11.72,5.25-22,15.4-29.06,11.72-8.13,25-2.89,28.24,11.52A41.6,41.6,0,0,1,711.94,64c-4.14,36.83-.14,108.53,8.14,144.41a84.62,84.62,0,0,1,1.79,8.94"/>
-              <path className="cls-1 "
-                    d="M576.16,317.16c5.73-7.43,5.81-8,7.65-11.85,8.73-18.11,7.77-57,9.68-76.54.77-7.8,0-15.71,2.23-23.42,3.7-13,17.19-17.69,27.58-9.52,9.19,7.24,13.54,16.32,14.59,28.16,1.59,17.73.56,58.34-1.66,75.65-1.56,12.15,1,23.93-.09,35.94-1.24,13.55,1.24,27.31-2.36,40.82-6.12,23-21.95,35.64-43.92,41.43-26.82,7.08-54.22,7.35-81.85,7.72-24.71.33-93.5,7-103.09,8.07-26.61,3.08-53.18,6.58-79.78,9.77-2.38.28-229.21,27.87-316.64,49.47"/>
-              <path className="cls-1"
-                    d="M8.5,321.06c17.47,1.14,439.18.1,467.58-2.19,13.53-1.09,21.81-7.67,25.73-19.4,14-41.87,28.77-83.6,36.42-127.24a268.71,268.71,0,0,0,3.66-54.42c-.52-17.75.1-71,.74-88.76C543,18.65,552.82,8.72,562.5,8.51c13.16-.29,23.31,6.73,26.36,18.56.49,1.9.89,3.82,1.34,5.72"/>
-              <path className="cls-1 "
-                    d="M616.15,190.51c.54-1.65,1.78-3.42,1.52-4.93-6-35,3-82.61-1-117.66-1.33-11.72-5.25-22-15.41-29.06C589.52,30.73,576.3,36,573,50.38A41.6,41.6,0,0,0,572,64c4.13,36.83.13,108.53-8.14,144.41a82.16,82.16,0,0,0-1.79,8.94"/>
-              <path className="cls-2 "
-                    d="M370.4,139.56l-.37-2.73c-8.33-56,30.68-105.41,86.68-113.74l1.08-.16"/>
-              <path className="cls-2" d="M444.49,134.27h0a61.73,61.73,0,0,1,19.4-85.12l.56-.35"/>
-              <path className="cls-2" d="M839.5,209h0a46.58,46.58,0,0,1,.78,65.86l-.35.36"/>
-              <path className="cls-2" d="M894.26,190.33h0a77.34,77.34,0,0,1-31.42,104.76l-.72.39"/>
+
+        {/* todo: 方法一为什么用 Image fill 颜色就不起作用了 ？ */}
+        {/*<Image src={'/card/big_hand-2.svg'} alt={'mother f**k'} className={`absolute left-0 bottom-[180px] w-full`}*/}
+        {/*       width={320} height={240}/>*/}
+
+        {/* 方法二 */}
+        <svg version="1.1" id="图层_1" xmlns="http://www.w3.org/2000/svg"
+             viewBox="0 0 1264.5 501.4" // 这个有用，不能删
+             width={368} height={240}
+             className={'-ml-9 absolute bottom-[130px]'}
+        >
+          <style type="text/css">
+            {
+              '.st0{fill:white;stroke:#000000;stroke-width:17;stroke-linecap:round;stroke-linejoin:round;}' +
+              '.st1{fill:none;stroke:#11A278;stroke-width:16;stroke-miterlimit:10;}'
+            }
+          </style>
+          <g id="图层_2_1_">
+            <g id="图层_3">
+              <path className="st0" d="M701.7,317.2c-5.7-7.4-5.8-8-7.7-11.9c-8.7-18.1-7.8-57-9.7-76.5c-0.8-7.8,0-15.7-2.2-23.4
+			c-3.7-13-17.2-17.7-27.6-9.5c-9.2,7.2-13.5,16.3-14.6,28.2c-1.6,17.7-0.6,58.3,1.7,75.6c1.6,12.1-1,23.9,0.1,35.9
+			c1.2,13.5-1.2,27.3,2.4,40.8c6.1,23,22,35.6,43.9,41.4c26.8,7.1,54.2,7.4,81.8,7.7c24.7,0.3,93.5,7,103.1,8.1
+			c26.6,3.1,53.2,6.6,79.8,9.8c2.4,0.3,278.9,44.2,311.8,49.5V321.5c-18.1,0.3-434.3-0.4-462.7-2.7c-13.5-1.1-21.8-7.7-25.7-19.4
+			c-14-41.9-28.8-83.6-36.4-127.2c-3.1-18-4.3-36.2-3.7-54.4c0.5-17.8-0.1-71-0.7-88.8c-0.4-10.4-10.2-20.3-19.9-20.5
+			c-13.2-0.3-23.3,6.7-26.4,18.6c-0.5,1.9-0.9,3.8-1.3,5.7"/>
+              <path className="st0" d="M661.8,190.5c-0.5-1.6-1.8-3.4-1.5-4.9c6-35-3-82.6,1-117.7c1.3-11.7,5.2-22,15.4-29.1
+			c11.7-8.1,25-2.9,28.2,11.5c1.1,4.5,1.5,9.1,1.1,13.6c-4.1,36.8-0.1,108.5,8.1,144.4c0.8,2.9,1.4,5.9,1.8,8.9"/>
+              <path className="st0" d="M570.2,317.2c5.7-7.4,5.8-8,7.7-11.9c8.7-18.1,7.8-57,9.7-76.5c0.8-7.8,0-15.7,2.2-23.4
+			c3.7-13,17.2-17.7,27.6-9.5c9.2,7.2,13.5,16.3,14.6,28.2c1.6,17.7,0.6,58.3-1.7,75.6c-1.6,12.1,1,23.9-0.1,35.9
+			c-1.2,13.5,1.2,27.3-2.4,40.8c-6.1,23-22,35.6-43.9,41.4c-26.8,7.1-54.2,7.4-81.9,7.7c-24.7,0.3-93.5,7-103.1,8.1
+			c-26.6,3.1-53.2,6.6-79.8,9.8c-2.4,0.3-229.2,27.9-316.6,49.5l0-171.8c18.8,0.3,439.2,0.1,467.6-2.2c13.5-1.1,21.8-7.7,25.7-19.4
+			c14-41.9,28.8-83.6,36.4-127.2c3.1-18,4.3-36.2,3.7-54.4c-0.5-17.8,0.1-71,0.7-88.8c0.4-10.4,10.2-20.3,19.9-20.5
+			c13.2-0.3,23.3,6.7,26.4,18.6c0.5,1.9,0.9,3.8,1.3,5.7"/>
+              <path className="st0" d="M610.2,190.5c0.5-1.6,1.8-3.4,1.5-4.9c-6-35,3-82.6-1-117.7c-1.3-11.7-5.2-22-15.4-29.1
+			c-11.7-8.1-25-2.9-28.3,11.5c-1.1,4.5-1.4,9.1-1,13.6c4.1,36.8,0.1,108.5-8.1,144.4c-0.8,2.9-1.4,5.9-1.8,8.9"/>
+              <path className="st1" d="M364.4,139.6l-0.4-2.7c-8.3-56,30.7-105.4,86.7-113.7l1.1-0.2"/>
+              <path className="st1" d="M438.5,134.3L438.5,134.3c-18.1-28.9-9.5-67,19.4-85.1c0,0,0,0,0,0l0.6-0.3"/>
+              <path className="st1" d="M833.5,209L833.5,209c18.4,18,18.7,47.5,0.8,65.9l-0.3,0.4"/>
+              <path className="st1" d="M888.3,190.3L888.3,190.3c20.3,37.6,6.2,84.5-31.4,104.8l-0.7,0.4"/>
             </g>
           </g>
         </svg>
