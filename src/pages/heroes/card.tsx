@@ -56,6 +56,7 @@ export const Card = (props: CardProps) => {
   const [fontWeightTitle, setFontWeightTitle] = useState<FONT_WEIGHT>(FONT_WEIGHTS[8])
   const [fontWeightContent, setFontWeightContent] = useState<FONT_WEIGHT>(FONT_WEIGHTS[3])
   const [qrCodeUrl, setQrCodeUrl] = useState('https://gkleifeng.notion.site/da7ad92cb3414e6891c80e52541a6678')
+  console.log({ fontIndex })
 
 
   const update = ({ type, value }: InputAction) => {
@@ -161,9 +162,10 @@ export const Card = (props: CardProps) => {
             <label className={'input-group'}>
               <span className={'w-28'}>{'Font'}</span>
               <select className="select select-bordered flex-grow"
+                      defaultValue={fontIndex}
                       onChange={(e) => setFontIndex(e.target.selectedIndex)}>
                 {Fonts.map((fontItem, index) => (
-                  <option key={index}>{fontItem.name}</option>
+                  <option key={index} value={index}>{fontItem.name}</option>
                 ))}
               </select>
             </label>
@@ -175,7 +177,8 @@ export const Card = (props: CardProps) => {
               <select className="select select-bordered flex-grow"
                       defaultValue={fontWeightName}
                       onChange={(e) => setFontWeightName(e.target.value as unknown as FONT_WEIGHT)}>
-                {FONT_WEIGHTS.map((weight) => (<option key={weight} value={weight}>{weight}</option>))}
+                {FONT_WEIGHTS.map((weight) => (
+                  <option key={weight} value={weight}>{weight}</option>))}
               </select>
             </label>
           </div>

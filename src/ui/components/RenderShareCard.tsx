@@ -58,15 +58,15 @@ export const RenderShareCard = (props: RenderShareCardProps) => {
             </div>
           </div>
         </div>
-        
+
         {/*  article */}
         <article className="prose">
-          <h2 className={clsx('text-black text-center mt-1 mb-3', fontWeightTitle)}>{data.articleTitle}</h2>
+          <h2 className={clsx(' text-center mt-4 mb-3', fontWeightTitle)}>{data.articleTitle}</h2>
 
           {data.articleContent.split('\n').map((paragraph, index) => (
             <p key={index} className={clsx(
               fontWeightContent,
-              'text-black text-[14px] my-[7px] leading-normal text-justify'
+              ' text-[16px] my-[7px] leading-normal text-justify'
             )}>{paragraph}</p>
           ))}
         </article>
