@@ -84,7 +84,7 @@ export const Card = () => {
   return (
     <RootLayout>
       {/* 使用横向布局 */}
-      <div className={'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 max-w-[1600px] p-8 gap-8'}>
+      <div className={'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 max-w-[1600px] md:p-8 gap-8'}>
 
         {/* 控制输入区域 */}
         <div>
