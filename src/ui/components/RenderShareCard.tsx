@@ -14,13 +14,15 @@ export interface RenderShareCardProps {
   fontClass?: string
   fontWeightTitle?: string
   fontWeightContent?: string
+  qrCodeUrl: string
 }
 
 export const RenderShareCard = (props: RenderShareCardProps) => {
   const {
     refCanvas, themeColor, midColor, data, fontClass,
     fontWeightTitle = 900,
-    fontWeightContent = 400
+    fontWeightContent = 400,
+    qrCodeUrl
   } = props
   return (
     <div ref={refCanvas} className={clsx(`w-[360px] p-4 relative`, fontClass)}
@@ -99,9 +101,8 @@ export const RenderShareCard = (props: RenderShareCardProps) => {
         <div className={'h-[140px]'}/>
         <div className={'text-2xl text-center m-2 font-black'} style={{ color: themeColor }}>携手的未来</div>
 
-        <QRCodeSVG value="https://gkleifeng.notion.site/da7ad92cb3414e6891c80e52541a6678"
-                   className={'mx-auto my-2'}
-                   width={'64px'} height={'64px'}/>
+        {/* 二维码 */}
+        <QRCodeSVG value={qrCodeUrl} className={'mx-auto my-2'} width={'64px'} height={'64px'}/>
 
         <div className={'text-black text-center text-sm text-gray-500'}>
           <p>扫码查看活动介绍</p>

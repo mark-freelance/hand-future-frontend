@@ -1,4 +1,4 @@
-import { IShareCard } from '../../supports/ds/hero'
+import { IHero, IShareCard } from '../../supports/ds/hero'
 import BaseAvatar from '../../ui/base_components/BaseAvatar'
 import { LoremIpsum, loremIpsum } from 'lorem-ipsum'
 import InputText, { InputAction } from '../../ui/components/InputText'
@@ -13,15 +13,16 @@ import RenderShareCard from '../../ui/components/RenderShareCard'
 import { Fonts } from '../../config/fonts'
 import { FONT_WEIGHT, FONT_WEIGHTS } from '../../supports/ds/font'
 
+const SAMPLE_HERO: IHero = {
+  'id': '7dcbe16b-6f3e-491d-a6eb-6dd3929abe00',
+  'avatar': 'https://gkleifeng.notion.site/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F9cd34eec-62ec-46d5-9cf9-6216cd8bc881%2F%25E9%25A9%25AC%25E5%25B2%25A9%25E6%259D%25BE.jpg?table=block&id=7dcbe16b-6f3e-491d-a6eb-6dd3929abe00&spaceId=5a775ac8-377b-4c22-918d-36dd67f5e3a2&width=600&userId=&cache=v2',
+  'cities': '北京',
+  'name': '马岩松',
+  'title': '著名建筑师'
+}
 
 const SAMPLE_DATA: IShareCard = {
-  ...{
-    id: '277200be-c592-423a-bd20-e7c78a877a93',
-    avatar: 'https://gkleifeng.notion.site/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F31ac1753-a386-4012-8fc1-5932c0f84476%2F%25E9%2583%2591%25E6%2599%2593%25E7%25AC%259B.png?table=block&id=277200be-c592-423a-bd20-e7c78a877a93&spaceId=5a775ac8-377b-4c22-918d-36dd67f5e3a2&width=600&userId=&cache=v2',
-    cities: '北京',
-    name: '郑晓笛',
-    title: '城市棕地与废弃地改造再生专家'
-  },
+  ...SAMPLE_HERO,
   articleTitle: loremIpsum(),
   articleContent: new LoremIpsum({
     sentencesPerParagraph: {
@@ -51,6 +52,7 @@ export const Card = () => {
   const [fontIndex, setFontIndex] = useState(0)
   const [fontWeightTitle, setFontWeightTitle] = useState<FONT_WEIGHT>(FONT_WEIGHTS[8])
   const [fontWeightContent, setFontWeightContent] = useState<FONT_WEIGHT>(FONT_WEIGHTS[4])
+  const [qrCodeUrl, setQrCodeUrl] = useState('https://gkleifeng.notion.site/da7ad92cb3414e6891c80e52541a6678')
 
   const update = ({ type, value }: InputAction) => {
     setData({ ...data, [type]: value })
@@ -105,6 +107,8 @@ export const Card = () => {
           <InputText type={'articleTitle'} placeholder={data.articleTitle} update={update}/>
           <InputTextArea rows={10} type={'articleContent'} placeholder={data.articleContent} update={update}/>
 
+          {/* 二维码 */}
+          <InputText label={'QR Code'} defaultValue={qrCodeUrl} update={({ value }) => {setQrCodeUrl(value)}}/>
         </div>
 
         <div className={'divider divider-horizontal'}/>
@@ -170,6 +174,7 @@ export const Card = () => {
             fontClass={Fonts[fontIndex].font?.className}
             fontWeightTitle={fontWeightTitle}
             fontWeightContent={fontWeightContent}
+            qrCodeUrl={qrCodeUrl}
           />
         </div>
       </div>
