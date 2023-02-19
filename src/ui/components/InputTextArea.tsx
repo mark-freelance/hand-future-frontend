@@ -31,9 +31,10 @@ function InputText(props: InputTextProps) {
   return <div className={'form-control mt-4 w-full'}>
     <label className="input-group">
       <span className={'w-28'}>{props.label ?? genPascalWithSpace(type)}</span>
-      <textarea rows={props.rows} cols={props.cols} maxLength={props.maxLength}
-                placeholder={props.placeholder} className="textarea bordered flex-1"
-                onChange={(e) => updateInputValue(e.target.value)}/>
+      <textarea
+        rows={props.rows} cols={props.cols} maxLength={props.maxLength}
+        placeholder={props.placeholder} className="textarea bordered flex-1"
+        onChange={(e) => updateInputValue(e.target.value)}/>
     </label>
   </div>
 

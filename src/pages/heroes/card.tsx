@@ -1,37 +1,17 @@
-import { IHero } from '../../supports/ds/hero'
+import { IShareCard } from '../../supports/ds/hero'
 import BaseAvatar from '../../ui/base_components/BaseAvatar'
 import { LoremIpsum, loremIpsum } from 'lorem-ipsum'
-import { QRCodeSVG } from 'qrcode.react'
-import Image from 'next/image'
 import InputText, { InputAction } from '../../ui/components/InputText'
 import { ChangeEvent, useRef, useState } from 'react'
 import InputTextArea from '../../ui/components/InputTextArea'
 import backendAPI from '../../supports/utils/api'
-import clsx from 'clsx'
 import { COLOR_PRIMARY } from '../../config/theme'
 import RootLayout from '../../ui/layouts/root'
 import * as htmlToImage from 'html-to-image'
 import { toast } from 'react-toastify'
 import RenderShareCard from '../../ui/components/RenderShareCard'
 import { Fonts } from '../../config/fonts'
-import { genPascalWithSpace } from '../../supports/utils/algo'
-
-
-export interface IShareCard extends IHero {
-  topicTitle: string
-  topicContent: string
-}
-
-const lorem = new LoremIpsum({
-  sentencesPerParagraph: {
-    max: 4,
-    min: 2
-  },
-  wordsPerSentence: {
-    max: 15,
-    min: 4
-  }
-})
+import { FONT_WEIGHT, FONT_WEIGHTS } from '../../supports/ds/font'
 
 
 const SAMPLE_DATA: IShareCard = {
@@ -42,8 +22,17 @@ const SAMPLE_DATA: IShareCard = {
     name: '郑晓笛',
     title: '城市棕地与废弃地改造再生专家'
   },
-  topicTitle: loremIpsum(),
-  topicContent: lorem.generateParagraphs(3)
+  articleTitle: loremIpsum(),
+  articleContent: new LoremIpsum({
+    sentencesPerParagraph: {
+      max: 3,
+      min: 2
+    },
+    wordsPerSentence: {
+      max: 10,
+      min: 3
+    }
+  }).generateParagraphs(3)
 }
 
 
@@ -60,6 +49,8 @@ export const Card = () => {
   const [themeColor, setThemeColor] = useState(COLOR_PRIMARY)
   const refCanvas = useRef<HTMLDivElement>(null)
   const [fontIndex, setFontIndex] = useState(0)
+  const [fontWeightTitle, setFontWeightTitle] = useState<FONT_WEIGHT>(FONT_WEIGHTS[8])
+  const [fontWeightContent, setFontWeightContent] = useState<FONT_WEIGHT>(FONT_WEIGHTS[4])
 
   const update = ({ type, value }: InputAction) => {
     setData({ ...data, [type]: value })
@@ -111,10 +102,14 @@ export const Card = () => {
           <InputTextArea cols={10} rows={2} maxLength={30} type={'title'} placeholder={data.title} update={update}/>
 
           {/* 文字标题、内容 */}
-          <InputText type={'topicTitle'} placeholder={data.topicTitle} update={update}/>
-          <InputTextArea rows={10} type={'topicContent'} placeholder={data.topicContent} update={update}/>
+          <InputText type={'articleTitle'} placeholder={data.articleTitle} update={update}/>
+          <InputTextArea rows={10} type={'articleContent'} placeholder={data.articleContent} update={update}/>
 
-          <div className={'divider'}/>
+        </div>
+
+        <div className={'divider divider-horizontal'}/>
+
+        <div className={'mt-20 mr-2'}>
 
           {/* 控制主题色、过渡色 */}
           <InputText label={'Theme Color'} type={'color'} defaultValue={themeColor}
@@ -137,6 +132,28 @@ export const Card = () => {
             </label>
           </div>
 
+          <div className="form-control mt-4 w-full">
+            <label className={'input-group'}>
+              <span className={'w-28'}>{'Title Weight'}</span>
+              <select className="select select-bordered flex-grow"
+                      defaultValue={fontWeightTitle}
+                      onChange={(e) => setFontWeightTitle(e.target.value as unknown as FONT_WEIGHT)}>
+                {FONT_WEIGHTS.map((weight) => (<option key={weight} value={weight}>{weight}</option>))}
+              </select>
+            </label>
+          </div>
+
+          <div className="form-control mt-4 w-full">
+            <label className={'input-group'}>
+              <span className={'w-28'}>{'Content Weight'}</span>
+              <select className="select select-bordered flex-grow"
+                      defaultValue={fontWeightContent}
+                      onChange={(e) => setFontWeightContent(e.target.value as unknown as FONT_WEIGHT)}>
+                {FONT_WEIGHTS.map((weight) => (<option key={weight} value={weight}>{weight}</option>))}
+              </select>
+            </label>
+          </div>
+
           {/* 生成卡片 */}
           <button className={'btn btn-primary my-4'} onClick={onGenCard}>确认生成卡片</button>
         </div>
@@ -145,8 +162,15 @@ export const Card = () => {
 
         {/* main wrapper */}
         <div>
-          <RenderShareCard refCanvas={refCanvas} themeColor={themeColor} midColor={midColor} data={data}
-                           fontClass={Fonts[fontIndex].font?.className}/>
+          <RenderShareCard
+            refCanvas={refCanvas}
+            data={data}
+            themeColor={themeColor}
+            midColor={midColor}
+            fontClass={Fonts[fontIndex].font?.className}
+            fontWeightTitle={fontWeightTitle}
+            fontWeightContent={fontWeightContent}
+          />
         </div>
       </div>
     </RootLayout>

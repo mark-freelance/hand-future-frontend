@@ -3,7 +3,8 @@ import BaseAvatar from '../base_components/BaseAvatar'
 import Image from 'next/image'
 import { QRCodeSVG } from 'qrcode.react'
 import { Ref } from 'react'
-import { IShareCard } from '../../pages/heroes/card'
+import { IShareCard } from '../../supports/ds/hero'
+
 
 export interface RenderShareCardProps {
   refCanvas: Ref<HTMLDivElement>
@@ -11,12 +12,18 @@ export interface RenderShareCardProps {
   midColor: string
   data: IShareCard
   fontClass?: string
+  fontWeightTitle?: string
+  fontWeightContent?: string
 }
 
 export const RenderShareCard = (props: RenderShareCardProps) => {
-  const { refCanvas, themeColor, midColor, data, fontClass } = props
+  const {
+    refCanvas, themeColor, midColor, data, fontClass,
+    fontWeightTitle = 900,
+    fontWeightContent = 400
+  } = props
   return (
-    <div ref={refCanvas} className={clsx(`w-[360px] p-4 relative`)}
+    <div ref={refCanvas} className={clsx(`w-[360px] p-4 relative`, fontClass)}
          style={{ background: `linear-gradient(to bottom, ${themeColor}, ${midColor}, ${themeColor})` }}
     >
       <div className={'rounded-3xl bg-white p-4'}>
@@ -46,22 +53,14 @@ export const RenderShareCard = (props: RenderShareCardProps) => {
           </div>
         </div>
 
-        {/*  topic title */}
-        {/*<div className={'text-black text-2xl flex justify-center text-center'}>{data.topic.title}</div>*/}
+        {/*  article */}
+        <article className="prose">
+          <h2 className={clsx('text-center', fontWeightTitle)}>{data.articleTitle}</h2>
 
-        {/*  topic content */}
-        <article className={clsx('prose', fontClass,)}>
-          <h2 className={'text-center'}>{data.topicTitle}</h2>
-
-          {data.topicContent.split('\n').map((paragraph, index) => (
-            <p key={index}>{paragraph}</p>
+          {data.articleContent.split('\n').map((paragraph, index) => (
+            <p key={index} className={clsx(fontWeightContent)}>{paragraph}</p>
           ))}
         </article>
-
-        {/*<Image src={'/card/资源 5.svg'} alt={'大手'} width={300} height={240} color={themeColor}*/}
-        {/*       className={`absolute left-0 bottom-44 w-full`}*/}
-
-        {/*/>*/}
 
         {/* raw color: #11a278 */}
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1264.52 501.36" width={300} height={240}

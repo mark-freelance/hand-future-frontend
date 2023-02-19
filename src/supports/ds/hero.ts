@@ -5,3 +5,8 @@ export interface IHero {
   cities: string
   avatar: string
 }
+
+export interface IShareCard extends IHero {
+  articleTitle: string
+  articleContent: string
+}
