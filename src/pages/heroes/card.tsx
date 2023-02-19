@@ -11,6 +11,7 @@ import clsx from 'clsx'
 import { COLOR_PRIMARY } from '../../supports/config/theme'
 import RootLayout from '../../ui/layouts/root'
 import * as htmlToImage from 'html-to-image'
+import { toast } from 'react-toastify'
 
 
 export interface IShareCard extends IHero {
@@ -68,7 +69,8 @@ export const Card = () => {
   }
 
   const onGenCard = async () => {
-    // toast.warning('下载功能仍有暂无法解决的问题，请先尝试截图保存！')
+    if (data.avatar.includes('notion'))
+      return toast.warning('默认头像仅做参考，请上传目标嘉宾头像！')
 
     const dataUrl = await htmlToImage.toPng(refCanvas.current!)
     console.log({ dataUrl })
