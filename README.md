@@ -1,5 +1,9 @@
 ## todo
 
+- [ ] 目前字体逻辑倒是走通了，也理解了从网络或者本地加载字体的不同方式，唯一不能确认的是，既然nextjs已经基于导入的方式获得了字体，并可以填入class中，那是否意味着
+  tailwindcss.config.js 中不需要再额外 explicitly 写 font 的 class 呢？ 核心参考：
+    - https://nextjs.org/docs/basic-features/font-optimization#with-tailwind-css
+    - https://nextjs.org/docs/api-reference/next/font#applying-styles
 - [ ] render html to image with svg
 - [ ] auto upload package.json
 - [ ] sort out the best practice between global and page layout

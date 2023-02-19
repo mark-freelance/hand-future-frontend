@@ -1,4 +1,4 @@
-import { IMenuItem } from '../ds/menu'
+import { IMenuItem } from '../supports/ds/menu'
 
 export const menus: IMenuItem[] = [
   {
