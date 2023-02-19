@@ -14,11 +14,11 @@ import { Fonts } from '../../config/fonts'
 import { FONT_WEIGHT, FONT_WEIGHTS } from '../../supports/ds/font'
 
 const SAMPLE_HERO: IHero = {
-  'id': '7dcbe16b-6f3e-491d-a6eb-6dd3929abe00',
-  'avatar': 'https://gkleifeng.notion.site/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F9cd34eec-62ec-46d5-9cf9-6216cd8bc881%2F%25E9%25A9%25AC%25E5%25B2%25A9%25E6%259D%25BE.jpg?table=block&id=7dcbe16b-6f3e-491d-a6eb-6dd3929abe00&spaceId=5a775ac8-377b-4c22-918d-36dd67f5e3a2&width=600&userId=&cache=v2',
+  'id': 'b4605fe2-fef7-4b87-b954-4724020a5a4e',
+  'avatar': 'http://gkleifeng.com:3001/files/e28f823e-b064-11ed-aafd-5783702bc47d_周榕.png',
   'cities': '北京',
-  'name': '马岩松',
-  'title': '著名建筑师'
+  'name': '周榕',
+  'title': '著名建筑与城市研究学者'
 }
 
 const SAMPLE_DATA: IShareCard = {
