@@ -1,0 +1,90 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body {
+    padding: 0;
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+@media (prefers-color-scheme: dark) {
+    html {
+        color-scheme: dark;
+    }
+
+    body {
+        color: white;
+        background: black;
+    }
+}
+
+/* card image shadow >> */
+.card.image-full2 {
+    display: grid
+}
+
+.card.image-full2:before {
+    position: relative;
+    content: ""
+}
+
+.card.image-full2:before,
+.card.image-full2 > * {
+    grid-column-start: 1;
+    grid-row-start: 1
+}
+
+.card.image-full2 > figure img {
+    height: 100%;
+    object-fit: cover /* 头像放大（特写）效果 */
+}
+
+.card.image-full2 > .card-body {
+    position: relative
+}
+
+/*!* up is group; down is card *!*/
+.card.image-full2:before {
+    z-index: 10;
+    --tw-bg-opacity: 1;
+    /* --n:218.18 18.033% 11.961% */
+    background-color: hsl(var(--n) / var(--tw-bg-opacity));
+    opacity: 0.75;
+    border-radius: var(--rounded-box, 1rem);
+}
+
+/* enable highlight after hover */
+.card.image-full2:hover:before {
+    z-index: 10;
+    --tw-bg-opacity: 1;
+    /* --n:218.18 18.033% 11.961% */
+    background-color: unset;
+    opacity: 0.75;
+    border-radius: var(--rounded-box, 1rem);
+}
+
+.card.image-full2 > .card-body {
+    z-index: 20;
+    --tw-text-opacity: 1;
+    color: hsl(var(--nc) / var(--tw-text-opacity));
+}
+
+.card.image-full2 :where(figure) {
+    overflow: hidden;
+    border-radius: inherit;
+}
+
+/* card image shadow << */
+

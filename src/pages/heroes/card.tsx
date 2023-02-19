@@ -12,6 +12,7 @@ import { COLOR_PRIMARY } from '../../supports/config/theme'
 import RootLayout from '../../ui/layouts/root'
 import * as htmlToImage from 'html-to-image'
 import { toast } from 'react-toastify'
+import { fontAliPuHui2 } from '../../supports/utils/font'
 
 
 export interface IShareCard extends IHero {
@@ -50,6 +51,7 @@ export const Card = () => {
   const [midColor, setMidColor] = useState('#337799')
   const [themeColor, setThemeColor] = useState(COLOR_PRIMARY)
   const refCanvas = useRef<HTMLDivElement>(null)
+  const [font, setFont] = useState(fontAliPuHui2.className)
   console.log(data)
 
 
@@ -106,6 +108,10 @@ export const Card = () => {
                      update={({ value }) => {setMidColor(value)}}
           />
 
+          <InputText label={'Font Family'} type={'font'} defaultValue={fontAliPuHui2.className}
+                     update={({ value }) => {setFont(value)}}
+          />
+
           <button className={'btn btn-primary my-4'} onClick={onGenCard}>确认生成卡片</button>
         </div>
 
@@ -148,7 +154,13 @@ export const Card = () => {
               {/*<div className={'text-black text-2xl flex justify-center text-center'}>{data.topic.title}</div>*/}
 
               {/*  topic content */}
-              <article className="prose">
+              <article className={
+                clsx(
+                  'prose',
+                  font,
+                  // fontAliPuHui2.className
+                )
+              }>
                 <h2 className={'text-center'}>{data.topicTitle}</h2>
 
                 {data.topicContent.split('\n').map((paragraph, index) => (

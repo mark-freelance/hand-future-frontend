@@ -1,4 +1,4 @@
-import '../styles/globals.css'
+import '../assets/styles/globals.css'
 import 'react-toastify/dist/ReactToastify.css'
 
 import type { AppProps } from 'next/app'
@@ -7,6 +7,7 @@ import { store } from '../supports/store'
 import { PersistGate } from 'redux-persist/integration/react'
 import { persistStore } from 'redux-persist'
 import { toast, ToastContainer } from 'react-toastify'
+import localFont from '@next/font/local'
 
 
 function MyApp({ Component, pageProps }: AppProps) {

@@ -1,4 +1,6 @@
 const {violet, blackA, mauve, green} = require('@radix-ui/colors');
+const {fontFamily} = require('tailwindcss/defaultTheme')
+
 
 const primary = '#109B7B'
 
@@ -12,6 +14,12 @@ module.exports = {
 
 
     extend: {
+
+      // font: https://nextjs.org/docs/basic-features/font-optimization#with-tailwind-css
+      fontFamily: {
+        sans: ['var(--font-AliPuHui2)', ...fontFamily.sans],
+      },
+
       // radix
       colors: {
 
