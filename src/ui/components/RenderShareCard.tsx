@@ -42,7 +42,7 @@ export const RenderShareCard = (props: RenderShareCardProps) => {
           <div className={'flex-1 flex flex-col justify-center items-baseline'}>
             <div className={'text-black text-3xl font-black flex items-center'}>
               {/*2.10 小手图形-03.svg*/}
-              <Image priority src={'/card/2.10 小手图形-03.svg'} alt={'small_hand_03.svg'} width={40} height={40}
+              <Image priority src={'/card/small_hand.svg'} alt={'small_hand.svg'} width={40} height={40}
                      className={'-translate-y-1'}/>
               <p>{data.name}</p>
             </div>
