@@ -12,15 +12,16 @@ import { toast } from 'react-toastify'
 import RenderShareCard from '../../ui/components/RenderShareCard'
 import { Fonts } from '../../config/fonts'
 import { FONT_WEIGHT, FONT_WEIGHTS } from '../../supports/ds/font'
-import heroCard from '../../ui/components/HeroCard'
 import HeroTable from '../../ui/components/HeroTable'
+import { IconRotateClockwise2 } from '@tabler/icons-react'
 
+// cao ！ 不能写死 url 啊 ！
 const SAMPLE_HERO: IHero = {
-  'id': 'b4605fe2-fef7-4b87-b954-4724020a5a4e',
-  'avatar': 'http://gkleifeng.com:3001/files/e28f823e-b064-11ed-aafd-5783702bc47d_周榕.png',
-  'cities': '北京',
-  'name': '周榕',
-  'title': '著名建筑与城市研究学者'
+  'id': '',
+  'avatar': '/cover_growth.jpg',
+  'cities': '',
+  'name': loremIpsum(),
+  'title': loremIpsum()
 }
 
 const SAMPLE_DATA: IShareCard = {
@@ -56,7 +57,8 @@ export const Card = (props: CardProps) => {
   const [fontWeightTitle, setFontWeightTitle] = useState<FONT_WEIGHT>(FONT_WEIGHTS[8])
   const [fontWeightContent, setFontWeightContent] = useState<FONT_WEIGHT>(FONT_WEIGHTS[3])
   const [qrCodeUrl, setQrCodeUrl] = useState('https://gkleifeng.notion.site/da7ad92cb3414e6891c80e52541a6678')
-  console.log({ fontIndex })
+  const [isGeneratingCard, setGeneratingCard] = useState(false)
+  // console.log(heroes)
 
 
   const update = ({ type, value }: InputAction) => {
@@ -75,16 +77,26 @@ export const Card = (props: CardProps) => {
   }
 
   const onGenCard = async () => {
-    if (data.avatar.includes('notion'))
+    if (!/\/\/gkleifeng.com/.test(data.avatar))
       return toast.warning('默认头像仅做参考，请上传目标嘉宾头像！')
 
+    toast.info('正在生成卡片，请耐心等待片刻！')
+    setGeneratingCard(true)
     console.log('generating dataUrl')
-    const dataUrl = await htmlToImage.toPng(refCanvas.current!)
-    console.log('generated !')
-    let a = document.createElement('a')
-    a.href = dataUrl //Image Base64 Goes here
-    a.download = `美丽中国·携手未来·${data.name}.png`
-    a.click() //Downloaded file
+    try {
+      const dataUrl = await htmlToImage.toPng(refCanvas.current!)
+      console.log('generated !')
+      let a = document.createElement('a')
+      a.href = dataUrl //Image Base64 Goes here
+      a.download = `美丽中国·携手未来·${data.name}.png`
+      a.click() //Downloaded file
+    } catch (e) {
+      console.error(e)
+      toast.error('生成失败！请联系南川！')
+    } finally {
+      setGeneratingCard(false)
+    }
+
   }
 
   const onClickHero = (id: string) => {
@@ -131,7 +143,7 @@ export const Card = (props: CardProps) => {
           {/* 嘉宾头像 */}
           <label className={'flex items-center'}>
             <i>Click to upload a new avatar --{'>'}</i>
-            <input type={'file'} className={'hidden'} accept={'images/*'} onChange={onAvatarChange}/>
+            <input type={'file'} className={'hidden'} accept={'image/*'} onChange={onAvatarChange}/>
             <BaseAvatar customClasses={'ml-5'} url={data.avatar} size={'md'}/>
           </label>
 
@@ -207,7 +219,11 @@ export const Card = (props: CardProps) => {
           </div>
 
           {/* 生成卡片 */}
-          <button className={'btn btn-primary my-4'} onClick={onGenCard}>确认生成卡片</button>
+          <button className={'btn btn-primary my-4'} onClick={onGenCard} disabled={isGeneratingCard}>
+            {
+              isGeneratingCard ? <IconRotateClockwise2/> : '确认生成卡片'
+            }
+          </button>
         </div>
 
         {/* 3. 预览区域， 最终输出为：宽度 = 360 px 固定 */}

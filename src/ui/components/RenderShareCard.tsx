@@ -38,7 +38,7 @@ export const RenderShareCard = (props: RenderShareCardProps) => {
 
           <BaseAvatar
             customClasses={'m-4'}
-            url={data.avatar} name={data.name} size={'lg'}/>
+            url={data.avatar + '?raw=true'} name={data.name} size={'lg'}/>
 
           {/*  name - title*/}
           <div className={'flex-1 flex flex-col justify-center items-baseline'}>

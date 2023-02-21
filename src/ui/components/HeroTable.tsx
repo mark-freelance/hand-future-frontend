@@ -38,7 +38,7 @@ export const HeroTable = (props: HeroTableProps) => {
                   <td>
                     <div className="flex items-center space-x-3">
                       <div className="avatar">
-                        <div className="mask mask-squircle w-12 h-12">
+                        <div className="rounded-full w-12 h-12">
                           <img src={hero.avatar} alt={hero.name}/>
                         </div>
                       </div>

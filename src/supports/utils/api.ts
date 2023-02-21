@@ -9,8 +9,10 @@ export const FRONTEND_PORT = 3000
 
 export const TOKEN_KEY = 'Authorization'
 
+export const BACKEND_ENDPOINT = `http://${HOST}:${BACKEND_PORT}`
+
 export const AXIOS_INIT_CONFIG: AxiosRequestConfig = {
-  baseURL: `http://${HOST}:${BACKEND_PORT}`,
+  baseURL: BACKEND_ENDPOINT,
   timeout: 1000, // ref: https://stackoverflow.com/a/41754655/9422455
   headers: {
     'User-Agent': USER_AGENT
