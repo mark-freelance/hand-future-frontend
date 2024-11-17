@@ -32,7 +32,7 @@ export const WorkSchema = z.object({
   /**
    * [WorkModel]
    */
-  source: JsonValueSchema.nullable(),
+  source: JsonValueSchema,
 })
 
 export type Work = z.infer<typeof WorkSchema>
