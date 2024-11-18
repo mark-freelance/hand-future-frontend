@@ -5,7 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { IHero } from './hero'
+import type { IHero } from './hero'
 
 export type ForceEngine = 'd3' | 'ngraph';
 export const ForceEngines: ForceEngine[] = ['d3', 'ngraph']

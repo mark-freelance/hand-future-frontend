@@ -1,5 +1,6 @@
 import moment from "moment";
-import { IHeroWithoutUser, IUserInNotion } from "../schema/user";
+
+import type { IHeroWithoutUser, IUserInNotion } from "../schema/user";
 import { fileRemote2Local } from "../server/file";
 
 export const user2hero = (user: IUserInNotion): IHeroWithoutUser => ({

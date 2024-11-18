@@ -53,6 +53,6 @@ export const BilibiliVideo = ({ video }: {
  * @returns {string}
  */
 export const getBvidFromUrl = (url: string): string | null => {
-	const m = url.match(/(BV.*?)(?=(\/|$))/)
+	const m = /(BV.*?)(?=(\/|$))/.exec(url)
 	return m ? m[1] : m
 }

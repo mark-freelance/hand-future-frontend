@@ -1,9 +1,10 @@
-import { toast } from 'react-toastify'
 import { useEffect, useState } from 'react'
+import { toast } from 'react-toastify'
 
+import { Button } from '~/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '~/components/ui/card'
 import { Input } from '~/components/ui/input'
-import { Button } from '~/components/ui/button'
+
 import {useGetUserQuery, useUpdateUserViaEmailMutation} from '../../../store/states/api/userApi'
 
 export const AddAdmin = () => {
@@ -13,7 +14,7 @@ export const AddAdmin = () => {
 	const {data: user} = useGetUserQuery({})
 	
 	useEffect(() => {if (isSuccess) {toast.success('添加成功')}}, [isSuccess])
-	useEffect(() => {if (isError) {toast.success(`添加失败，原因：${(error as unknown as { data: { detail: string } }).data.detail!}`)}}, [isError])
+	useEffect(() => {if (isError) {toast.success(`添加失败，原因：${(error as unknown as { data: { detail: string } }).data.detail}`)}}, [isError])
 	
 	return (
 		<Card>

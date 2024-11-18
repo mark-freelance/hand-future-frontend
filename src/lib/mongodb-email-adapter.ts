@@ -15,7 +15,6 @@
  * @module @next-auth/mongodb-adapter
  */
 import { ObjectId } from 'mongodb'
-
 import type { MongoClient } from 'mongodb'
 import type { Adapter, AdapterAccount, AdapterSession, AdapterUser, VerificationToken } from 'next-auth/adapters'
 

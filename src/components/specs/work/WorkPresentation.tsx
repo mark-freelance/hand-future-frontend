@@ -5,9 +5,10 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { TypographyLayoutType, Work } from "@prisma/client";
+import { TypographyLayoutType, type Work } from "@prisma/client";
 import Image from "next/image";
 import { toast } from "react-toastify";
+
 import {
   BilibiliVideo,
   getBvidFromUrl,
@@ -15,7 +16,6 @@ import {
 import { Dialog, DialogContent, DialogTrigger } from "~/components/ui/dialog";
 
 import settings from "../../../schema/settings";
-
 import { SourcePlatform } from "../../../schema/work";
 import { useDeleteWorkMutation } from "../../../store/states/api/workApi";
 import { ConnectionsLine } from "../../shared/ConnectionsLine";
@@ -163,7 +163,7 @@ export const WorkPresentation = ({
             type="button"
             className="btn btn-error btn-xs"
             onClick={async () => {
-              await deleteWork(work.id!);
+              await deleteWork(work.id);
               toast(`deleted work(id=${work.id})`);
             }}
           >
@@ -209,7 +209,7 @@ export const WorkPresentation = ({
 
         {/* 微信 */}
         {work.source.platform === SourcePlatform.wechatArticle && (
-          <a target="_blankg" rel="noreferrer" href={work.source.url!}>
+          <a target="_blankg" rel="noreferrer" href={work.source.url}>
             {detailBtn}
           </a>
         )}

@@ -1,11 +1,11 @@
-import NextAuth, { NextAuthOptions } from 'next-auth'
+import NextAuth, { type NextAuthOptions } from 'next-auth'
 import EmailProvider from 'next-auth/providers/email'
 import { createTransport } from 'nodemailer'
 
-import { generateVerificationToken } from '~/lib/auth'
-import clientPromise from '@/lib/mongodb'
 import { DATABASE_AUTH_DB_NAME, EMAIL_FROM, EMAIL_SERVER } from '@/lib/env'
+import clientPromise from '@/lib/mongodb'
 import { setTokenCentre } from '@/pages/api/auth/general'
+import { generateVerificationToken } from '~/lib/auth'
 import { MongodbEmailAdapter } from '~/lib/mongodb-email-adapter'
 
 

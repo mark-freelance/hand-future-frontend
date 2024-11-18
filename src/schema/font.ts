@@ -5,7 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { NextFontWithVariable } from '@next/font'
+import type { NextFontWithVariable } from '@next/font'
 
 export const FONT_WEIGHTS = [
 	'font-thin',

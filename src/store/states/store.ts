@@ -8,8 +8,9 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { createLogger } from "redux-logger";
 import { PERSIST, persistReducer, REGISTER, REHYDRATE } from "redux-persist";
-import { PersistConfig } from "redux-persist/es/types";
+import type { PersistConfig } from "redux-persist/es/types";
 import storage from "redux-persist/lib/storage";
+
 import { USE_PERSISTOR } from "../../config/system";
 import { isClient } from "../../lib/server";
 
@@ -50,7 +51,7 @@ const logger = createLogger({
   },
 });
 
-let middlewares = [baseApi.middleware, heroApi.middleware];
+const middlewares = [baseApi.middleware, heroApi.middleware];
 if (isClient()) {
   // persist logger 在 server 端好像没啥意义
   middlewares.push(logger);

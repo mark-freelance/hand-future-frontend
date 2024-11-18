@@ -1,5 +1,6 @@
-import { Hero, Prisma } from "@prisma/client";
-import { IHero } from "./hero";
+import { type Hero, Prisma } from "@prisma/client";
+
+import type { IHero } from "./hero";
 
 export interface IUserInNotion {
   object: "page";

@@ -9,7 +9,8 @@ import clsx from "clsx";
 
 import { BaseAvatar } from "~/components/shared/BaseAvatar";
 import { normalizeImageUri } from "~/lib/image";
-import { IHeroDetail } from "../../../schema/user";
+
+import type { IHeroDetail } from "../../../schema/user";
 
 export interface HeroTableProps {
   heroes: IHeroDetail[];

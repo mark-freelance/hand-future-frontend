@@ -1,5 +1,6 @@
-import { baseApi } from './baseApi'
 import { normalizeImageUri } from '../../../lib/image'
+
+import { baseApi } from './baseApi'
 
 
 export const fileApi = baseApi.injectEndpoints({

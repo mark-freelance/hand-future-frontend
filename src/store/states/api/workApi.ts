@@ -1,9 +1,10 @@
 import { trpc } from "../../../lib/trpc";
-import { IWork } from "../../../schema/work";
+import type { IWork } from "../../../schema/work";
+
 import { baseApi } from "./baseApi";
 
-export const TAG_WORK = "work" as const;
-export const ID_ALL = "*" as const;
+export const TAG_WORK = "work";
+export const ID_ALL = "*";
 
 export const workApi = baseApi
   .enhanceEndpoints({

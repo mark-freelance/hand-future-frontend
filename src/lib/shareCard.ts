@@ -1,7 +1,8 @@
 import { LoremIpsum, loremIpsum } from 'lorem-ipsum'
 
-import { IShareCard } from '../schema/hero'
 import { mockConnections, mockDesc, mockName, mockTitle } from '~/mock/hero'
+
+import type { IShareCard } from '../schema/hero'
 
 
 export const shareCardInit: IShareCard = {

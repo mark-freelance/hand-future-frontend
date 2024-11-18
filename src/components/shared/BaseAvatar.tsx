@@ -8,7 +8,8 @@
 import { IconUser } from "@tabler/icons-react";
 
 import { Avatar, AvatarFallback, AvatarImage } from "~/components/ui/avatar";
-import { IHeroDetail } from "../../schema/user";
+
+import type { IHeroDetail } from "../../schema/user";
 
 export const BaseAvatar = ({ url, text }: { url?: string; text?: string }) => {
   return (

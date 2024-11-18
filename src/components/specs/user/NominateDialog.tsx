@@ -5,10 +5,10 @@
  * LICENSE file in the root directory of this source tree.
 */
 
-import React from 'react'
 import * as Dialog from '@radix-ui/react-dialog'
 import { Cross2Icon } from '@radix-ui/react-icons'
 import Image from 'next/image'
+import React from 'react'
 
 export interface NominateDialogProps {
   hero: {

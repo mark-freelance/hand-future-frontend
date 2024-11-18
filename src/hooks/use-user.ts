@@ -2,7 +2,7 @@ import { skipToken } from "@reduxjs/toolkit/query";
 import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 
-import { IUserWithId } from "../schema/user";
+import type { IUserWithId } from "../schema/user";
 import { useGetUserQuery } from "../store/states/api/userApi";
 
 export const useUserId = (): string | undefined => {

@@ -1,6 +1,6 @@
 import { type ClassValue, clsx } from 'clsx'
+import type { ChangeEvent } from 'react'
 import { twMerge } from 'tailwind-merge'
-import { ChangeEvent } from 'react'
 
 export function cn(...inputs: ClassValue[]) {
 	return twMerge(clsx(inputs))

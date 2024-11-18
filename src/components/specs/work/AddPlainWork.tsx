@@ -5,11 +5,11 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Work } from "@prisma/client";
+import type { Work } from "@prisma/client";
 import React from "react";
+
 import { MyImageUploader } from "~/components/specs/general";
 import { Input } from "~/components/ui/input";
-
 import { Label } from "~/components/ui/label";
 import { Textarea } from "~/components/ui/textarea";
 import { bindData } from "~/lib/utils";

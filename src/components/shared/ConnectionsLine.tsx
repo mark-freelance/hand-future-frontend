@@ -5,8 +5,8 @@
  * LICENSE file in the root directory of this source tree.
 */
 
-import React from 'react'
 import { IconCirclePlus } from '@tabler/icons-react'
+import React from 'react'
 
 export const ConnectionsLine = ({connections, enableAdd}: {
   connections: string[]

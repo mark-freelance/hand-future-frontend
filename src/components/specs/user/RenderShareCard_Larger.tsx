@@ -9,10 +9,10 @@
 import clsx from 'clsx'
 import Image from 'next/image'
 import { QRCodeSVG } from 'qrcode.react'
+import type { Ref } from 'react'
 
 import { BaseAvatar } from '~/components/shared/BaseAvatar'
 
-import type { Ref } from 'react'
 import type { IShareCard } from '../../../schema/hero'
 
 export interface RenderShareCardProps {

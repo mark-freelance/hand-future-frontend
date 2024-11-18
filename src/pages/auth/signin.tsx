@@ -1,15 +1,15 @@
-import React, { ReactNode, useEffect, useRef, useState } from 'react'
-import { GetServerSideProps, NextPage } from 'next'
-import { signIn } from 'next-auth/react'
-import { validate } from 'isemail'
-import { useRouter } from 'next/router'
 import axios from 'axios'
+import { validate } from 'isemail'
+import type { GetServerSideProps, NextPage } from 'next'
+import { useRouter } from 'next/router'
+import { signIn } from 'next-auth/react'
+import React, { type ReactNode, useEffect, useRef, useState } from 'react'
 import { toast } from 'react-toastify'
 import Typist from 'react-typist'
 
-import { Input } from '~/components/ui/input'
-import RootLayout from '~/components/layouts/RootLayout'
 import { Button } from '@/components/ui/button'
+import RootLayout from '~/components/layouts/RootLayout'
+import { Input } from '~/components/ui/input'
 
 const getToken = async (email: string): Promise<string> =>
 	(await axios.get('/api/auth/token?email=' + email)).data.toString()

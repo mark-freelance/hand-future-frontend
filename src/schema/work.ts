@@ -5,8 +5,9 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Prisma, TypographyLayoutType, Work } from "@prisma/client";
+import { Prisma, TypographyLayoutType, type Work } from "@prisma/client";
 import { v4 } from "uuid";
+
 import { genRandomImage } from "../lib/random";
 import { mockConnections, mockDesc, mockTitle } from "../mock/hero";
 
@@ -35,7 +36,7 @@ export interface WorkSource<T extends SourcePlatform> {
 
 export const TypographyLayouts = Object.keys(
   TypographyLayoutType,
-) as string[] as TypographyLayoutType[];
+) as TypographyLayoutType[];
 
 export interface ICreateWork<T extends SourcePlatform> {
   user_id: string;

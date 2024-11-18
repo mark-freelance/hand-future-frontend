@@ -5,7 +5,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { IHeroDetail } from "../../../schema/user";
+import type { IHeroDetail } from "../../../schema/user";
+
 import HeroTable from "./HeroTable";
 
 export const HeroSearch = ({

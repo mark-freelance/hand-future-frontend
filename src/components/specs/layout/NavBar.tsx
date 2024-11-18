@@ -6,9 +6,10 @@
  */
 
 import { useSession } from "next-auth/react";
-import { useAdmin } from "~/hooks/use-user";
-import settings from "../../../config/settings.json";
 
+import { useAdmin } from "~/hooks/use-user";
+
+import settings from "../../../config/settings.json";
 import type { IMenuItem } from "../../../schema/menu";
 
 import { MenuItem } from "./Menu";

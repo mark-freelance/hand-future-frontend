@@ -1,14 +1,14 @@
 import * as AspectRatio from "@radix-ui/react-aspect-ratio";
+
 import { UserAvatar } from "~/components/shared/BaseAvatar";
 import { Section } from "~/components/shared/Section";
 import { PartnerLink } from "~/components/specs/user/PartnerLink";
 import { WorkPresentation } from "~/components/specs/work/WorkPresentation";
 import { Label } from "~/components/ui/label";
 import { BG_COVER_FALLBACK } from "~/config/cover";
-
 import { normalizeImageUri } from "~/lib/image";
 
-import { IHeroDetail } from "../../../schema/user";
+import type { IHeroDetail } from "../../../schema/user";
 
 export const HeroProfileReadMode = ({ hero }: { hero: IHeroDetail }) => {
     const cover = hero.avatar // todo: cover ?

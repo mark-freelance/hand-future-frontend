@@ -1,11 +1,14 @@
-import { Client, collectPaginatedAPI } from "@notionhq/client";
 import { promises } from "fs";
-import { flatten } from "lodash";
 import * as path from "path";
-import { GraphData } from "react-force-graph-3d";
+
+import { Client, collectPaginatedAPI } from "@notionhq/client";
+import { flatten } from "lodash";
+import type { GraphData } from "react-force-graph-3d";
+
 import { env } from "../env";
 import { persistHeroAvatar, user2hero, user2heroRelation } from "../lib/user";
-import { IUserInNotion } from "../schema/user";
+import type { IUserInNotion } from "../schema/user";
+
 import prisma from "./db";
 
 const notion = new Client({

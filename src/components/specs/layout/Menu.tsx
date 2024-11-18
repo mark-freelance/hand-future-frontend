@@ -6,7 +6,6 @@
  */
 
 import { isMainMenuItem } from '../../../schema/menu'
-
 import type { IMenuItem } from '../../../schema/menu'
 
 

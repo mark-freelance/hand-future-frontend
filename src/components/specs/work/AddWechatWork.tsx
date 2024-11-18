@@ -5,19 +5,19 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Work } from "@prisma/client";
+import type { Work } from "@prisma/client";
 import { AxiosError } from "axios";
 import _ from "lodash";
 import React from "react";
 import { toast } from "react-toastify";
+
 import { Button } from "~/components/ui/button";
 import { Input } from "~/components/ui/input";
 import { Label } from "~/components/ui/label";
+
 import { WECHAT_ARTICLE_URL_PLACEHOLDER } from "../../../config/system";
-
 import backendAPI from "../../../lib/api";
-
-import { ICreateWork, SourcePlatform } from "../../../schema/work";
+import { type ICreateWork, SourcePlatform } from "../../../schema/work";
 
 const parseWechatArticleUrl = async (
   url: string,

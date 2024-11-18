@@ -8,13 +8,13 @@
 
 import clsx from 'clsx'
 import { QRCodeSVG } from 'qrcode.react'
+import type { Ref } from 'react'
 
 import { normalizeImageUri } from '~/lib/image'
 
+import type { IShareCard } from '../../../schema/hero'
 import { BaseAvatar } from '../../shared/BaseAvatar'
 
-import type { Ref } from 'react'
-import type { IShareCard } from '../../../schema/hero'
 
 export interface RenderShareCardProps {
 	refCanvas: Ref<HTMLDivElement>

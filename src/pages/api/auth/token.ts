@@ -1,4 +1,5 @@
-import { NextApiRequest, NextApiResponse } from 'next'
+import type { NextApiRequest, NextApiResponse } from 'next'
+
 import { getTokenCenter } from '@/pages/api/auth/general'
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {

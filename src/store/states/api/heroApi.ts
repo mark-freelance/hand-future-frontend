@@ -1,8 +1,9 @@
-import { IHero } from "../../../schema/hero";
-import { IGraphData } from "../../../schema/panel_3dgraph";
+import type { IHero } from "../../../schema/hero";
+import type { IGraphData } from "../../../schema/panel_3dgraph";
+
 import { baseApi } from "./baseApi";
 
-export const TAG_HERO = "hero" as const;
+export const TAG_HERO = "hero";
 
 export const heroApi = baseApi
   .enhanceEndpoints({

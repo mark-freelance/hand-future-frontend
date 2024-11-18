@@ -5,10 +5,11 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { TypographyLayoutType, Work } from "@prisma/client";
+import type { TypographyLayoutType, Work } from "@prisma/client";
 import { Tabs } from "@radix-ui/react-tabs";
 import React, { useState } from "react";
 import { toast } from "react-toastify";
+
 import { AddBilibiliWork } from "~/components/specs/work/AddBilibiliWork";
 import { Button } from "~/components/ui/button";
 import { Dialog, DialogContent, DialogTrigger } from "~/components/ui/dialog";
@@ -21,20 +22,19 @@ import {
   SelectValue,
 } from "~/components/ui/select";
 import { TabsContent, TabsList, TabsTrigger } from "~/components/ui/tabs";
+
 import settings from "../../../schema/settings";
 import {
   mockWork,
   SourcePlatform,
   TypographyLayouts,
 } from "../../../schema/work";
-
 import { useAddWorkMutation } from "../../../store/states/api/workApi";
 import { ConnectionsLine } from "../../shared/ConnectionsLine";
-
 import { Section } from "../../shared/Section";
+
 import { AddPlainWork } from "./AddPlainWork";
 import { AddWechatWork } from "./AddWechatWork";
-
 import { genPlainWorkPresentation, WorkPresentation } from "./WorkPresentation";
 
 export const AddWork = ({ user_id }: { user_id: string }): JSX.Element => {

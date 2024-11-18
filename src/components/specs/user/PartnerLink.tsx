@@ -2,6 +2,7 @@ import { IconLoaderQuarter } from '@tabler/icons-react'
 import Link from 'next/link'
 
 import { Button } from '~/components/ui/button'
+
 import { useGetUserQuery } from '../../../store/states/api/userApi'
 
 export const PartnerLink = ({ id }: { id: string }) => {

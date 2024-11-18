@@ -7,6 +7,7 @@
 
 import { useAtom } from "jotai";
 import dynamic from "next/dynamic";
+
 import { trpc } from "~/lib/trpc";
 
 import RootLayout from "../components/layouts/RootLayout";

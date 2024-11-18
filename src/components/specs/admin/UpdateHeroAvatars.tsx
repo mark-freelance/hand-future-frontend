@@ -1,6 +1,7 @@
 import { IconLoaderQuarter } from "@tabler/icons-react";
 import { useEffect } from "react";
 import { toast } from "react-toastify";
+
 import { Button } from "~/components/ui/button";
 import {
   Card,
@@ -14,7 +15,7 @@ import { trpc } from "~/lib/trpc";
 export const UpdateHeroAvatars = () => {
   const {
     mutate: updateAvatars,
-    isLoading,
+    isPending: isLoading,
     isSuccess,
     isError,
   } = trpc.admin.updateHeroAvatars.useMutation();

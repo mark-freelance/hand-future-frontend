@@ -2,8 +2,8 @@ import { IconLoaderQuarter } from "@tabler/icons-react";
 import { useAtom } from "jotai";
 import { useEffect } from "react";
 import { toast } from "react-toastify";
-import { Button } from "~/components/ui/button";
 
+import { Button } from "~/components/ui/button";
 import {
   Card,
   CardContent,
@@ -12,6 +12,7 @@ import {
   CardTitle,
 } from "~/components/ui/card";
 import { apiVersionAtom } from "~/store/system";
+
 import { useInitHeroesMutation } from "../../../hooks/use-heroes";
 
 export const InitHeroes = () => {

@@ -1,8 +1,9 @@
 import { normalizeImageUri } from "../../../lib/image";
-import { IUserWithEmail, IUserWithId } from "../../../schema/user";
+import type { IUserWithEmail, IUserWithId } from "../../../schema/user";
+
 import { baseApi } from "./baseApi";
 
-export const TAG_USER = "user" as const;
+export const TAG_USER = "user";
 
 const userHelper = {
   providesTags: (result: IUserWithId | null | undefined) => {

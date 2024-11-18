@@ -4,6 +4,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
+const {OPTIMIZED_FONT_PROVIDERS} = require("next/constants");
 
 const OFF = 0
 const WARNING = 1
@@ -32,8 +33,10 @@ module.exports = {
     'react/no-direct-mutation-state': OFF,
     'react/require-render-return':OFF,
     'react/jsx-no-undef':OFF,
-    'import/namespace': WARNING,
+    'react/jsx-uses-react': OFF,
+    'react/jsx-uses-vars': OFF,
 
+    'import/namespace': WARNING,
     "import/no-anonymous-default-export": OFF,
     "import/no-named-as-default": OFF,
     "import/no-named-as-default-member": OFF,

@@ -6,7 +6,6 @@
 */
 
 import { useState } from 'react'
-
 import type { ReactNode} from 'react'
 
 const lineClass = 'inline-flex'

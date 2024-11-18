@@ -5,14 +5,14 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import React from 'react'
+import { IconLoaderQuarter } from '@tabler/icons-react'
 import Link from 'next/link'
 import { signOut } from 'next-auth/react'
-import { IconLoaderQuarter } from '@tabler/icons-react'
+import React from 'react'
 
-import { useUser } from '~/hooks/use-user'
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '~/components/ui/dropdown-menu'
 import { UserAvatar } from '~/components/shared/BaseAvatar'
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '~/components/ui/dropdown-menu'
+import { useUser } from '~/hooks/use-user'
 
 
 export const RegisteredDropdown = () => {

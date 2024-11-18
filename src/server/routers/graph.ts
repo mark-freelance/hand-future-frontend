@@ -1,7 +1,8 @@
 import { z } from "zod";
+
 import workUncheckedCreateInputSchema from "../../../prisma/generated/zod/inputTypeSchemas/WorkUncheckedCreateInputSchema";
 import backendAPI from "../../lib/api";
-import { heroDetailSchema, IHeroDetail } from "../../schema/user";
+import { heroDetailSchema, type IHeroDetail } from "../../schema/user";
 import { workDetailSchema } from "../../schema/work";
 import { apiVersionSchema } from "../../store/system";
 import { initNotion, readNotion } from "../actions";
