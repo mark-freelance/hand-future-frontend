@@ -12,10 +12,22 @@ const notion = new Client({
   auth: env.NOTION_TOKEN,
 });
 
+/**
+ * 遍历prisma.hero 调用 persistHeroAvatar 函数更新用户数据
+ */
+export const updateHeroAvatars = async () => {
+  const heroes = await prisma.hero.findMany();
+  
+  for (let i = 0; i < heroes.length; i++) {
+    const hero = heroes[i];
+    console.log(`Updating avatar for hero ${i + 1}/${heroes.length}: ${hero.name}`);
+    await persistHeroAvatar(hero);
+  }
+}
+
 export const initNotion = async (options?: { dumpJson?: boolean }) => {
   console.log("-- initing data...");
 
-  // full data, ref: https://github.com/ramnes/notion-sdk-py#utility-functions
   const usersInNotion = (await collectPaginatedAPI(notion.databases.query, {
     database_id: env.NOTION_DATABASE_ID,
   })) as IUserInNotion[];
@@ -27,62 +39,70 @@ export const initNotion = async (options?: { dumpJson?: boolean }) => {
     console.log("-- dumped");
   }
 
-  await prisma.$transaction(async (prisma) => {
-    await Promise.all(
-      usersInNotion.map(user2hero).map(async (_user) => {
-        const user = await persistHeroAvatar(_user);
-        console.log("-- user: ", user);
+  for (let index = 0; index < usersInNotion.length; index++) {
+    const user = user2hero(usersInNotion[index]);
+    // const user = await persistHeroAvatar(_user);
+    console.log(`--> upserting user[${index + 1} / ${usersInNotion.length}]: ${user}`);
 
-        await prisma.hero.upsert({
-          where: { id: user.id },
-          create: {
-            ...user,
-            user: {
-              create: {},
-            },
-          },
-          update: {
-            ...user,
-          },
-        });
-      }),
-    );
-
-    await prisma.heroRelation.deleteMany();
-
-    await prisma.heroRelation.createMany({
-      data: flatten(usersInNotion.map(user2heroRelation)),
+    await prisma.hero.upsert({
+      where: { id: user.id },
+      create: {
+        ...user,
+        user: {
+          create: {},
+        },
+      },
+      update: {
+        ...user,
+      },
     });
-  });
+  }
+
+  await prisma.heroRelation.deleteMany();
+  
+  const relations = flatten(usersInNotion.map(user2heroRelation));
+  const batchSize = 10;
+  for (let i = 0; i < relations.length; i += batchSize) {
+    const batch = relations.slice(i, i + batchSize);
+    await prisma.heroRelation.createMany({
+      data: batch,
+    });
+    console.log(`--> Created relations batch ${Math.floor(i / batchSize) + 1}/${Math.ceil(relations.length / batchSize)}`);
+  }
 };
 
 export const readNotion = async (): Promise<GraphData> => {
-  const nodes = await prisma.hero.findMany({
-    where: {
-      // 只显示有头像的
-      avatar: { not: null },
-    },
-  });
-  const nodeIds = nodes.map((i) => i.id);
-  return {
-    nodes,
-    links: (
-      await prisma.heroRelation.findMany({
-        where: {
-          // 存在的node才可以有link，否则three报错
-          fromId: { in: nodeIds },
-          toId: {
-            in: nodeIds,
-            //  确保只有单向，否则three报错
-            gt: prisma.heroRelation.fields.fromId,
-          },
+  try {
+    console.log('Attempting to connect to database...');
+    const nodes = await prisma.hero.findMany({
+      where: {
+        avatar: { not: null },
+      },
+    });
+    console.log('Successfully retrieved nodes:', nodes.length);
+    const nodeIds = nodes.map((i) => i.id);
+    
+    const links = await prisma.heroRelation.findMany({
+      where: {
+        fromId: { in: nodeIds },
+        toId: {
+          in: nodeIds,
+          gt: prisma.heroRelation.fields.fromId,
         },
-      })
-    ).map((r) => ({
-      source: r.fromId,
-      target: r.toId,
-    })),
-  };
+      },
+    });
+    
+    return {
+      nodes,
+      links: links.map((r) => ({
+        source: r.fromId,
+        target: r.toId,
+      })),
+    };
+  } catch (error) {
+    console.error('Database error:', error);
+    throw error;
+  }
 };
 
 void readNotion();

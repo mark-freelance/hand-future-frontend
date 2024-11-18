@@ -65,10 +65,12 @@ export type IHeroWithoutUser = Omit<Hero, "userId">;
 
 export const heroDetailSchema = Prisma.validator<Prisma.HeroDefaultArgs>()({
   include: {
+
     user: true,
     fromHeroes: true,
     toHeroes: true,
     works: true,
+
   },
 });
 export type IHeroDetail = Prisma.HeroGetPayload<typeof heroDetailSchema>;

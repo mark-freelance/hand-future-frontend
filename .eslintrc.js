@@ -5,45 +5,49 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-const OFF = 0 // 没有必要一定遵循的原则
-const WARNING = 1 // 不遵循代码质量会不够高的原则
-const ERROR = 2 // 不遵循会影响功能的原则
+const OFF = 0
+const WARNING = 1
+const ERROR = 2
 
 module.exports = {
-  extends: "next/core-web-vitals",
-  plugins: [
-    'import'
-  ],
+  parser: "@typescript-eslint/parser",
+  extends: ["next/core-web-vitals"],
+  plugins: ["@typescript-eslint"],
   rules: {
-    'import/order': [
+    "@typescript-eslint/explicit-module-boundary-types": OFF,
+    "@typescript-eslint/no-explicit-any": OFF,
+    "@typescript-eslint/no-non-null-assertion": OFF,
+    "@typescript-eslint/no-unused-vars": WARNING,
+    "@typescript-eslint/no-empty-function": OFF,
+    "@typescript-eslint/ban-ts-comment": OFF,
+    '@typescript-eslint/dot-notation': OFF,
+    '@typescript-eslint/no-unused-expressions':OFF,
+    '@typescript-eslint/no-unsafe-call': WARNING,
+    '@typescript-eslint/no-unsafe-assignment': WARNING,
+
+    "react/prop-types": OFF,
+    "react/display-name": OFF,
+    "react/no-unescaped-entities": OFF,
+    'react/no-string-refs':OFF,
+    'react/no-direct-mutation-state': OFF,
+    'react/require-render-return':OFF,
+    'react/jsx-no-undef':OFF,
+    'import/namespace': WARNING,
+
+    "import/no-anonymous-default-export": OFF,
+    "import/no-named-as-default": OFF,
+    "import/no-named-as-default-member": OFF,
+    
+    "no-console": WARNING,
+    "no-debugger": WARNING,
+    
+    "no-empty-function": OFF,
+    "no-unused-expressions": [
       WARNING,
       {
-        // https://github.com/import-js/eslint-plugin-import/blob/main/docs/rules/order.md#newlines-between-ignorealwaysalways-and-inside-groupsnever
-        "newlines-between": "always",
-        groups: [
-          'builtin',
-          'external',
-          'internal',
-          'parent',
-          'sibling',
-          'index',
-          'type',
-        ],
-        pathGroups: [
-          // always put css import to the last, ref: https://github.com/import-js/eslint-plugin-import/issues/1239
-          {
-            pattern: '*.+(css|sass|less|scss|pcss|styl)',
-            group: 'unknown',
-            patternOptions: {matchBase: true},
-            position: 'after',
-          },
-        ],
-        pathGroupsExcludedImportTypes: [],
-        warnOnUnassignedImports: true,
+        allowShortCircuit: true,
+        allowTernary: true,
       },
     ],
-
-    // 这条规则比较方便debug，但是不影响功能，@see: https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/display-name.md
-    'react/display-name': WARNING,
-  }
+  },
 }

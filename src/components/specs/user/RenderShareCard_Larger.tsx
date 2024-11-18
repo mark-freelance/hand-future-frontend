@@ -55,7 +55,7 @@ export const RenderShareCard_Larger = (props: RenderShareCardProps) => {
 					{/*  </div> */}
 					{/* </div> */}
 					{/**/}
-					<BaseAvatar url={data.avatar} text={data.name}/>
+					<BaseAvatar url={data.avatar ?? undefined} text={data.name ?? undefined}/>
 					
 					{/*  name - title */}
 					<div className="flex-1 flex flex-col justify-center items-baseline">

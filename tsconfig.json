@@ -32,7 +32,9 @@
     "next-env.d.ts",
     //    limit to src, in order to avoid 'bak' like files
     "src/**/*.ts",
-    "src/**/*.tsx"
+    "src/**/*.tsx",
+    ".eslintrc.js",
+    "next.config.js"
   ],
   "exclude": [
     "node_modules"

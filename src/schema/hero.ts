@@ -22,8 +22,12 @@ import { IHeroDetail } from "./user";
 // }
 
 export type IHero = IHeroDetail;
+// export interface IHero {id: string, name?: string, avatar?: string, title?: string}
 
 export interface IShareCard extends IHeroDetail {
   articleTitle: string;
   articleContent: string;
+  description?: string;
+  partners?: string[];
+  cover?: string;
 }

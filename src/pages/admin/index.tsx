@@ -2,6 +2,7 @@ import RootLayout from '~/components/layouts/RootLayout'
 import { AddAdmin } from '~/components/specs/admin/AddAdmin'
 import { InitHeroes } from '~/components/specs/admin/InitHeroes'
 import { JumpToHeroCard } from '~/components/specs/admin/JumpToHeroCard'
+import { UpdateHeroAvatars } from "~/components/specs/admin/UpdateHeroAvatars";
 
 
 export const AddAdminPage = () => {
@@ -16,6 +17,8 @@ export const AddAdminPage = () => {
 				<InitHeroes/>
 				
 				<JumpToHeroCard/>
+				
+				<UpdateHeroAvatars />
 			</div>
 		</RootLayout>
 	)

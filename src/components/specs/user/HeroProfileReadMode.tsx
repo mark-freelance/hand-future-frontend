@@ -11,6 +11,7 @@ import { normalizeImageUri } from "~/lib/image";
 import { IHeroDetail } from "../../../schema/user";
 
 export const HeroProfileReadMode = ({ hero }: { hero: IHeroDetail }) => {
+    const cover = hero.avatar // todo: cover ?
   return (
     <div className="w-full grow flex flex-col gap-2">
       {/* cover with frontend captains */}
@@ -18,7 +19,7 @@ export const HeroProfileReadMode = ({ hero }: { hero: IHeroDetail }) => {
         <AspectRatio.Root ratio={16 / 5}>
           <div
             style={{
-              backgroundImage: `linear-gradient(to right, rgba(9, 50, 50, 0), rgba(9, 148, 143, 1)), url('${hero.cover ? normalizeImageUri(hero.cover) : BG_COVER_FALLBACK}')`,
+              backgroundImage: `linear-gradient(to right, rgba(9, 50, 50, 0), rgba(9, 148, 143, 1)), url('${cover ? normalizeImageUri(cover) : BG_COVER_FALLBACK}')`,
               backgroundSize: "cover",
             }}
             className="h-full w-full"
