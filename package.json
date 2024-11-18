@@ -1,11 +1,11 @@
 {
-  "name": "xieshou-frontend",
+  "name": "@cs-magic/xieshou-frontend",
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "PORT=41119 next dev",
     "build": "next build",
-    "start": "next start",
+    "start": "PORT=41119 next start",
     "lint": "next lint",
     "db": "prisma migrate"
   },
