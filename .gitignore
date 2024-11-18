@@ -1,3 +1,5 @@
+.yarn/install-state.gz
+.turbo/*
 public/uploaded
 
 .env
