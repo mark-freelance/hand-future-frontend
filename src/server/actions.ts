@@ -25,7 +25,7 @@ export const updateHeroAvatars = async () => {
   for (let i = 0; i < heroes.length; i++) {
     const hero = heroes[i]
     console.log(`Updating avatar for hero ${i + 1}/${heroes.length}: ${hero.name}`)
-    if (hero.avatar && hero.avatar.startsWith("/")) {
+    if (hero.avatar && hero.avatar.startsWith("http")) {
       const newHero = await persistHeroAvatar(hero)
       await prisma.hero.update({ where: { id: hero.id }, data: newHero })
       console.log("  updated hero avatar")
