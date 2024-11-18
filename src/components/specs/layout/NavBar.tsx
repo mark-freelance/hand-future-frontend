@@ -4,35 +4,22 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
+import settings from "../../../config/settings.json"
+import type { IMenuItem } from "../../../schema/menu"
 
-import { useSession } from "next-auth/react";
+import { MenuItem } from "./Menu"
 
-import settings from "../../../config/settings.json";
-import type { IMenuItem } from "../../../schema/menu";
-
-import { MenuItem } from "./Menu";
-
-export const SVG_PATH_ARROW_RIGHT =
-  "M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z";
-export const SVG_PATH_ARROW_DOWN =
-  "M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z";
+export const SVG_PATH_ARROW_RIGHT = "M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"
+export const SVG_PATH_ARROW_DOWN = "M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"
 
 export const NavBar = (): JSX.Element => {
-  const { data: sessionData } = useSession();
-
   const menus = (settings.menus as IMenuItem[])
     .filter(
-      (menuItem) =>
-        // !menuItem.admin || isAdmin
-        !menuItem.hide,
+      (
+        menuItem, // !menuItem.admin || isAdmin
+      ) => !menuItem.hide,
     )
-    .map((menuItem) => (
-      <MenuItem
-        key={menuItem.name}
-        item={menuItem}
-        icon={SVG_PATH_ARROW_RIGHT}
-      />
-    ));
+    .map(menuItem => <MenuItem key={menuItem.name} item={menuItem} icon={SVG_PATH_ARROW_RIGHT} />)
 
   return (
     <div className="navbar bg-theme border-b-2 w-full inline-flex justify-between">
@@ -93,7 +80,7 @@ export const NavBar = (): JSX.Element => {
         {/*}*/}
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default NavBar;
+export default NavBar
