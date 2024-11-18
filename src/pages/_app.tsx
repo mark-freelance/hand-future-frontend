@@ -35,12 +35,14 @@ const MyApp = ({
       <SessionProvider session={session}>
         {USE_PERSISTOR ? (
           <PersistGate persistor={persistStore(store)} loading={null}>
-            <ThemeProvider defaultTheme={"dark"} attribute={"class"}>
+            <ThemeProvider enableSystem={true} attribute="class">
               <Component {...pageProps} />
             </ThemeProvider>
           </PersistGate>
         ) : (
-          <Component {...pageProps} />
+          <ThemeProvider enableSystem={true} attribute="class">
+            <Component {...pageProps} />
+          </ThemeProvider>
         )}
 
         <ToastContainer

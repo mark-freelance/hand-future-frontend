@@ -6,16 +6,17 @@ import { baseApi } from "./baseApi";
 export const TAG_USER = "user";
 
 const userHelper = {
-  providesTags: (result: IUserWithId | null | undefined) => {
-    console.log({ result });
-    return [{ type: TAG_USER, id: result?.id }];
-  },
+  providesTags: (result: IUserWithId | null | undefined): { type: 'user'; id: string }[] => [
+    { type: 'user' as const, id: result?.id ?? 'LIST' }
+  ],
   transformResponse: (response: IUserWithId | null) => {
-    if (!response) return response;
-    for (const field of ["cover", "avatar"] as const) {
-      const value = response[field];
-      if (value) response[field] = normalizeImageUri(value);
-    }
+    if (!response) return null;
+    ['avatar', 'cover'].forEach(field => {
+      const value = response[field as keyof IUserWithId];
+      if (value && typeof value === 'string') {
+        (response as any)[field] = normalizeImageUri(value);
+      }
+    });
     return response;
   },
 };

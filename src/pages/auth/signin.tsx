@@ -5,7 +5,7 @@ import { useRouter } from 'next/router'
 import { signIn } from 'next-auth/react'
 import React, { type ReactNode, useEffect, useRef, useState } from 'react'
 import { toast } from 'react-toastify'
-import Typist from 'react-typist'
+import Typist from 'react-typist-component'
 
 import { Button } from '@/components/ui/button'
 import RootLayout from '~/components/layouts/RootLayout'
@@ -15,16 +15,16 @@ const getToken = async (email: string): Promise<string> =>
 	(await axios.get('/api/auth/token?email=' + email)).data.toString()
 
 export const TitleLineComp = ({ content, onTypingDone }: { content: string | ReactNode, onTypingDone?: any }) => {
-	
 	return (
-		<Typist
-			avgTypingDelay={50}
-			cursor={{ hideWhenDone: true, hideWhenDoneDelay: 0 }}
-			className={'text-[#02CEC7] font-bold'}
-			onTypingDone={onTypingDone}
-		>
-			{content}
-		</Typist>
+		<div className={'text-[#02CEC7] font-bold'}>
+			<Typist
+				typingDelay={50}
+				cursor={<span className="cursor">|</span>}
+				onTypingDone={onTypingDone}
+			>
+				{content}
+			</Typist>
+		</div>
 	)
 }
 const SigninPage: NextPage<{ baseUrl: string }> = ({ baseUrl }) => {
@@ -43,6 +43,7 @@ const SigninPage: NextPage<{ baseUrl: string }> = ({ baseUrl }) => {
 	
 	const onConfirmEmail = async () => {
 		if (loading) {
+			
 			toast.error('duplicated send')
 			return
 		}

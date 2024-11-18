@@ -11,46 +11,43 @@ const WARNING = 1
 const ERROR = 2
 
 module.exports = {
-  parser: "@typescript-eslint/parser",
-  extends: ["next/core-web-vitals"],
-  plugins: ["@typescript-eslint"],
+  root: true,
+  extends: [
+    'next/core-web-vitals',
+    'eslint:recommended',
+    'plugin:@typescript-eslint/recommended',
+    'prettier'
+  ],
+  parser: '@typescript-eslint/parser',
+  plugins: ['@typescript-eslint'],
   rules: {
-    "@typescript-eslint/explicit-module-boundary-types": OFF,
-    "@typescript-eslint/no-explicit-any": OFF,
-    "@typescript-eslint/no-non-null-assertion": OFF,
-    "@typescript-eslint/no-unused-vars": WARNING,
-    "@typescript-eslint/no-empty-function": OFF,
-    "@typescript-eslint/ban-ts-comment": OFF,
-    '@typescript-eslint/dot-notation': OFF,
-    '@typescript-eslint/no-unused-expressions':OFF,
-    '@typescript-eslint/no-unsafe-call': WARNING,
-    '@typescript-eslint/no-unsafe-assignment': WARNING,
-
-    "react/prop-types": OFF,
-    "react/display-name": OFF,
-    "react/no-unescaped-entities": OFF,
-    'react/no-string-refs':OFF,
-    'react/no-direct-mutation-state': OFF,
-    'react/require-render-return':OFF,
-    'react/jsx-no-undef':OFF,
-    'react/jsx-uses-react': OFF,
-    'react/jsx-uses-vars': OFF,
-
-    'import/namespace': WARNING,
-    "import/no-anonymous-default-export": OFF,
-    "import/no-named-as-default": OFF,
-    "import/no-named-as-default-member": OFF,
-    
-    "no-console": WARNING,
-    "no-debugger": WARNING,
-    
-    "no-empty-function": OFF,
-    "no-unused-expressions": [
-      WARNING,
+    '@typescript-eslint/no-unused-vars': ['warn', {
+      'argsIgnorePattern': '^_',
+      'varsIgnorePattern': '^_',
+      'caughtErrorsIgnorePattern': '^_'
+    }],
+    '@typescript-eslint/no-explicit-any': 'off',
+    'react/display-name': 'error',
+    '@typescript-eslint/ban-ts-comment': [
+      'error',
       {
-        allowShortCircuit: true,
-        allowTernary: true,
-      },
+        'ts-expect-error': 'allow-with-description',
+        'minimumDescriptionLength': 3
+      }
     ],
+    'no-var': 'off',
+    '@typescript-eslint/no-require-imports': 'off',
+    '@typescript-eslint/no-unused-expressions': 'off',
+    'react-hooks/exhaustive-deps': 'warn'
   },
+  env: {
+    browser: true,
+    node: true,
+    es6: true
+  },
+  settings: {
+    next: {
+      rootDir: ['./']
+    }
+  }
 }

@@ -30,6 +30,8 @@ export const AccordionItem = React.forwardRef((
       {children}
     </Accordion.Item>
 ))
+AccordionItem.displayName = "AccordionItem";
+
 export const AccordionTrigger = React.forwardRef((
   {
     children,
@@ -53,6 +55,8 @@ export const AccordionTrigger = React.forwardRef((
       </Accordion.Trigger>
     </Accordion.Header>
 ))
+AccordionTrigger.displayName = "AccordionTrigger";
+
 export const AccordionContent = React.forwardRef((
   {
     children,
@@ -70,3 +74,4 @@ export const AccordionContent = React.forwardRef((
       <div className="py-[15px] px-5">{children}</div>
     </Accordion.Content>
 ))
+AccordionContent.displayName = "AccordionContent";

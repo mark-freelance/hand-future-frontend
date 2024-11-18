@@ -14,7 +14,7 @@ const Avatar = React.forwardRef<React.ElementRef<typeof AvatarPrimitive.Root>,
 			className,
 		)}
 		{...props}
-	/>
+	/> as React.ReactElement
 ))
 Avatar.displayName = AvatarPrimitive.Root.displayName
 
@@ -24,7 +24,7 @@ const AvatarImage = React.forwardRef<React.ElementRef<typeof AvatarPrimitive.Ima
 		ref={ref}
 		className={cn('aspect-square h-full w-full', className)}
 		{...props}
-	/>
+	/> as React.ReactElement
 ))
 AvatarImage.displayName = AvatarPrimitive.Image.displayName
 
@@ -37,7 +37,7 @@ const AvatarFallback = React.forwardRef<React.ElementRef<typeof AvatarPrimitive.
 			className,
 		)}
 		{...props}
-	/>
+	/> as React.ReactElement
 ))
 AvatarFallback.displayName = AvatarPrimitive.Fallback.displayName
 

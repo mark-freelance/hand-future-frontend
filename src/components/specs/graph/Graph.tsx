@@ -9,7 +9,7 @@ import { useHotkeys } from "@mantine/hooks";
  */
 import clsx from "clsx";
 import { useRouter } from "next/router";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useCallback } from "react";
 import type {
   ForceGraphMethods,
   GraphData,
@@ -132,7 +132,7 @@ export const Graph = ({ data }: { data: GraphData }): JSX.Element => {
   const clearRotate = () => {
     if (rotationRef.current) clearInterval(rotationRef.current);
   };
-  const setRotate = () => {
+  const setRotate = useCallback(() => {
     rotationRef.current = setInterval(
       () => {
         const rotationMatrix = new Matrix4().makeRotationY(
@@ -143,15 +143,15 @@ export const Graph = ({ data }: { data: GraphData }): JSX.Element => {
       },
       Math.ceil(1000 / (cameraRotationFPS || 24)),
     );
-  };
+  }, [cameraRotationFPS, cameraRotationDegree]);
 
   /**
-   * 让相机始终旋转（提升用户体验）
+   * 让相机始终旋转（提��用户体验）
    */
   useEffect(() => {
     clearRotate();
     setRotate();
-  }, [cameraRotationFPS, cameraRotationDegree]);
+  }, [setRotate]);
 
   const onNodeClick = (node: NodeObject) => {
     if (!fgRef.current) return;
@@ -195,7 +195,7 @@ export const Graph = ({ data }: { data: GraphData }): JSX.Element => {
   };
 
   const nodeThreeObject = (node: NodeObject) => {
-    // @ts-ignore // 这个库默认 NodeObject 是只有 id,x,y,z等属性
+    // @ts-expect-error Three.js type definitions don't match the actual implementation
     const imgPath = normalizeImageUri(node.avatar)!;
 
     const imgTexture = new TextureLoader().load(imgPath);

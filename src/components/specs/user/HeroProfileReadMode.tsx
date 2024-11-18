@@ -1,5 +1,5 @@
-import * as AspectRatio from "@radix-ui/react-aspect-ratio";
-
+import * as React from "react";
+import { Root as AspectRatioRoot } from "@radix-ui/react-aspect-ratio";
 import { UserAvatar } from "~/components/shared/BaseAvatar";
 import { Section } from "~/components/shared/Section";
 import { PartnerLink } from "~/components/specs/user/PartnerLink";
@@ -7,16 +7,15 @@ import { WorkPresentation } from "~/components/specs/work/WorkPresentation";
 import { Label } from "~/components/ui/label";
 import { BG_COVER_FALLBACK } from "~/config/cover";
 import { normalizeImageUri } from "~/lib/image";
+import { type IHeroDetail } from "~/schema/hero";
 
-import type { IHeroDetail } from "../../../schema/user";
-
-export const HeroProfileReadMode = ({ hero }: { hero: IHeroDetail }) => {
+export const HeroProfileReadMode: React.FC<{ hero: IHeroDetail }> = ({ hero }) => {
     const cover = hero.avatar // todo: cover ?
   return (
     <div className="w-full grow flex flex-col gap-2">
       {/* cover with frontend captains */}
       <div className="shadow-blackA7 w-full max-auto overflow-hidden rounded-md shadow-[0_2px_10px] relative">
-        <AspectRatio.Root ratio={16 / 5}>
+        <AspectRatioRoot ratio={16 / 5}>
           <div
             style={{
               backgroundImage: `linear-gradient(to right, rgba(9, 50, 50, 0), rgba(9, 148, 143, 1)), url('${cover ? normalizeImageUri(cover) : BG_COVER_FALLBACK}')`,
@@ -24,7 +23,7 @@ export const HeroProfileReadMode = ({ hero }: { hero: IHeroDetail }) => {
             }}
             className="h-full w-full"
           />
-        </AspectRatio.Root>
+        </AspectRatioRoot>
 
         <div className="absolute p-12 left-0 bottom-0 max-w-screen-sm flex flex-col gap-2">
           <div className="flex items-center gap-4">
@@ -40,7 +39,7 @@ export const HeroProfileReadMode = ({ hero }: { hero: IHeroDetail }) => {
             <Label>携手嘉宾</Label>
             {hero?.toHeroes.length ? (
               hero?.toHeroes.map((heroRelation) => (
-                <PartnerLink id={heroRelation.toId} key={heroRelation.toId} />
+                <PartnerLink key={heroRelation.toId} id={heroRelation.toId} />
               ))
             ) : (
               <div className={"inline-flex items-center gap-1"}>

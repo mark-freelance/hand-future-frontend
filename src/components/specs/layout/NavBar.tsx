@@ -7,8 +7,6 @@
 
 import { useSession } from "next-auth/react";
 
-import { useAdmin } from "~/hooks/use-user";
-
 import settings from "../../../config/settings.json";
 import type { IMenuItem } from "../../../schema/menu";
 
@@ -21,9 +19,6 @@ export const SVG_PATH_ARROW_DOWN =
 
 export const NavBar = (): JSX.Element => {
   const { data: sessionData } = useSession();
-  // console.log({ sessionData })
-
-  const isAdmin = useAdmin();
 
   const menus = (settings.menus as IMenuItem[])
     .filter(

@@ -13,7 +13,7 @@ const projectDir = __dirname;
 // 加载工作区根目录的环境变量
 const env = dotenv.config({path: path.join(projectDir, '.env')}).parsed;
 
-console.log({env})
+// console.log({env})
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {

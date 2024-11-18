@@ -10,10 +10,10 @@ import Link from 'next/link'
 
 import { normalizeImageUri } from '~/lib/image'
 
-import type { IHero } from '../../schema/hero'
+import type { IHeroDetail } from '../../schema/hero'
 
 export interface HeroCardProps {
-	data: IHero
+	data: IHeroDetail
 }
 
 export const HeroCard = ({ data }: HeroCardProps): JSX.Element => (

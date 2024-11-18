@@ -1,11 +1,11 @@
-// @ts-ignore
+// @ts-expect-error - Environmental variables are validated at runtime
 import {createEnv} from "@t3-oss/env-nextjs";
 import {z} from "zod";
 
 // dotenv.config();
 
 const DATABASE_URL = process.env.DATABASE_URL
-console.log({DATABASE_URL})
+// console.log({DATABASE_URL})
 // console.log(process.env)
 
 export const env = createEnv({

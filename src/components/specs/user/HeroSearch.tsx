@@ -5,7 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import type { IHeroDetail } from "../../../schema/user";
+import type { IHeroDetail } from "~/schema/hero";
 
 import HeroTable from "./HeroTable";
 

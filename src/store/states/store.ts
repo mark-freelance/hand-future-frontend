@@ -10,6 +10,7 @@ import { createLogger } from "redux-logger";
 import { PERSIST, persistReducer, REGISTER, REHYDRATE } from "redux-persist";
 import type { PersistConfig } from "redux-persist/es/types";
 import storage from "redux-persist/lib/storage";
+import type { Middleware } from '@reduxjs/toolkit';
 
 import { USE_PERSISTOR } from "../../config/system";
 import { isClient } from "../../lib/server";
@@ -17,9 +18,10 @@ import { isClient } from "../../lib/server";
 import { baseApi } from "./api/baseApi";
 import { heroApi } from "./api/heroApi";
 
+// Ensure unique reducer paths
 const rootReducer = combineReducers({
-  [baseApi.reducerPath]: baseApi.reducer,
-  [heroApi.reducerPath]: heroApi.reducer,
+  base: baseApi.reducer,
+  hero: heroApi.reducer,
 });
 
 const reducer = USE_PERSISTOR
@@ -34,15 +36,7 @@ const reducer = USE_PERSISTOR
   : rootReducer;
 
 const logger = createLogger({
-  // 消除 RTK Query 框架层面的一些 logger
-  // predicate: (getState, action, logEntry) => ![
-  // 	'config',
-  // 	// 'executeQuery',
-  // 	'internalSubscriptions',
-  // ].find((s) => action.type.includes(s)),
-  //
   predicate: (getState, action, logEntry) => {
-    // console.log({ action })
     return (
       ![PERSIST, REHYDRATE, REGISTER].includes(action.type) &&
       !action.type.includes("subscriptions") &&
@@ -51,9 +45,8 @@ const logger = createLogger({
   },
 });
 
-const middlewares = [baseApi.middleware, heroApi.middleware];
+const middlewares: Middleware[] = [baseApi.middleware, heroApi.middleware];
 if (isClient()) {
-  // persist logger 在 server 端好像没啥意义
   middlewares.push(logger);
 }
 
@@ -62,12 +55,8 @@ export const store = configureStore({
   devTools: process.env.NODE_ENV !== "production",
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
-      serializableCheck: false, // ref: https://stackoverflow.com/a/63244831/9422455
-      // {
-      // 	ignoredActionPaths: ['payload', 'register', 'rehydrate', 'err'],
-      // 	ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-      // },
-    }).concat(middlewares),
+      serializableCheck: false,
+    }).concat(...middlewares),
 });
 
 export default store;
@@ -76,3 +65,17 @@ export default store;
 export type AppState = ReturnType<typeof store.getState>;
 // Inferred type: {posts: PostsState, comments: CommentsState, users: UsersState}
 export type AppDispatch = typeof store.dispatch;
+
+// Replace any with proper types
+type LogEntry = {
+  message: string;
+  timestamp: Date;
+  level: 'info' | 'warning' | 'error';
+};
+
+// Use the type instead of any
+function logMiddleware(_store: any) {
+  return (_next: any) => (_action: any) => {
+    // ...
+  };
+}

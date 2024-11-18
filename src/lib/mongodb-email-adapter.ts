@@ -263,7 +263,7 @@ export function MongodbEmailAdapter(
 			).V.findOneAndDelete(identifier_token)
 			
 			if (!verificationToken) return null
-			// @ts-expect-error
+			// @ts-expect-error - MongoDB types don't match exactly with what we need here
 			delete verificationToken._id
 			return verificationToken
 		},

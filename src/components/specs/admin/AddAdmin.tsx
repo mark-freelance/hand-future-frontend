@@ -15,6 +15,11 @@ export const AddAdmin = () => {
 	
 	useEffect(() => {if (isSuccess) {toast.success('添加成功')}}, [isSuccess])
 	useEffect(() => {if (isError) {toast.success(`添加失败，原因：${(error as unknown as { data: { detail: string } }).data.detail}`)}}, [isError])
+	useEffect(() => {
+		if (error) {
+			toast.error(`添加失败，原因：${(error as unknown as { data: { detail: string } }).data.detail}`)
+		}
+	}, [error])
 	
 	return (
 		<Card>

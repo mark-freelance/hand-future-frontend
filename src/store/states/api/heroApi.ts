@@ -1,4 +1,4 @@
-import type { IHero } from "../../../schema/hero";
+import type { IHeroDetail } from "../../../schema/hero";
 import type { IGraphData } from "../../../schema/panel_3dgraph";
 
 import { baseApi } from "./baseApi";
@@ -12,7 +12,7 @@ export const heroApi = baseApi
   .injectEndpoints({
     overrideExisting: true,
     endpoints: (build) => ({
-      listHeroes: build.query<IHero[], void>({
+      listHeroes: build.query<IHeroDetail[], void>({
         query: () => `/hero/`,
         providesTags: [TAG_HERO],
       }),
@@ -33,7 +33,5 @@ export const heroApi = baseApi
   });
 
 export const {
-  // useInitHeroesMutation,
   useGetGraphDataQuery,
-  // useListHeroesQuery,
 } = heroApi;

@@ -15,10 +15,10 @@ export const workApi = baseApi
     endpoints: (build) => ({
       listWorks: build.query<IWork[], string>({
         query: (arg) => `/work/?user_id=${arg}`,
-        providesTags: (result) => [
-          ...(result || []).map((item) => ({ type: TAG_WORK, id: item.id })),
-          { type: TAG_WORK, id: ID_ALL },
-        ],
+        providesTags: (result): { type: 'work'; id: string }[] => 
+          result 
+            ? [...result.map((item) => ({ type: 'work' as const, id: item.id || 'LIST' }))]
+            : [{ type: 'work' as const, id: 'LIST' }]
       }),
 
       addWork: build.mutation<void, Omit<IWork, "id">>({

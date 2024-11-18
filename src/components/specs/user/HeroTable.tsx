@@ -6,11 +6,13 @@
  */
 
 import clsx from "clsx";
+import { useEffect, useState } from "react";
+import { useSearchParams } from "next/navigation";
 
 import { BaseAvatar } from "~/components/shared/BaseAvatar";
 import { normalizeImageUri } from "~/lib/image";
 
-import type { IHeroDetail } from "../../../schema/user";
+import type { IHeroDetail } from "~/schema/hero";
 
 export interface HeroTableProps {
   heroes: IHeroDetail[];
@@ -58,19 +60,24 @@ export const HeroLineView = ({
 export const HeroTable = (props: HeroTableProps) => {
   const {
     heroes,
-    pageSize = 10,
-    pageNumber = 0,
     searchKey,
     onClickHero,
   } = props;
+
+  const searchParams = useSearchParams();
+  const [_pageNumber, setPageNumber] = useState(1);
+
+  useEffect(() => {
+    if (searchParams.get("page")) {
+      setPageNumber(parseInt(searchParams.get("page") || "1"));
+    }
+  }, [searchParams]);
+
   return (
     <div className="overflow-auto max-w-[360px] max-h-[60vh]">
       <table
         className={clsx(
-          // 'block',
           "table",
-          // 'table-zebra',
-          // 'table-compact'
         )}
       >
         <thead>
@@ -83,7 +90,6 @@ export const HeroTable = (props: HeroTableProps) => {
         <tbody>
           {heroes
             .filter((hero) => !searchKey || hero.name?.includes(searchKey))
-            // .filter((value, i) => i >= pageNumber * pageSize && i < (pageNumber + 1) * pageSize)
             .map((hero) => (
               <HeroLineView
                 key={hero.id}

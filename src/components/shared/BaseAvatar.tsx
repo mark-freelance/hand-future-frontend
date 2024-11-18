@@ -9,7 +9,7 @@ import { IconUser } from "@tabler/icons-react";
 
 import { Avatar, AvatarFallback, AvatarImage } from "~/components/ui/avatar";
 
-import type { IHeroDetail } from "../../schema/user";
+import type { IUserWithId } from "../../schema/user";
 
 export const BaseAvatar = ({ url, text }: { url?: string; text?: string }) => {
   return (
@@ -20,7 +20,7 @@ export const BaseAvatar = ({ url, text }: { url?: string; text?: string }) => {
   );
 };
 
-export const UserAvatar = ({ user }: { user: IHeroDetail }) => {
+export const UserAvatar = ({ user }: { user: IUserWithId }) => {
   return (
     <Avatar>
       <AvatarImage src={user?.avatar ?? undefined} />

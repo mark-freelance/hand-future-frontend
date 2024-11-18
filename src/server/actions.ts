@@ -1,5 +1,6 @@
 import { promises } from "fs";
 import * as path from "path";
+import moment from "moment";
 
 import { Client, collectPaginatedAPI } from "@notionhq/client";
 import { flatten } from "lodash";
@@ -8,6 +9,7 @@ import type { GraphData } from "react-force-graph-3d";
 import { env } from "../env";
 import { persistHeroAvatar, user2hero, user2heroRelation } from "../lib/user";
 import type { IUserInNotion } from "../schema/user";
+import { type IHeroWithoutUser } from "../schema/hero";
 
 import prisma from "./db";
 

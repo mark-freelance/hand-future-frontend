@@ -4,30 +4,70 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import type { IHeroDetail } from "./user";
+import { type Hero, type HeroRelation, type User, type Work, Prisma } from "@prisma/client";
 
-// export interface IHero {
-//   id: string;
-//   name?: string;
-//   title?: string;
-//   cities?: string;
-//   avatar?: string;
-//   description?: string;
-//   cover?: string;
-//
-//   /**
-//    * todo: 基于作品的二度链接
-//    */
-//   partners?: string[];
-// }
+// 1. Base Hero type from Prisma
+export type IHeroBase = Hero;
 
-export type IHero = IHeroDetail;
-// export interface IHero {id: string, name?: string, avatar?: string, title?: string}
+// 2. Hero with relations
+export const heroDetailSchema = {
+  include: {
+    user: true,
+    fromHeroes: {
+      include: {
+        to: true,
+      },
+    },
+    toHeroes: {
+      include: {
+        from: true,
+      },
+    },
+    works: true,
+  },
+} as const;
 
-export interface IShareCard extends IHeroDetail {
-  articleTitle: string;
-  articleContent: string;
+export type IHeroDetail = Hero & {
+  user: User;
+  fromHeroes: (HeroRelation & {
+    to: Hero;
+  })[];
+  toHeroes: (HeroRelation & {
+    from: Hero;
+  })[];
+  works: Work[];
+};
+
+// 3. Hero without user data (for creation/update)
+export type IHeroWithoutUser = Omit<Hero, "userId">;
+
+// 4. Share card specific interface
+export interface IShareCard extends Pick<Hero, 
+  'id' | 'name' | 'title' | 'avatar' | 'cities'
+> {
   description?: string;
   partners?: string[];
   cover?: string;
+  articleTitle: string;
+  articleContent: string;
+}
+
+// 5. Hero relation type
+export type IHeroRelation = HeroRelation & {
+  from: Hero;
+  to: Hero;
+};
+
+// Add IHero export
+export interface IHero {
+  id: string;
+  createdAt: Date;
+  updatedAt: Date;
+  name: string | null;
+  photos: string[];
+  avatar: string | null;
+  avatarOrigin: string | null;
+  title: string | null;
+  cities: string | null;
+  userId: string;
 }
