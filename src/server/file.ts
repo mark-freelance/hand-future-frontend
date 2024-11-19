@@ -10,14 +10,15 @@ export interface IFileRemote2LocalRes {
   success: boolean;
 }
 
+export const publicDir = path.resolve(process.cwd(), 'public')
 export const fileRemote2Local = async (
   remoteUri: string,
 ): Promise<IFileRemote2LocalRes> => {
   const hash = crypto.createHash("sha256").update(remoteUri).digest("hex");
 
-  const filesPath = path.resolve(process.cwd(), "public/uploaded");
+  const filesPath = path.resolve(publicDir, "uploaded");
   if (!fs.existsSync(filesPath))
-    await fs.mkdirSync(filesPath, {
+     fs.mkdirSync(filesPath, {
       recursive: true, // 这个选项即使文件夹已经存在也不会报错
     });
 
